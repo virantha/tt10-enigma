@@ -2,8 +2,8 @@
 project:
   title:        "Enigma Cipher Machine"      # Project title
   author:       "Virantha Ekanayake"      # Your name
-  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  ""      # One line description of what your project does
+  discord:      "veezer"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "Model an Enigma machine"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
 
