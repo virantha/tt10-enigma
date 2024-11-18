@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Your Name
  * SPDX-License-Identifier: Apache-2.0
  */
-
+`include "rotor.v"
 `default_nettype none
 
 module tt_um_virantha_enigma (
@@ -32,9 +32,11 @@ module tt_um_virantha_enigma (
     end
   end
 
-  assign uo_out = cnt;
+  assign uo_out[0] = cnt[7];
 
-
+  Rotor r0 ( .right (ui_in[4..0]),
+             .left  (uo_out[4..0])
+    );
   // List all unused inputs to prevent warnings
   wire _unused = ena;
   //wire _unused = &{ena, clk, rst_n, 1'b0};
