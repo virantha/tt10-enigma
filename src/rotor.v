@@ -1,8 +1,15 @@
 
 module Rotor (
 
-    input wire [4:0] right,
-    output wire [4:0] left,
+    // Right to left path
+    input wire [4:0] right_in,
+    output wire [4:0] left_out,
+    
+    // left to right path
+    input wire [4:0] left_in,
+    output wire [4:0] right_out,
+
+    output wire is_at_turnover,
 
     input wire en,
     input wire load,
@@ -16,11 +23,13 @@ module Rotor (
     wire[4:0] right_ptr;
     reg[4:0] cnt;
 
+    localparam turnover=5'h10;   // Q 
+
     
     always @(posedge clk) begin
         if (en) begin
             if (load) begin
-                cnt <= right;
+                cnt <= right_in;
             end
             else if (inc) begin
                 cnt <= (cnt + 1)%26;
@@ -28,17 +37,20 @@ module Rotor (
         end
     end
 
+    // Calculate turnover
+    assign is_at_turnover = (cnt==turnover);
+
     // Convert absolute entry (right) to relative contact point on
     // the rotor by adding its rotation (cnt).
     // "data" will then be the output of the wiring pattern based on right_ptr
     
-    assign right_ptr = cnt + right;
+    assign right_ptr = cnt + right_in;
     
     // Convert the "data" which is the contacdt point on the left side
     // of the rotor, to an absolute position by subtracting out
     // the rotation of the rotor (cnt).  Thereore, "left" will be the
     // absolute position the signal will enter the next rotor to the left.
-    assign left = data - cnt;
+    assign left_out = data - cnt;
     
     always @(right_ptr)
     begin

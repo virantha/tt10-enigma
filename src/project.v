@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 `default_nettype none
-`include "rotor.v"
+`include "am_top.v"
 
 module tt_um_virantha_enigma (
     input  wire [7:0] ui_in,    // Dedicated inputs
@@ -34,9 +34,15 @@ module tt_um_virantha_enigma (
 
   assign uo_out[7:5] = cnt[7:5];
 
+  top enigma (
+    .ui_in (ui_in),
+    .uo_out (uo_out[4:0])
+  );
+  /*
   Rotor r0 ( .right (ui_in[4:0]),
              .left  (uo_out[4:0])
     );
+  */
   // List all unused inputs to prevent warnings
   wire _unused = ena;
   //wire _unused = &{ena, clk, rst_n, 1'b0};
