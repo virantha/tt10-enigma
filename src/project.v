@@ -32,11 +32,11 @@ module tt_um_virantha_enigma (
     end
   end
 
-  assign uo_out[7:5] = cnt[7:5];
+  assign uo_out[7:6] = cnt[7:6];
 
   top enigma (
     .ui_in (ui_in),
-    .uo_out (uo_out[4:0])
+    .uo_out (uo_out[5:0])
   );
   /*
   Rotor r0 ( .right (ui_in[4:0]),
