@@ -36,7 +36,9 @@ module tt_um_virantha_enigma (
 
   top enigma (
     .ui_in (ui_in),
-    .uo_out (uo_out[5:0])
+    .uo_out (uo_out[5:0]),
+    .clk (clk),
+    .rst (~rst_n)
   );
   /*
   Rotor r0 ( .right (ui_in[4:0]),

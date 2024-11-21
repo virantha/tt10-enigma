@@ -260,9 +260,9 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, inc, cmd);
   (* enum_value_0011 = "Load ring/3" *)
   (* enum_value_0100 = "Inc Rotor 0/4" *)
   (* enum_value_0101 = "Inc Rotor 1/5" *)
-  (* enum_value_0110 = "Delay/6" *)
-  (* enum_value_0111 = "Check Rotor 1 Turnover/7" *)
-  (* enum_value_1000 = "Delay 2/8" *)
+  (* enum_value_0110 = "Delay 2/6" *)
+  (* enum_value_0111 = "Delay/7" *)
+  (* enum_value_1000 = "Check Rotor 1 Turnover/8" *)
   (* enum_value_1001 = "Inc Rotor 2/9" *)
   (* enum_value_1010 = "Delay 3/10" *)
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:60" *)
@@ -390,12 +390,14 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, inc, cmd);
           \$16  = 2'h1;
       4'h5:
           \$16  = 2'h2;
-      4'h6:
-          /* empty */;
       4'h7:
+          /* empty */;
+      4'h8:
           /* empty */;
       4'h9:
           \$16  = 2'h3;
+      4'h6:
+          \$16  = 2'h0;
     endcase
     if (rst) begin
       \$16  = 2'h0;
@@ -437,27 +439,29 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, inc, cmd);
           end
       4'h4:
           (* full_case = 32'd1 *)
-          if (double_step) begin
+          if (is_at_turnover[0]) begin
+            \$17  = 4'h5;
+          end else if (double_step) begin
             \$17  = 4'h5;
           end else begin
             \$17  = 4'h6;
           end
       4'h5:
-          \$17  = 4'h6;
-      4'h6:
           \$17  = 4'h7;
       4'h7:
+          \$17  = 4'h8;
+      4'h8:
           (* full_case = 32'd1 *)
           if (is_at_turnover[1]) begin
-            \$17  = 4'h8;
+            \$17  = 4'h6;
           end else if (double_step) begin
             \$17  = 4'h9;
           end else begin
-            \$17  = 4'h8;
+            \$17  = 4'h6;
           end
       4'h9:
-          \$17  = 4'h8;
-      4'h8:
+          \$17  = 4'h6;
+      4'h6:
           \$17  = 4'ha;
       4'ha:
           \$17  = 4'h1;
@@ -485,19 +489,18 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, inc, cmd);
           \$18 [0] = 1'h0;
           \$18 [1] = 1'h1;
         end
-      4'h6:
-          \$18  = 3'h0;
       4'h7:
-        begin
-          \$18 [0] = 1'h0;
-          \$18 [1] = 1'h0;
-        end
+          \$18  = 3'h0;
+      4'h8:
+          \$18  = 3'h0;
       4'h9:
         begin
           \$18 [0] = 1'h0;
           \$18 [1] = 1'h0;
           \$18 [2] = 1'h1;
         end
+      4'h6:
+          \$18  = 3'h0;
     endcase
     if (rst) begin
       \$18  = 3'h0;
@@ -519,9 +522,9 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, inc, cmd);
           /* empty */;
       4'h5:
           /* empty */;
-      4'h6:
-          /* empty */;
       4'h7:
+          /* empty */;
+      4'h8:
           if (is_at_turnover[1]) begin
             \$19  = 1'h1;
           end
