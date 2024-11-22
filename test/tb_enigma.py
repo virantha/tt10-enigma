@@ -227,5 +227,5 @@ async def bench(ctx):
 sim = Simulator(dut)
 sim.add_clock(100e-6)
 sim.add_testbench(bench)
-with sim.write_vcd("enigma.vcd"):
+with sim.write_vcd("output/enigma.vcd"):
     sim.run()

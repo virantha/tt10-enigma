@@ -29,7 +29,6 @@ class Rotor (wiring.Component):
 
     def elaborate(self, platform):
         m = Module()
-        m.domains.startup = ClockDomain(reset_less=True)
 
         with m.If(self.en):
             with m.If(self.load_start):
@@ -86,6 +85,39 @@ class Rotor_III(Rotor):
 class Reflector_B(Rotor):
     _wiring = 'YRUHQSLDPXNGOKMIEBFZCWVJAT'
     _turnover = 'Z'
+
+    """Remove unnecessary logic from Rotor code to make the area smaller
+
+        - No left to right path
+        - No counter (since we never increment this)
+        - Ring_setting is always 0
+        
+    """
+
+    def elaborate(self, platform):
+        m = Module()
+
+        mapping = [ord(c)-65 for c in self.wiring]
+
+        Wiring = Array(mapping) # right_to_left mapping
+        
+        m.d.comb += self.right_ptr.eq(self.right_in)
+        
+        # Convert the "data" which is the contact point on the left side
+        # of the rotor (Wiring[right_ptr]), to an absolute position by subtracting out
+        # the rotation of the rotor (cnt).  Thereore, "left" will be the
+        # absolute position the signal will enter the next rotor to the left.
+        m.d.comb += self.left_out.eq(Wiring[self.right_ptr])
+
+        # Tie off unused outputs
+        m.d.comb += [
+            self.right_out.eq(0),
+            self.is_at_turnover.eq(0),
+            self.rtol_swizzle.eq(0),
+            self.cnt.eq(0),
+            self.left_ptr.eq(0),
+        ]
+        return m
 
 
 if __name__=='__main__':
