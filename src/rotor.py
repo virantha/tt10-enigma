@@ -52,7 +52,7 @@ class Rotor (wiring.Component):
         # Convert absolute entry (right) to relative contact point on
         # the rotor by adding its rotation (cnt).
         # "data" will then be the output of the wiring pattern based on right_ptr
-        m.d.comb += self.right_ptr.eq((self.cnt + self.right_in - self.ring_setting )%26)
+        m.d.comb += self.right_ptr.eq((self.cnt + self.right_in - self.ring_setting ) )#%26)
         
         # Convert the "data" which is the contact point on the left side
         # of the rotor (Wiring[right_ptr]), to an absolute position by subtracting out
@@ -63,11 +63,11 @@ class Rotor (wiring.Component):
         m.d.comb += self.left_out.eq(
             Mux( self.load_start | self.load_ring, 
                  self.right_in, 
-                (self.rtol_swizzle-self.cnt + self.ring_setting)%26))
+                (self.rtol_swizzle-self.cnt + self.ring_setting)))#%26))
 
         # Left to right
-        m.d.comb += self.left_ptr.eq((self.cnt + self.left_in - self.ring_setting)%26)
-        m.d.comb += self.right_out.eq((Wiring_left_to_right[self.left_ptr] - self.cnt + self.ring_setting) % 26)
+        m.d.comb += self.left_ptr.eq((self.cnt + self.left_in - self.ring_setting))#%26)
+        m.d.comb += self.right_out.eq((Wiring_left_to_right[self.left_ptr] - self.cnt + self.ring_setting))# % 26)
 
         return m
             
