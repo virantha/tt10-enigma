@@ -105,5 +105,7 @@ class Enigma(wiring.Component):
 if __name__=='__main__':
     from amaranth.back import verilog
     enigma = Enigma()
-    with open('am_top.v', 'w') as f:
+    filename = 'src/am_top.v'
+    with open(filename, 'w') as f:
         f.write(verilog.convert(enigma))
+        print(f'Wrote {filename}')
