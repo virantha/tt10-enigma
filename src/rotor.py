@@ -78,8 +78,8 @@ class Rotor (wiring.Component):
                 (self.rtol_swizzle-(cnt_ring_combined))%26))
 
         # Left to right
-        m.d.comb += self.left_ptr.eq((self.cnt + self.left_in - self.ring_setting)%26)
-        m.d.comb += self.right_out.eq((Wiring_left_to_right[self.left_ptr] - self.cnt + self.ring_setting) % 26)
+        m.d.comb += self.left_ptr.eq((self.left_in + cnt_ring_combined)%26)
+        m.d.comb += self.right_out.eq((Wiring_left_to_right[self.left_ptr] - (cnt_ring_combined)) % 26)
 
         return m
             
