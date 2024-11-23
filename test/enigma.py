@@ -1,4 +1,4 @@
-from itertools import batched 
+#from itertools import batched 
 """
     Each wheel is basically pairs of mappings
 
@@ -185,8 +185,8 @@ class Enigma:
                 output_list.append(t)
         print(f'Plaintext: {message}')
         print(f'Output:    ')
-        for chunk in batched(output_list, 5):
-            print(f'{"".join(chunk)} ', end='')
+        #for chunk in batched(output_list, 5):
+            #print(f'{"".join(chunk)} ', end='')
         print()
         output = ''.join(output_list)
         print(output)

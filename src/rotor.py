@@ -30,13 +30,24 @@ class Rotor (wiring.Component):
     def elaborate(self, platform):
         m = Module()
 
+        cnt_ring_combined = Signal(5)
+        with m.If(self.ring_setting > self.cnt):
+            m.d.comb += cnt_ring_combined.eq(26-(self.ring_setting-self.cnt))
+        with m.Else():
+            m.d.comb += cnt_ring_combined.eq(self.cnt-self.ring_setting)
+
         with m.If(self.en):
             with m.If(self.load_start):
                 m.d.sync += self.cnt.eq(self.right_in)
             with m.Elif(self.load_ring):
                 m.d.sync += self.ring_setting.eq(self.right_in)
             with m.Elif(self.inc):
-                m.d.sync += self.cnt.eq((self.cnt+1) % 26)
+                with m.If(self.cnt==25):
+                    m.d.sync += self.cnt.eq(0)
+                with m.Else():
+                    m.d.sync += self.cnt.eq(self.cnt+1)
+
+                #m.d.sync += self.cnt.eq((self.cnt+1) % 26)
 
         mapping = [ord(c)-65 for c in self.wiring]
         mapping_ltor = [0]*26
@@ -52,7 +63,8 @@ class Rotor (wiring.Component):
         # Convert absolute entry (right) to relative contact point on
         # the rotor by adding its rotation (cnt).
         # "data" will then be the output of the wiring pattern based on right_ptr
-        m.d.comb += self.right_ptr.eq((self.cnt + self.right_in - self.ring_setting ) )#%26)
+
+        m.d.comb += self.right_ptr.eq((cnt_ring_combined + self.right_in ) %26)
         
         # Convert the "data" which is the contact point on the left side
         # of the rotor (Wiring[right_ptr]), to an absolute position by subtracting out
@@ -63,11 +75,11 @@ class Rotor (wiring.Component):
         m.d.comb += self.left_out.eq(
             Mux( self.load_start | self.load_ring, 
                  self.right_in, 
-                (self.rtol_swizzle-self.cnt + self.ring_setting)))#%26))
+                (self.rtol_swizzle-(cnt_ring_combined))%26))
 
         # Left to right
-        m.d.comb += self.left_ptr.eq((self.cnt + self.left_in - self.ring_setting))#%26)
-        m.d.comb += self.right_out.eq((Wiring_left_to_right[self.left_ptr] - self.cnt + self.ring_setting))# % 26)
+        m.d.comb += self.left_ptr.eq((self.cnt + self.left_in - self.ring_setting)%26)
+        m.d.comb += self.right_out.eq((Wiring_left_to_right[self.left_ptr] - self.cnt + self.ring_setting) % 26)
 
         return m
             
