@@ -64,7 +64,33 @@ class Rotor (wiring.Component):
         # the rotor by adding its rotation (cnt).
         # "data" will then be the output of the wiring pattern based on right_ptr
 
-        m.d.comb += self.right_ptr.eq((cnt_ring_combined + self.right_in ) %26)
+        def add_mod_26(sum_signal, a,b):
+            s = Signal(6)
+            s_m_26 = Signal(6)
+            s_ge_26 = Signal(1)
+            m.d.comb += [
+                s.eq (a+b),
+                s_ge_26.eq ( (s[5]==1) | (s[0:5]>=26)),
+                s_m_26.eq ( s - 26),
+                sum_signal.eq (Mux (s_ge_26, s_m_26[0:5], s[0:5]))
+            ]
+        add_mod_26(self.right_ptr, self.right_in, cnt_ring_combined)
+        # sum_r = Signal(6)
+        # sum_r_minus_26 = Signal(6)
+        # sum_r_ge_26 = Signal(1)
+        # m.d.comb += [
+        #     sum_r.eq (self.right_in + cnt_ring_combined),
+        #     sum_r_ge_26.eq ( (sum_r[5]==1) | (sum_r[0:5]>=26)),
+        #     sum_r_minus_26.eq ( sum_r - 26),
+        #     self.right_ptr.eq (Mux (sum_r_ge_26, sum_r_minus_26[0:5], sum_r[0:5]))
+        # ]
+
+        # right_ptr_1 = Signal(5)
+        # m.d.comb += right_ptr_1.eq(26-cnt_ring_combined)
+        # with m.If( (cnt_ring_combined + self.right_in) > 25):
+        #     m.d.comb += self.right_ptr.eq(self.right_in + ined))
+        # with m.Else():
+        #     m.d.comb += self.right_ptr.eq((cnt_ring_combined + self.right_in ) )
         
         # Convert the "data" which is the contact point on the left side
         # of the rotor (Wiring[right_ptr]), to an absolute position by subtracting out
@@ -78,7 +104,8 @@ class Rotor (wiring.Component):
                 (self.rtol_swizzle-(cnt_ring_combined))%26))
 
         # Left to right
-        m.d.comb += self.left_ptr.eq((self.left_in + cnt_ring_combined)%26)
+        #m.d.comb += self.left_ptr.eq((self.left_in + cnt_ring_combined)%26)
+        add_mod_26(self.left_ptr, self.left_in, cnt_ring_combined)
         m.d.comb += self.right_out.eq((Wiring_left_to_right[self.left_ptr] - (cnt_ring_combined)) % 26)
 
         return m
