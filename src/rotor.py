@@ -74,6 +74,22 @@ class Rotor (wiring.Component):
                 s_m_26.eq ( s - 26),
                 sum_signal.eq (Mux (s_ge_26, s_m_26[0:5], s[0:5]))
             ]
+
+        def sub_mod_26(sum_signal, a,b):
+            s = Signal(6)
+            a_ext = Signal(6)
+            b_ext = Signal(6)
+            diff_plus_26 = Signal(6)
+
+            m.d.comb += [
+                a_ext.eq (a),
+                b_ext.eq (b),
+                s.eq( a_ext - b_ext),
+                diff_plus_26.eq(s+26),
+                # If MSB is 1, that's underflow
+                sum_signal.eq(Mux(s[5], diff_plus_26[0:5], s[0:5])),
+            ] 
+
         add_mod_26(self.right_ptr, self.right_in, cnt_ring_combined)
         # sum_r = Signal(6)
         # sum_r_minus_26 = Signal(6)
@@ -98,15 +114,25 @@ class Rotor (wiring.Component):
         # absolute position the signal will enter the next rotor to the left.
 
         m.d.comb += self.rtol_swizzle.eq(Wiring[self.right_ptr])
+
+        #(self.rtol_swizzle-(cnt_ring_combined))%26))
+        swizz_minus_cnt_ring = Signal(5)
+        sub_mod_26(swizz_minus_cnt_ring, self.rtol_swizzle, cnt_ring_combined)
         m.d.comb += self.left_out.eq(
             Mux( self.load_start | self.load_ring, 
                  self.right_in, 
-                (self.rtol_swizzle-(cnt_ring_combined))%26))
+                 swizz_minus_cnt_ring))
 
         # Left to right
         #m.d.comb += self.left_ptr.eq((self.left_in + cnt_ring_combined)%26)
         add_mod_26(self.left_ptr, self.left_in, cnt_ring_combined)
-        m.d.comb += self.right_out.eq((Wiring_left_to_right[self.left_ptr] - (cnt_ring_combined)) % 26)
+        
+
+        # (Wiring_left_to_right[self.left_ptr] - (cnt_ring_combined)) % 26
+        #m.d.comb += self.right_out.eq((Wiring_left_to_right[self.left_ptr] - (cnt_ring_combined)) % 26)
+        swizz_l_minus_cnt_ring = Signal(5)
+        sub_mod_26(swizz_l_minus_cnt_ring, Wiring_left_to_right[self.left_ptr], cnt_ring_combined)
+        m.d.comb += self.right_out.eq(swizz_l_minus_cnt_ring)
 
         return m
             

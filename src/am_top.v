@@ -139,8 +139,8 @@ module top(clk, rst, uo_out, ui_in);
     .load_ring(load_ring),
     .load_start(load_start),
     .right_in(ui_in[4:0]),
-    .right_out(right_out),
-    .rst(rst)
+    .rst(rst),
+    .swizz_l_minus_cnt_ring(right_out)
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:33" *)
   \top.r1  r1 (
@@ -153,8 +153,8 @@ module top(clk, rst, uo_out, ui_in);
     .load_ring(load_ring),
     .load_start(load_start),
     .right_in(\right_in$7 ),
-    .right_out(\left_in$18 ),
-    .rst(rst)
+    .rst(rst),
+    .swizz_l_minus_cnt_ring(\left_in$18 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:34" *)
   \top.r2  r2 (
@@ -167,8 +167,8 @@ module top(clk, rst, uo_out, ui_in);
     .load_ring(load_ring),
     .load_start(load_start),
     .right_in(\right_in$9 ),
-    .right_out(\left_in$16 ),
-    .rst(rst)
+    .rst(rst),
+    .swizz_l_minus_cnt_ring(\left_in$16 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:35" *)
   \top.ref  \ref  (
@@ -548,32 +548,36 @@ endmodule
 
 (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:31" *)
 (* generator = "Amaranth" *)
-module \top.r0 (clk, rst, is_at_turnover, left_out, right_out, left_in, en, load_start, load_ring, inc, right_in);
+module \top.r0 (clk, rst, is_at_turnover, left_out, swizz_l_minus_cnt_ring, left_in, en, load_start, load_ring, inc, right_in);
   reg \$auto$verilog_backend.cc:2352:dump_module$3  = 0;
   wire \$1 ;
-  wire [5:0] \$10 ;
+  wire \$10 ;
   wire \$11 ;
   wire \$12 ;
   wire [6:0] \$13 ;
   reg [4:0] \$14 ;
-  wire [5:0] \$15 ;
-  wire [5:0] \$16 ;
+  wire [6:0] \$15 ;
+  wire [6:0] \$16 ;
   wire \$17 ;
   wire [5:0] \$18 ;
   reg [4:0] \$19 ;
   wire [5:0] \$2 ;
   reg [4:0] \$20 ;
   wire [6:0] \$3 ;
-  wire [5:0] \$35 ;
-  wire \$37 ;
   wire [5:0] \$4 ;
-  wire [5:0] \$49 ;
   wire \$5 ;
-  wire \$51 ;
   wire \$6 ;
   wire [6:0] \$7 ;
-  wire \$8 ;
-  wire [5:0] \$9 ;
+  wire [6:0] \$8 ;
+  wire [6:0] \$9 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:80" *)
+  wire [5:0] a_ext;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:80" *)
+  wire [5:0] \a_ext$23 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:81" *)
+  wire [5:0] b_ext;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:81" *)
+  wire [5:0] \b_ext$24 ;
   (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_ir.py:215" *)
   input clk;
   wire clk;
@@ -581,6 +585,10 @@ module \top.r0 (clk, rst, is_at_turnover, left_out, right_out, left_in, en, load
   reg [4:0] cnt = 5'h00;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:33" *)
   reg [4:0] cnt_ring_combined;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:82" *)
+  wire [5:0] diff_plus_26;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:82" *)
+  wire [5:0] \diff_plus_26$26 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:14" *)
   input en;
   wire en;
@@ -608,7 +616,6 @@ module \top.r0 (clk, rst, is_at_turnover, left_out, right_out, left_in, en, load
   input [4:0] right_in;
   wire [4:0] right_in;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:11" *)
-  output [4:0] right_out;
   wire [4:0] right_out;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:22" *)
   wire [4:0] right_ptr;
@@ -621,16 +628,25 @@ module \top.r0 (clk, rst, is_at_turnover, left_out, right_out, left_in, en, load
   reg [4:0] rtol_swizzle;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:68" *)
   wire [5:0] s;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:79" *)
+  wire [5:0] \s$12 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:68" *)
-  wire [5:0] \s$13 ;
+  wire [5:0] \s$18 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:79" *)
+  wire [5:0] \s$25 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:70" *)
   wire s_ge_26;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:70" *)
-  wire \s_ge_26$15 ;
+  wire \s_ge_26$20 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:69" *)
   wire [5:0] s_m_26;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:69" *)
-  wire [5:0] \s_m_26$16 ;
+  wire [5:0] \s_m_26$21 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:11" *)
+  output [4:0] swizz_l_minus_cnt_ring;
+  wire [4:0] swizz_l_minus_cnt_ring;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:119" *)
+  wire [4:0] swizz_minus_cnt_ring;
   assign \$1  = ring_setting > (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:34" *) cnt;
   assign \$2  = ring_setting - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:35" *) cnt;
   assign \$3  = $signed(6'h1a) - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:35" *) $signed(\$2 );
@@ -641,19 +657,19 @@ module \top.r0 (clk, rst, is_at_turnover, left_out, right_out, left_in, en, load
   assign s_ge_26 = \$5  | (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:73" *) \$6 ;
   assign \$7  = s - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:74" *) 5'h1a;
   assign right_ptr = s_ge_26 ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:75" *) \$7 [4:0] : s[4:0];
-  assign \$8  = load_start | (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:102" *) load_ring;
-  assign \$9  = rtol_swizzle - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:104" *) cnt_ring_combined;
-  wire [5:0] _0_ = $signed(\$9 ) % (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:104" *) $signed(6'h1a);
-  assign \$35  = (\$9 [5] == 1'h0) || _0_ == 0 ? $signed(_0_) : $signed(6'h1a) + $signed(_0_);
-  assign left_out = \$8  ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:102" *) right_in : \$10 [4:0];
-  assign \s$13  = left_in + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:72" *) cnt_ring_combined;
-  assign \$12  = \s$13 [4:0] >= (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:73" *) 5'h1a;
-  assign \s_ge_26$15  = \$11  | (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:73" *) \$12 ;
-  assign \$13  = \s$13  - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:74" *) 5'h1a;
-  assign left_ptr = \s_ge_26$15  ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:75" *) \$13 [4:0] : \s$13 [4:0];
-  assign \$15  = \$14  - (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_ast.py:2368" *) cnt_ring_combined;
-  wire [5:0] _1_ = $signed(\$15 ) % (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:109" *) $signed(6'h1a);
-  assign \$49  = (\$15 [5] == 1'h0) || _1_ == 0 ? $signed(_1_) : $signed(6'h1a) + $signed(_1_);
+  assign \$8  = rtol_swizzle - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:87" *) cnt_ring_combined;
+  assign \$9  = \$8 [5:0] + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:88" *) 5'h1a;
+  assign swizz_minus_cnt_ring = \$8 [5] ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:90" *) \$9 [4:0] : \$8 [4:0];
+  assign \$10  = load_start | (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:122" *) load_ring;
+  assign left_out = \$10  ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:122" *) right_in : swizz_minus_cnt_ring;
+  assign \s$18  = left_in + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:72" *) cnt_ring_combined;
+  assign \$12  = \s$18 [4:0] >= (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:73" *) 5'h1a;
+  assign \s_ge_26$20  = \$11  | (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:73" *) \$12 ;
+  assign \$13  = \s$18  - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:74" *) 5'h1a;
+  assign left_ptr = \s_ge_26$20  ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:75" *) \$13 [4:0] : \s$18 [4:0];
+  assign \$15  = \$14  - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:87" *) cnt_ring_combined;
+  assign \$16  = \$15 [5:0] + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:88" *) 5'h1a;
+  assign swizz_l_minus_cnt_ring = \$15 [5] ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:90" *) \$16 [4:0] : \$15 [4:0];
   assign \$17  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:45" *) 5'h19;
   assign \$18  = cnt + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:48" *) 1'h1;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:21" *)
@@ -821,44 +837,52 @@ module \top.r0 (clk, rst, is_at_turnover, left_out, right_out, left_in, en, load
     end
   end
   assign s_m_26 = \$7 [5:0];
-  assign \s_m_26$16  = \$13 [5:0];
-  assign right_out = \$16 [4:0];
+  assign a_ext = { 1'h0, rtol_swizzle };
+  assign b_ext = { 1'h0, cnt_ring_combined };
+  assign \s$12  = \$8 [5:0];
+  assign diff_plus_26 = \$9 [5:0];
+  assign \s_m_26$21  = \$13 [5:0];
+  assign \a_ext$23  = { 1'h0, \$14  };
+  assign \b_ext$24  = { 1'h0, cnt_ring_combined };
+  assign \s$25  = \$15 [5:0];
+  assign \diff_plus_26$26  = \$16 [5:0];
+  assign right_out = swizz_l_minus_cnt_ring;
   assign \$5  = s[5];
-  assign \$37  = 1'h1;
-  assign \$10  = \$35 ;
-  assign \$11  = \s$13 [5];
-  assign \$51  = 1'h1;
-  assign \$16  = \$49 ;
+  assign \$11  = \s$18 [5];
 endmodule
 
 (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:31" *)
 (* generator = "Amaranth" *)
-module \top.r1 (rst, right_in, is_at_turnover, left_out, right_out, left_in, en, load_start, load_ring, inc, clk);
+module \top.r1 (rst, right_in, is_at_turnover, left_out, swizz_l_minus_cnt_ring, left_in, en, load_start, load_ring, inc, clk);
   reg \$auto$verilog_backend.cc:2352:dump_module$4  = 0;
   wire \$1 ;
-  wire [5:0] \$10 ;
+  wire \$10 ;
   wire \$11 ;
   wire \$12 ;
   wire [6:0] \$13 ;
   reg [4:0] \$14 ;
-  wire [5:0] \$15 ;
-  wire [5:0] \$16 ;
+  wire [6:0] \$15 ;
+  wire [6:0] \$16 ;
   wire \$17 ;
   wire [5:0] \$18 ;
   reg [4:0] \$19 ;
   wire [5:0] \$2 ;
   reg [4:0] \$20 ;
   wire [6:0] \$3 ;
-  wire [5:0] \$35 ;
-  wire \$37 ;
   wire [5:0] \$4 ;
-  wire [5:0] \$49 ;
   wire \$5 ;
-  wire \$51 ;
   wire \$6 ;
   wire [6:0] \$7 ;
-  wire \$8 ;
-  wire [5:0] \$9 ;
+  wire [6:0] \$8 ;
+  wire [6:0] \$9 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:80" *)
+  wire [5:0] a_ext;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:80" *)
+  wire [5:0] \a_ext$23 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:81" *)
+  wire [5:0] b_ext;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:81" *)
+  wire [5:0] \b_ext$24 ;
   (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_ir.py:215" *)
   input clk;
   wire clk;
@@ -866,6 +890,10 @@ module \top.r1 (rst, right_in, is_at_turnover, left_out, right_out, left_in, en,
   reg [4:0] cnt = 5'h00;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:33" *)
   reg [4:0] cnt_ring_combined;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:82" *)
+  wire [5:0] diff_plus_26;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:82" *)
+  wire [5:0] \diff_plus_26$26 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:14" *)
   input en;
   wire en;
@@ -893,7 +921,6 @@ module \top.r1 (rst, right_in, is_at_turnover, left_out, right_out, left_in, en,
   input [4:0] right_in;
   wire [4:0] right_in;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:11" *)
-  output [4:0] right_out;
   wire [4:0] right_out;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:22" *)
   wire [4:0] right_ptr;
@@ -906,16 +933,25 @@ module \top.r1 (rst, right_in, is_at_turnover, left_out, right_out, left_in, en,
   reg [4:0] rtol_swizzle;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:68" *)
   wire [5:0] s;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:79" *)
+  wire [5:0] \s$12 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:68" *)
-  wire [5:0] \s$13 ;
+  wire [5:0] \s$18 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:79" *)
+  wire [5:0] \s$25 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:70" *)
   wire s_ge_26;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:70" *)
-  wire \s_ge_26$15 ;
+  wire \s_ge_26$20 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:69" *)
   wire [5:0] s_m_26;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:69" *)
-  wire [5:0] \s_m_26$16 ;
+  wire [5:0] \s_m_26$21 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:11" *)
+  output [4:0] swizz_l_minus_cnt_ring;
+  wire [4:0] swizz_l_minus_cnt_ring;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:119" *)
+  wire [4:0] swizz_minus_cnt_ring;
   assign \$1  = ring_setting > (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:34" *) cnt;
   assign \$2  = ring_setting - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:35" *) cnt;
   assign \$3  = $signed(6'h1a) - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:35" *) $signed(\$2 );
@@ -926,19 +962,19 @@ module \top.r1 (rst, right_in, is_at_turnover, left_out, right_out, left_in, en,
   assign s_ge_26 = \$5  | (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:73" *) \$6 ;
   assign \$7  = s - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:74" *) 5'h1a;
   assign right_ptr = s_ge_26 ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:75" *) \$7 [4:0] : s[4:0];
-  assign \$8  = load_start | (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:102" *) load_ring;
-  assign \$9  = rtol_swizzle - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:104" *) cnt_ring_combined;
-  wire [5:0] _0_ = $signed(\$9 ) % (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:104" *) $signed(6'h1a);
-  assign \$35  = (\$9 [5] == 1'h0) || _0_ == 0 ? $signed(_0_) : $signed(6'h1a) + $signed(_0_);
-  assign left_out = \$8  ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:102" *) right_in : \$10 [4:0];
-  assign \s$13  = left_in + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:72" *) cnt_ring_combined;
-  assign \$12  = \s$13 [4:0] >= (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:73" *) 5'h1a;
-  assign \s_ge_26$15  = \$11  | (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:73" *) \$12 ;
-  assign \$13  = \s$13  - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:74" *) 5'h1a;
-  assign left_ptr = \s_ge_26$15  ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:75" *) \$13 [4:0] : \s$13 [4:0];
-  assign \$15  = \$14  - (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_ast.py:2368" *) cnt_ring_combined;
-  wire [5:0] _1_ = $signed(\$15 ) % (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:109" *) $signed(6'h1a);
-  assign \$49  = (\$15 [5] == 1'h0) || _1_ == 0 ? $signed(_1_) : $signed(6'h1a) + $signed(_1_);
+  assign \$8  = rtol_swizzle - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:87" *) cnt_ring_combined;
+  assign \$9  = \$8 [5:0] + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:88" *) 5'h1a;
+  assign swizz_minus_cnt_ring = \$8 [5] ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:90" *) \$9 [4:0] : \$8 [4:0];
+  assign \$10  = load_start | (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:122" *) load_ring;
+  assign left_out = \$10  ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:122" *) right_in : swizz_minus_cnt_ring;
+  assign \s$18  = left_in + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:72" *) cnt_ring_combined;
+  assign \$12  = \s$18 [4:0] >= (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:73" *) 5'h1a;
+  assign \s_ge_26$20  = \$11  | (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:73" *) \$12 ;
+  assign \$13  = \s$18  - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:74" *) 5'h1a;
+  assign left_ptr = \s_ge_26$20  ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:75" *) \$13 [4:0] : \s$18 [4:0];
+  assign \$15  = \$14  - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:87" *) cnt_ring_combined;
+  assign \$16  = \$15 [5:0] + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:88" *) 5'h1a;
+  assign swizz_l_minus_cnt_ring = \$15 [5] ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:90" *) \$16 [4:0] : \$15 [4:0];
   assign \$17  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:45" *) 5'h19;
   assign \$18  = cnt + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:48" *) 1'h1;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:21" *)
@@ -1106,44 +1142,52 @@ module \top.r1 (rst, right_in, is_at_turnover, left_out, right_out, left_in, en,
     end
   end
   assign s_m_26 = \$7 [5:0];
-  assign \s_m_26$16  = \$13 [5:0];
-  assign right_out = \$16 [4:0];
+  assign a_ext = { 1'h0, rtol_swizzle };
+  assign b_ext = { 1'h0, cnt_ring_combined };
+  assign \s$12  = \$8 [5:0];
+  assign diff_plus_26 = \$9 [5:0];
+  assign \s_m_26$21  = \$13 [5:0];
+  assign \a_ext$23  = { 1'h0, \$14  };
+  assign \b_ext$24  = { 1'h0, cnt_ring_combined };
+  assign \s$25  = \$15 [5:0];
+  assign \diff_plus_26$26  = \$16 [5:0];
+  assign right_out = swizz_l_minus_cnt_ring;
   assign \$5  = s[5];
-  assign \$37  = 1'h1;
-  assign \$10  = \$35 ;
-  assign \$11  = \s$13 [5];
-  assign \$51  = 1'h1;
-  assign \$16  = \$49 ;
+  assign \$11  = \s$18 [5];
 endmodule
 
 (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:31" *)
 (* generator = "Amaranth" *)
-module \top.r2 (rst, right_in, is_at_turnover, left_out, right_out, left_in, en, load_start, load_ring, inc, clk);
+module \top.r2 (rst, right_in, is_at_turnover, left_out, swizz_l_minus_cnt_ring, left_in, en, load_start, load_ring, inc, clk);
   reg \$auto$verilog_backend.cc:2352:dump_module$5  = 0;
   wire \$1 ;
-  wire [5:0] \$10 ;
+  wire \$10 ;
   wire \$11 ;
   wire \$12 ;
   wire [6:0] \$13 ;
   reg [4:0] \$14 ;
-  wire [5:0] \$15 ;
-  wire [5:0] \$16 ;
+  wire [6:0] \$15 ;
+  wire [6:0] \$16 ;
   wire \$17 ;
   wire [5:0] \$18 ;
   reg [4:0] \$19 ;
   wire [5:0] \$2 ;
   reg [4:0] \$20 ;
   wire [6:0] \$3 ;
-  wire [5:0] \$35 ;
-  wire \$37 ;
   wire [5:0] \$4 ;
-  wire [5:0] \$49 ;
   wire \$5 ;
-  wire \$51 ;
   wire \$6 ;
   wire [6:0] \$7 ;
-  wire \$8 ;
-  wire [5:0] \$9 ;
+  wire [6:0] \$8 ;
+  wire [6:0] \$9 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:80" *)
+  wire [5:0] a_ext;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:80" *)
+  wire [5:0] \a_ext$23 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:81" *)
+  wire [5:0] b_ext;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:81" *)
+  wire [5:0] \b_ext$24 ;
   (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_ir.py:215" *)
   input clk;
   wire clk;
@@ -1151,6 +1195,10 @@ module \top.r2 (rst, right_in, is_at_turnover, left_out, right_out, left_in, en,
   reg [4:0] cnt = 5'h00;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:33" *)
   reg [4:0] cnt_ring_combined;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:82" *)
+  wire [5:0] diff_plus_26;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:82" *)
+  wire [5:0] \diff_plus_26$26 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:14" *)
   input en;
   wire en;
@@ -1178,7 +1226,6 @@ module \top.r2 (rst, right_in, is_at_turnover, left_out, right_out, left_in, en,
   input [4:0] right_in;
   wire [4:0] right_in;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:11" *)
-  output [4:0] right_out;
   wire [4:0] right_out;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:22" *)
   wire [4:0] right_ptr;
@@ -1191,16 +1238,25 @@ module \top.r2 (rst, right_in, is_at_turnover, left_out, right_out, left_in, en,
   reg [4:0] rtol_swizzle;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:68" *)
   wire [5:0] s;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:79" *)
+  wire [5:0] \s$12 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:68" *)
-  wire [5:0] \s$13 ;
+  wire [5:0] \s$18 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:79" *)
+  wire [5:0] \s$25 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:70" *)
   wire s_ge_26;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:70" *)
-  wire \s_ge_26$15 ;
+  wire \s_ge_26$20 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:69" *)
   wire [5:0] s_m_26;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:69" *)
-  wire [5:0] \s_m_26$16 ;
+  wire [5:0] \s_m_26$21 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:11" *)
+  output [4:0] swizz_l_minus_cnt_ring;
+  wire [4:0] swizz_l_minus_cnt_ring;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:119" *)
+  wire [4:0] swizz_minus_cnt_ring;
   assign \$1  = ring_setting > (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:34" *) cnt;
   assign \$2  = ring_setting - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:35" *) cnt;
   assign \$3  = $signed(6'h1a) - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:35" *) $signed(\$2 );
@@ -1211,19 +1267,19 @@ module \top.r2 (rst, right_in, is_at_turnover, left_out, right_out, left_in, en,
   assign s_ge_26 = \$5  | (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:73" *) \$6 ;
   assign \$7  = s - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:74" *) 5'h1a;
   assign right_ptr = s_ge_26 ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:75" *) \$7 [4:0] : s[4:0];
-  assign \$8  = load_start | (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:102" *) load_ring;
-  assign \$9  = rtol_swizzle - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:104" *) cnt_ring_combined;
-  wire [5:0] _0_ = $signed(\$9 ) % (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:104" *) $signed(6'h1a);
-  assign \$35  = (\$9 [5] == 1'h0) || _0_ == 0 ? $signed(_0_) : $signed(6'h1a) + $signed(_0_);
-  assign left_out = \$8  ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:102" *) right_in : \$10 [4:0];
-  assign \s$13  = left_in + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:72" *) cnt_ring_combined;
-  assign \$12  = \s$13 [4:0] >= (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:73" *) 5'h1a;
-  assign \s_ge_26$15  = \$11  | (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:73" *) \$12 ;
-  assign \$13  = \s$13  - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:74" *) 5'h1a;
-  assign left_ptr = \s_ge_26$15  ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:75" *) \$13 [4:0] : \s$13 [4:0];
-  assign \$15  = \$14  - (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_ast.py:2368" *) cnt_ring_combined;
-  wire [5:0] _1_ = $signed(\$15 ) % (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:109" *) $signed(6'h1a);
-  assign \$49  = (\$15 [5] == 1'h0) || _1_ == 0 ? $signed(_1_) : $signed(6'h1a) + $signed(_1_);
+  assign \$8  = rtol_swizzle - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:87" *) cnt_ring_combined;
+  assign \$9  = \$8 [5:0] + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:88" *) 5'h1a;
+  assign swizz_minus_cnt_ring = \$8 [5] ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:90" *) \$9 [4:0] : \$8 [4:0];
+  assign \$10  = load_start | (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:122" *) load_ring;
+  assign left_out = \$10  ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:122" *) right_in : swizz_minus_cnt_ring;
+  assign \s$18  = left_in + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:72" *) cnt_ring_combined;
+  assign \$12  = \s$18 [4:0] >= (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:73" *) 5'h1a;
+  assign \s_ge_26$20  = \$11  | (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:73" *) \$12 ;
+  assign \$13  = \s$18  - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:74" *) 5'h1a;
+  assign left_ptr = \s_ge_26$20  ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:75" *) \$13 [4:0] : \s$18 [4:0];
+  assign \$15  = \$14  - (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:87" *) cnt_ring_combined;
+  assign \$16  = \$15 [5:0] + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:88" *) 5'h1a;
+  assign swizz_l_minus_cnt_ring = \$15 [5] ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:90" *) \$16 [4:0] : \$15 [4:0];
   assign \$17  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:45" *) 5'h19;
   assign \$18  = cnt + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:48" *) 1'h1;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:21" *)
@@ -1391,17 +1447,21 @@ module \top.r2 (rst, right_in, is_at_turnover, left_out, right_out, left_in, en,
     end
   end
   assign s_m_26 = \$7 [5:0];
-  assign \s_m_26$16  = \$13 [5:0];
-  assign right_out = \$16 [4:0];
+  assign a_ext = { 1'h0, rtol_swizzle };
+  assign b_ext = { 1'h0, cnt_ring_combined };
+  assign \s$12  = \$8 [5:0];
+  assign diff_plus_26 = \$9 [5:0];
+  assign \s_m_26$21  = \$13 [5:0];
+  assign \a_ext$23  = { 1'h0, \$14  };
+  assign \b_ext$24  = { 1'h0, cnt_ring_combined };
+  assign \s$25  = \$15 [5:0];
+  assign \diff_plus_26$26  = \$16 [5:0];
+  assign right_out = swizz_l_minus_cnt_ring;
   assign \$5  = s[5];
-  assign \$37  = 1'h1;
-  assign \$10  = \$35 ;
-  assign \$11  = \s$13 [5];
-  assign \$51  = 1'h1;
-  assign \$16  = \$49 ;
+  assign \$11  = \s$18 [5];
 endmodule
 
-(* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:137" *)
+(* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:163" *)
 (* generator = "Amaranth" *)
 module \top.ref (left_out, right_ptr);
   reg \$auto$verilog_backend.cc:2352:dump_module$6  = 0;
