@@ -103,38 +103,38 @@ async def bench(ctx):
     # Remove spaces from result
     golden = golden.replace(' ', '')
 
-    await clk(ctx)
-    val = Const(to_val(rotors[0]['start']), unsigned(5))
-    cmd = Const(Cmd.LOAD_START)
-    ctx.set(dut.ui_in, Cat(val,cmd) )     # Rotor 0
-    await clk(ctx)
-    await clk(ctx)
-    await clk(ctx)
+    await ready(ctx)
 
-    cmd = Const(Cmd.NOP)
+    cmd = Const(Cmd.LOAD_START)
+    val = Const(to_val(rotors[0]['start']), unsigned(5))
+    ctx.set(dut.ui_in, Cat(val,cmd) )     # Rotor 0
+    
+    await ready(ctx)
+
     val = Const(to_val(rotors[1]['start']), unsigned(5))  # Rotor 1
     ctx.set(dut.ui_in, Cat(val,cmd) )     
-    await clk(ctx)
+
+    await ready(ctx)
 
     val = Const(to_val(rotors[2]['start']), unsigned(5))  # Rotor 2
     ctx.set(dut.ui_in, Cat(val,cmd) )     
-    await clk(ctx)
 
     await ready(ctx)
     
-    val = Const(rotors[0]['ring'], unsigned(5))
     cmd = Const(Cmd.LOAD_RING)
+    val = Const(rotors[0]['ring'], unsigned(5))
     ctx.set(dut.ui_in, Cat(val,cmd) )    
-    await clk(ctx)
-    cmd = Const(Cmd.NOP)
-    await clk(ctx)
-    await clk(ctx)
+
+    await ready(ctx)
+
     val = Const(rotors[1]['ring'], unsigned(5))
     ctx.set(dut.ui_in, Cat(val,cmd) )    
-    await clk(ctx)
+
+    await ready(ctx)
     val = Const(rotors[2]['ring'], unsigned(5))
     ctx.set(dut.ui_in, Cat(val,cmd) )    
-    await clk(ctx)
+
+    await ready(ctx)
 
     # #ctx.set(dut.ui_in, 0b01001011)
     # cmd = Const(Cmd.ENCRYPT)

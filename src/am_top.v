@@ -8,8 +8,7 @@ module top(clk, rst, uo_out, ui_in);
   wire \$1 ;
   wire \$2 ;
   reg [4:0] \$3 ;
-  reg [4:0] \$4 ;
-  reg [4:0] \$5  = 5'h00;
+  reg [4:0] \$4  = 5'h00;
   (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_ir.py:215" *)
   input clk;
   wire clk;
@@ -17,88 +16,86 @@ module top(clk, rst, uo_out, ui_in);
   wire [2:0] cmd;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:14" *)
   wire en;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:22" *)
-  wire [2:0] \en$22 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:21" *)
+  wire [2:0] \en$21 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:14" *)
+  wire \en$22 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:14" *)
   wire \en$23 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:14" *)
   wire \en$24 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:14" *)
-  wire \en$25 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:17" *)
   wire inc;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:25" *)
-  wire [2:0] \inc$37 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:24" *)
+  wire [2:0] \inc$36 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:17" *)
+  wire \inc$37 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:17" *)
   wire \inc$38 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:17" *)
   wire \inc$39 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:17" *)
-  wire \inc$40 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:18" *)
   wire [2:0] is_at_turnover;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:13" *)
+  wire \is_at_turnover$41 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:13" *)
   wire \is_at_turnover$42 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:13" *)
   wire \is_at_turnover$43 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:13" *)
-  wire \is_at_turnover$44 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:10" *)
   wire [4:0] left_in;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:10" *)
-  wire [4:0] \left_in$14 ;
+  wire [4:0] \left_in$13 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:10" *)
-  wire [4:0] \left_in$16 ;
+  wire [4:0] \left_in$15 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:10" *)
-  wire [4:0] \left_in$18 ;
+  wire [4:0] \left_in$17 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:8" *)
   wire [4:0] left_out;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:8" *)
-  wire [4:0] \left_out$10 ;
+  wire [4:0] \left_out$11 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:8" *)
-  wire [4:0] \left_out$12 ;
+  wire [4:0] \left_out$14 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:8" *)
-  wire [4:0] \left_out$15 ;
+  wire [4:0] \left_out$9 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:16" *)
   wire load_ring;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:24" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:23" *)
+  wire \load_ring$31 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:16" *)
   wire \load_ring$32 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:16" *)
   wire \load_ring$33 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:16" *)
   wire \load_ring$34 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:16" *)
-  wire \load_ring$35 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:15" *)
   wire load_start;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:23" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:22" *)
+  wire \load_start$26 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:15" *)
   wire \load_start$27 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:15" *)
   wire \load_start$28 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:15" *)
   wire \load_start$29 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:15" *)
-  wire \load_start$30 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:21" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:20" *)
   wire ready;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:7" *)
   wire [4:0] right_in;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:7" *)
-  wire [4:0] \right_in$11 ;
+  wire [4:0] \right_in$10 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:7" *)
-  wire [4:0] \right_in$7 ;
+  wire [4:0] \right_in$6 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:7" *)
-  wire [4:0] \right_in$9 ;
+  wire [4:0] \right_in$8 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:38" *)
   wire [4:0] right_out;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:11" *)
-  wire [4:0] \right_out$17 ;
+  wire [4:0] \right_out$16 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:11" *)
+  wire [4:0] \right_out$18 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:11" *)
   wire [4:0] \right_out$19 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:11" *)
-  wire [4:0] \right_out$20 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:39" *)
-  reg [4:0] right_out_ff1 = 5'h00;
   (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_ir.py:215" *)
   input rst;
   wire rst;
@@ -108,20 +105,17 @@ module top(clk, rst, uo_out, ui_in);
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:10" *)
   output [5:0] uo_out;
   wire [5:0] uo_out;
+  assign \$1  = ui_in[7:5] == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:47" *) 3'h4;
+  assign \$2  = ready & (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:47" *) \$1 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:10" *)
   always @(posedge clk)
-    \$5  <= \$4 ;
-  assign \$1  = ui_in[7:5] == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:52" *) 3'h4;
-  assign \$2  = ready & (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:52" *) \$1 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:39" *)
-  always @(posedge clk)
-    right_out_ff1 <= \$3 ;
+    \$4  <= \$3 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:36" *)
   \top.fsm  fsm (
     .clk(clk),
     .cmd(ui_in[7:5]),
-    .en(\en$22 ),
-    .inc(\inc$37 ),
+    .en(\en$21 ),
+    .inc(\inc$36 ),
     .is_at_turnover(is_at_turnover),
     .load_ring(load_ring),
     .load_start(load_start),
@@ -131,11 +125,11 @@ module top(clk, rst, uo_out, ui_in);
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:32" *)
   \top.r0  r0 (
     .clk(clk),
-    .en(\en$22 [0]),
-    .inc(\inc$37 [0]),
-    .is_at_turnover(\is_at_turnover$42 ),
-    .left_in(\left_in$18 ),
-    .left_out(\right_in$7 ),
+    .en(\en$21 [0]),
+    .inc(\inc$36 [0]),
+    .is_at_turnover(\is_at_turnover$41 ),
+    .left_in(\left_in$17 ),
+    .left_out(\right_in$6 ),
     .load_ring(load_ring),
     .load_start(load_start),
     .right_in(ui_in[4:0]),
@@ -145,100 +139,91 @@ module top(clk, rst, uo_out, ui_in);
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:33" *)
   \top.r1  r1 (
     .clk(clk),
-    .en(\en$22 [1]),
-    .inc(\inc$37 [1]),
-    .is_at_turnover(\is_at_turnover$43 ),
-    .left_in(\left_in$16 ),
-    .left_out(\right_in$9 ),
+    .en(\en$21 [1]),
+    .inc(\inc$36 [1]),
+    .is_at_turnover(\is_at_turnover$42 ),
+    .left_in(\left_in$15 ),
+    .left_out(\right_in$8 ),
     .load_ring(load_ring),
     .load_start(load_start),
-    .right_in(\right_in$7 ),
+    .right_in(\right_in$6 ),
     .rst(rst),
-    .swizz_l_minus_cnt_ring(\left_in$18 )
+    .swizz_l_minus_cnt_ring(\left_in$17 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:34" *)
   \top.r2  r2 (
     .clk(clk),
-    .en(\en$22 [2]),
-    .inc(\inc$37 [2]),
-    .is_at_turnover(\is_at_turnover$44 ),
-    .left_in(\left_in$14 ),
-    .left_out(\right_in$11 ),
+    .en(\en$21 [2]),
+    .inc(\inc$36 [2]),
+    .is_at_turnover(\is_at_turnover$43 ),
+    .left_in(\left_in$13 ),
+    .left_out(\right_in$10 ),
     .load_ring(load_ring),
     .load_start(load_start),
-    .right_in(\right_in$9 ),
+    .right_in(\right_in$8 ),
     .rst(rst),
-    .swizz_l_minus_cnt_ring(\left_in$16 )
+    .swizz_l_minus_cnt_ring(\left_in$15 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:35" *)
   \top.ref  \ref  (
-    .left_out(\left_in$14 ),
-    .right_ptr(\right_in$11 )
+    .left_out(\left_in$13 ),
+    .right_ptr(\right_in$10 )
   );
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$1 ) begin end
-    \$4  = \$5 ;
+    \$3  = \$4 ;
     if (\$2 ) begin
-      \$4  = right_out_ff1;
+      \$3  = right_out;
     end
-    if (rst) begin
-      \$4  = 5'h00;
-    end
-  end
-  always @* begin
-    if (\$auto$verilog_backend.cc:2352:dump_module$1 ) begin end
-    \$3  = right_out;
     if (rst) begin
       \$3  = 5'h00;
     end
   end
   assign right_in = ui_in[4:0];
-  assign left_out = \right_in$7 ;
-  assign \left_out$10  = \right_in$9 ;
-  assign \left_out$12  = \right_in$11 ;
+  assign left_out = \right_in$6 ;
+  assign \left_out$9  = \right_in$8 ;
+  assign \left_out$11  = \right_in$10 ;
   assign left_in = 5'h00;
-  assign \left_out$15  = \left_in$14 ;
-  assign \right_out$17  = \left_in$16 ;
-  assign \right_out$19  = \left_in$18 ;
-  assign \right_out$20  = right_out;
-  assign en = \en$22 [0];
-  assign \en$23  = \en$22 [1];
-  assign \en$24  = \en$22 [2];
-  assign \en$25  = 1'h0;
+  assign \left_out$14  = \left_in$13 ;
+  assign \right_out$16  = \left_in$15 ;
+  assign \right_out$18  = \left_in$17 ;
+  assign \right_out$19  = right_out;
+  assign en = \en$21 [0];
+  assign \en$22  = \en$21 [1];
+  assign \en$23  = \en$21 [2];
+  assign \en$24  = 1'h0;
+  assign \load_start$26  = load_start;
   assign \load_start$27  = load_start;
   assign \load_start$28  = load_start;
-  assign \load_start$29  = load_start;
-  assign \load_start$30  = 1'h0;
+  assign \load_start$29  = 1'h0;
+  assign \load_ring$31  = load_ring;
   assign \load_ring$32  = load_ring;
   assign \load_ring$33  = load_ring;
-  assign \load_ring$34  = load_ring;
-  assign \load_ring$35  = 1'h0;
-  assign inc = \inc$37 [0];
-  assign \inc$38  = \inc$37 [1];
-  assign \inc$39  = \inc$37 [2];
-  assign \inc$40  = 1'h0;
+  assign \load_ring$34  = 1'h0;
+  assign inc = \inc$36 [0];
+  assign \inc$37  = \inc$36 [1];
+  assign \inc$38  = \inc$36 [2];
+  assign \inc$39  = 1'h0;
   assign cmd = ui_in[7:5];
-  assign uo_out = { ready, \$5  };
-  assign is_at_turnover[2] = \is_at_turnover$44 ;
-  assign is_at_turnover[1] = \is_at_turnover$43 ;
-  assign is_at_turnover[0] = \is_at_turnover$42 ;
+  assign uo_out = { ready, \$4  };
+  assign is_at_turnover[2] = \is_at_turnover$43 ;
+  assign is_at_turnover[1] = \is_at_turnover$42 ;
+  assign is_at_turnover[0] = \is_at_turnover$41 ;
 endmodule
 
-(* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:32" *)
+(* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:31" *)
 (* generator = "Amaranth" *)
 module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, load_ring, inc, cmd);
   reg \$auto$verilog_backend.cc:2352:dump_module$2  = 0;
   wire \$1 ;
-  wire \$10 ;
+  wire [2:0] \$10 ;
   wire \$11 ;
   wire \$12 ;
-  wire [2:0] \$13 ;
-  wire \$14 ;
-  wire [2:0] \$15 ;
-  reg [1:0] \$16 ;
-  reg [3:0] \$17 ;
-  reg [2:0] \$18 ;
-  reg \$19 ;
+  wire \$13 ;
+  reg [1:0] \$14 ;
+  reg [2:0] \$15 ;
+  reg [2:0] \$16 ;
+  reg \$17 ;
   wire \$2 ;
   wire \$3 ;
   wire \$4 ;
@@ -246,34 +231,33 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, load_ring, inc
   wire \$6 ;
   wire \$7 ;
   wire \$8 ;
-  wire \$9 ;
+  wire [2:0] \$9 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:33" *)
-  reg [1:0] active = 2'h0;
+  reg [1:0] active;
   (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_ir.py:215" *)
   input clk;
   wire clk;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:17" *)
   input [2:0] cmd;
   wire [2:0] cmd;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:32" *)
+  reg [1:0] cnt = 2'h0;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:35" *)
   reg double_step = 1'h0;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:22" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:21" *)
   output [2:0] en;
   reg [2:0] en;
   (* enum_base_type = "fsmState" *)
-  (* enum_value_0000 = "Initial/0" *)
-  (* enum_value_0001 = "Get command/1" *)
-  (* enum_value_0010 = "Load start/2" *)
-  (* enum_value_0011 = "Load ring/3" *)
-  (* enum_value_0100 = "Inc Rotor 0/4" *)
-  (* enum_value_0101 = "Inc Rotor 1/5" *)
-  (* enum_value_0110 = "Delay 2/6" *)
-  (* enum_value_0111 = "Delay/7" *)
-  (* enum_value_1000 = "Check Rotor 1 Turnover/8" *)
-  (* enum_value_1001 = "Inc Rotor 2/9" *)
-  (* enum_value_1010 = "Delay 3/10" *)
+  (* enum_value_000 = "Initial/0" *)
+  (* enum_value_001 = "Get command/1" *)
+  (* enum_value_010 = "Load start/2" *)
+  (* enum_value_011 = "Load ring/3" *)
+  (* enum_value_100 = "Inc Rotor 0/4" *)
+  (* enum_value_101 = "Inc Rotor 1/5" *)
+  (* enum_value_110 = "Check Rotor 1 Turnover/6" *)
+  (* enum_value_111 = "Inc Rotor 2/7" *)
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:60" *)
-  reg [3:0] fsm_state = 4'h0;
+  reg [2:0] fsm_state = 3'h0;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:34" *)
   output [2:0] inc;
   reg [2:0] inc = 3'h0;
@@ -283,13 +267,13 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, load_ring, inc
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:18" *)
   input [2:0] is_at_turnover;
   wire [2:0] is_at_turnover;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:24" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:23" *)
   output load_ring;
   reg load_ring;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:23" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:22" *)
   output load_start;
   reg load_start;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:21" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:20" *)
   output ready;
   reg ready;
   (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_ir.py:215" *)
@@ -303,25 +287,23 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, load_ring, inc
   assign \$6  = fsm_state == (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_dsl.py:486" *) 3'h5;
   assign \$7  = fsm_state == (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_dsl.py:486" *) 3'h6;
   assign \$8  = fsm_state == (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_dsl.py:486" *) 3'h7;
-  assign \$9  = fsm_state == (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_dsl.py:486" *) 4'h8;
-  assign \$10  = fsm_state == (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_dsl.py:486" *) 4'h9;
-  assign \$11  = fsm_state == (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_dsl.py:486" *) 4'ha;
-  assign \$12  = active == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:91" *) 2'h3;
-  assign \$13  = active + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:95" *) 1'h1;
-  assign \$14  = active == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:100" *) 2'h3;
-  assign \$15  = active + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:104" *) 1'h1;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:33" *)
+  assign \$9  = cnt + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:81" *) 1'h1;
+  assign \$10  = cnt + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:84" *) 1'h1;
+  assign \$11  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:98" *) 2'h3;
+  assign \$12  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:109" *) 2'h3;
+  assign \$13  = is_at_turnover[0] | (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:120" *) double_step;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:32" *)
   always @(posedge clk)
-    active <= \$16 ;
+    cnt <= \$14 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:60" *)
   always @(posedge clk)
-    fsm_state <= \$17 ;
+    fsm_state <= \$15 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:34" *)
   always @(posedge clk)
-    inc <= \$18 ;
+    inc <= \$16 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:35" *)
   always @(posedge clk)
-    double_step <= \$19 ;
+    double_step <= \$17 ;
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$2 ) begin end
     (* full_case = 32'd1 *)
@@ -340,9 +322,9 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, load_ring, inc
     if (\$auto$verilog_backend.cc:2352:dump_module$2 ) begin end
     ready = 1'h0;
     casez (fsm_state)
-      4'h0:
+      3'h0:
           /* empty */;
-      4'h1:
+      3'h1:
           ready = 1'h1;
     endcase
   end
@@ -350,11 +332,11 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, load_ring, inc
     if (\$auto$verilog_backend.cc:2352:dump_module$2 ) begin end
     load_start = 1'h0;
     casez (fsm_state)
-      4'h0:
+      3'h0:
           /* empty */;
-      4'h1:
+      3'h1:
           load_start = 1'h0;
-      4'h2:
+      3'h2:
           load_start = 1'h1;
     endcase
   end
@@ -362,185 +344,223 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, load_ring, inc
     if (\$auto$verilog_backend.cc:2352:dump_module$2 ) begin end
     load_ring = 1'h0;
     casez (fsm_state)
-      4'h0:
+      3'h0:
           /* empty */;
-      4'h1:
+      3'h1:
           load_ring = 1'h0;
-      4'h2:
+      3'h2:
           /* empty */;
-      4'h3:
+      3'h3:
           load_ring = 1'h1;
     endcase
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$2 ) begin end
-    \$16  = active;
+    active = 2'h0;
+    (* full_case = 32'd1 *)
     casez (fsm_state)
-      4'h0:
-          \$16  = 2'h0;
-      4'h1:
-          \$16  = 2'h0;
-      4'h2:
-          (* full_case = 32'd1 *)
+      3'h0:
+          /* empty */;
+      3'h1:
+          /* empty */;
+      3'h2:
+          active = cnt;
+      3'h3:
+          active = cnt;
+      3'h4:
+          active = cnt;
+      3'h5:
+          active = cnt;
+      3'h6:
+          /* empty */;
+      3'h7:
+          active = cnt;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$2 ) begin end
+    \$14  = cnt;
+    (* full_case = 32'd1 *)
+    casez (fsm_state)
+      3'h0:
+          \$14  = 2'h0;
+      3'h1:
+        begin
+          \$14  = 2'h0;
+          casez (cmd)
+            3'h3:
+                /* empty */;
+            3'h1:
+                \$14  = \$9 [1:0];
+            3'h2:
+                \$14  = \$10 [1:0];
+            3'h4:
+                \$14  = 2'h1;
+          endcase
+        end
+      3'h2:
+          if (\$11 ) begin
+            \$14  = 2'h0;
+          end
+      3'h3:
           if (\$12 ) begin
-            \$16  = 2'h0;
-          end else begin
-            \$16  = \$13 [1:0];
+            \$14  = 2'h0;
           end
-      4'h3:
-          (* full_case = 32'd1 *)
-          if (\$14 ) begin
-            \$16  = 2'h0;
-          end else begin
-            \$16  = \$15 [1:0];
+      3'h4:
+          if (\$13 ) begin
+            \$14  = 2'h2;
           end
-      4'h4:
-          \$16  = 2'h1;
-      4'h5:
-          \$16  = 2'h2;
-      4'h7:
-          /* empty */;
-      4'h8:
-          /* empty */;
-      4'h9:
-          \$16  = 2'h3;
-      4'h6:
-          \$16  = 2'h0;
+      3'h5:
+          \$14  = 2'h2;
+      3'h6:
+          if (is_at_turnover[1]) begin
+          end else if (double_step) begin
+            \$14  = 2'h3;
+          end
+      3'h7:
+          \$14  = 2'h0;
     endcase
     if (rst) begin
-      \$16  = 2'h0;
+      \$14  = 2'h0;
     end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$2 ) begin end
-    \$17  = fsm_state;
+    (* full_case = 32'd1 *)
     casez (fsm_state)
-      4'h0:
-          \$17  = 4'h1;
-      4'h1:
+      3'h0:
+          \$15  = 3'h1;
+      3'h1:
           (* full_case = 32'd1 *)
           casez (cmd)
             3'h3:
-                \$17  = 4'h0;
+                \$15  = 3'h0;
             3'h1:
-                \$17  = 4'h2;
+                \$15  = 3'h2;
             3'h2:
-                \$17  = 4'h3;
+                \$15  = 3'h3;
             3'h4:
-                \$17  = 4'h4;
+                \$15  = 3'h4;
             default:
-                \$17  = 4'h1;
+                \$15  = 3'h1;
           endcase
-      4'h2:
+      3'h2:
+          (* full_case = 32'd1 *)
+          if (\$11 ) begin
+            \$15  = 3'h1;
+          end else begin
+            \$15  = 3'h1;
+          end
+      3'h3:
           (* full_case = 32'd1 *)
           if (\$12 ) begin
-            \$17  = 4'h1;
+            \$15  = 3'h1;
           end else begin
-            \$17  = 4'h2;
+            \$15  = 3'h1;
           end
-      4'h3:
+      3'h4:
           (* full_case = 32'd1 *)
-          if (\$14 ) begin
-            \$17  = 4'h1;
+          if (\$13 ) begin
+            \$15  = 3'h5;
           end else begin
-            \$17  = 4'h3;
+            \$15  = 3'h1;
           end
-      4'h4:
-          (* full_case = 32'd1 *)
-          if (is_at_turnover[0]) begin
-            \$17  = 4'h5;
-          end else if (double_step) begin
-            \$17  = 4'h5;
-          end else begin
-            \$17  = 4'h6;
-          end
-      4'h5:
-          \$17  = 4'h7;
-      4'h7:
-          \$17  = 4'h8;
-      4'h8:
+      3'h5:
+          \$15  = 3'h6;
+      3'h6:
           (* full_case = 32'd1 *)
           if (is_at_turnover[1]) begin
-            \$17  = 4'h6;
+            \$15  = 3'h1;
           end else if (double_step) begin
-            \$17  = 4'h9;
+            \$15  = 3'h7;
           end else begin
-            \$17  = 4'h6;
+            \$15  = 3'h1;
           end
-      4'h9:
-          \$17  = 4'h6;
-      4'h6:
-          \$17  = 4'ha;
-      4'ha:
-          \$17  = 4'h1;
+      3'h7:
+          \$15  = 3'h1;
     endcase
     if (rst) begin
-      \$17  = 4'h0;
+      \$15  = 3'h0;
     end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$2 ) begin end
-    \$18  = inc;
+    \$16  = inc;
+    (* full_case = 32'd1 *)
     casez (fsm_state)
-      4'h0:
+      3'h0:
           /* empty */;
-      4'h1:
-          \$18  = 3'h0;
-      4'h2:
-          /* empty */;
-      4'h3:
-          /* empty */;
-      4'h4:
-          \$18 [0] = 1'h1;
-      4'h5:
+      3'h1:
         begin
-          \$18 [0] = 1'h0;
-          \$18 [1] = 1'h1;
+          \$16  = 3'h0;
+          casez (cmd)
+            3'h3:
+                /* empty */;
+            3'h1:
+                /* empty */;
+            3'h2:
+                /* empty */;
+            3'h4:
+                \$16 [0] = 1'h1;
+          endcase
         end
-      4'h7:
-          \$18  = 3'h0;
-      4'h8:
-          \$18  = 3'h0;
-      4'h9:
+      3'h2:
+          /* empty */;
+      3'h3:
+          /* empty */;
+      3'h4:
+          if (\$13 ) begin
+            \$16 [0] = 1'h0;
+            \$16 [1] = 1'h1;
+          end
+      3'h5:
+          \$16 [1] = 1'h0;
+      3'h6:
         begin
-          \$18 [0] = 1'h0;
-          \$18 [1] = 1'h0;
-          \$18 [2] = 1'h1;
+          \$16 [0] = 1'h0;
+          \$16 [1] = 1'h0;
+          if (is_at_turnover[1]) begin
+          end else if (double_step) begin
+            \$16 [2] = 1'h1;
+          end
         end
-      4'h6:
-          \$18  = 3'h0;
+      3'h7:
+        begin
+          \$16 [0] = 1'h0;
+          \$16 [1] = 1'h0;
+          \$16 [2] = 1'h0;
+        end
     endcase
     if (rst) begin
-      \$18  = 3'h0;
+      \$16  = 3'h0;
     end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$2 ) begin end
-    \$19  = double_step;
+    \$17  = double_step;
+    (* full_case = 32'd1 *)
     casez (fsm_state)
-      4'h0:
+      3'h0:
           /* empty */;
-      4'h1:
+      3'h1:
           /* empty */;
-      4'h2:
+      3'h2:
           /* empty */;
-      4'h3:
+      3'h3:
           /* empty */;
-      4'h4:
+      3'h4:
           /* empty */;
-      4'h5:
+      3'h5:
           /* empty */;
-      4'h7:
-          /* empty */;
-      4'h8:
+      3'h6:
           if (is_at_turnover[1]) begin
-            \$19  = 1'h1;
+            \$17  = 1'h1;
           end
-      4'h9:
-          \$19  = 1'h0;
+      3'h7:
+          \$17  = 1'h0;
     endcase
     if (rst) begin
-      \$19  = 1'h0;
+      \$17  = 1'h0;
     end
   end
   assign \inc$1  = inc;

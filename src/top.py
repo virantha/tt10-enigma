@@ -37,20 +37,16 @@ class Enigma(wiring.Component):
 
         right_out     = Signal(5)
         right_out_ff1 = Signal(5)
-        right_out_ff2 = Signal(5)
         ready = Signal(1)
 
         right_in = self.ui_in[0:5]
         cmd      = self.ui_in[5:8]
-        right_out_ff2 = self.uo_out[0:5]
+        right_out_ff1 = self.uo_out[0:5]
         ready     = self.uo_out[5]
 
-        # Delay the output data by one cycle to line up with the ready signal
-        m.d.sync += [
-            right_out_ff1.eq(right_out)
-        ]
         with m.If(ready & (cmd==Cmd.ENCRYPT)):
-            m.d.sync += right_out_ff2.eq(right_out_ff1)
+            #m.d.sync += right_out_ff2.eq(right_out_ff1)
+            m.d.sync += right_out_ff1.eq(right_out)
          
         m.d.comb += [
             # The right to left path
