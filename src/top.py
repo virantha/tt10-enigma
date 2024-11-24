@@ -2,6 +2,7 @@
 from amaranth import *
 from amaranth.lib import wiring
 from amaranth.lib.wiring import In, Out
+from amaranth.lib.memory import Memory
 from .rotor import Rotor_I, Rotor_II, Rotor_III, Reflector_B
 from .fsm import Control, Cmd
 
@@ -27,6 +28,7 @@ class Enigma(wiring.Component):
         super().__init__()
 
 
+
     def elaborate(self, platform):
         m = Module()
         m.submodules.r0 = self.r0 = r0 = self.rotors[0]
@@ -34,6 +36,21 @@ class Enigma(wiring.Component):
         m.submodules.r2 = self.r2 = r2 = self.rotors[2]
         m.submodules.ref = self.ref = ref  = self.reflector
         m.submodules.fsm = fsm = self.fsm
+
+        # Set up the plugboard as a memory
+        m.submodules.memory = memory = \
+            Memory(shape=unsigned(5), depth=26, 
+            init=[ 13,
+                    1,2,3,4,5,6,7,8,9,10,11,12,
+                    0,
+                    14,15,16,17,18,19,20,21,22,23,24,25
+            ]
+            )
+            
+        rd_port_rtol = memory.read_port(domain="comb")
+        rd_port_ltor = memory.read_port(domain="comb")
+
+
 
         right_out     = Signal(5)
         right_out_ff1 = Signal(5)
@@ -43,14 +60,20 @@ class Enigma(wiring.Component):
         cmd      = self.ui_in[5:8]
         right_out_ff1 = self.uo_out[0:5]
         ready     = self.uo_out[5]
+        
+
+        m.d.comb += rd_port_rtol.addr.eq(right_in)
+        m.d.comb += rd_port_ltor.addr.eq(right_out)
 
         with m.If(ready & (cmd==Cmd.ENCRYPT)):
             #m.d.sync += right_out_ff2.eq(right_out_ff1)
-            m.d.sync += right_out_ff1.eq(right_out)
+            #m.d.sync += right_out_ff1.eq(right_out)
+            m.d.sync += right_out_ff1.eq(rd_port_ltor.data)
          
         m.d.comb += [
             # The right to left path
-            r0.right_in.eq(right_in),
+            r0.right_in.eq(rd_port_rtol.data),
+            #r0.right_in.eq(right_in),
             r1.right_in.eq(r0.left_out),
             r2.right_in.eq(r1.left_out),
 

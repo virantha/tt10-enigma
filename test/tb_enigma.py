@@ -98,6 +98,7 @@ async def bench(ctx):
     my_enigma = EnigmaPy(
         [ list(x.values()) for x in rotors ],
         'B', # Reflector
+        plugboard = [ ('A', 'N')]
     )
     golden = my_enigma.process_message(plain)
     # Remove spaces from result

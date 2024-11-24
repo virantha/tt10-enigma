@@ -122,6 +122,23 @@ class Rotor_III(Rotor):
 class Reflector_B(Rotor):
     wiring = 'YRUHQSLDPXNGOKMIEBFZCWVJAT'
 
+class PlugBoard:
+    def __init__(self, list_of_pairs:list):
+        print(f'Creating plugboard with {list_of_pairs}')
+        self.board = {} # Map the connections A<->B
+        assert len(list_of_pairs) <= 10, f'Plugboard supports max 10 settings. {len(list_of_pairs)} given in {list_of_pairs}'
+        for a,b in list_of_pairs:
+            if a in self.board:
+                print(f'WARNING: {a} <-> {b} but {a} <-> {self.board[a]} already exists in plugboard')
+            if b in self.board:
+                print(f'WARNING: {a} <-> {b} but {b} <-> {self.board[b]} already exists in plugboard')
+            self.board[a] = b
+            self.board[b] = a
+        print(self.board)
+
+    def traverse(self, char:str):
+        return self.board.get(char, char)
+
 
 class Enigma:
 
@@ -135,18 +152,20 @@ class Enigma:
         'B': Reflector_B,
     }
 
-    def __init__(self, rotors:list[str], reflector:str):
+    def __init__(self, rotors:list[str], reflector:str, plugboard=[]):
         """ rotors are 0 (rightmost) to 2 (leftmost)
         """
         self.rotors = [self.ROTORS[rotor](i, start_pos, ring_setting) for i,(rotor, start_pos, ring_setting) in enumerate(rotors)]
         self.num_rotors = len(self.rotors)
         self.reflector = self.REFLECTORS[reflector](3)
+        self.plugboard = PlugBoard(plugboard)
 
         self.next_is_double_step = False
 
 
     def cipher(self, letter):
         # Convert letter from keyboard to its number
+        letter = self.plugboard.traverse(letter)
         start = letter_to_num[letter]  # Left side of keyboard interface (ETW)
 
         turnover = self.rotors[0].inc()
@@ -168,6 +187,7 @@ class Enigma:
         for rotor in self.rotors[::-1]:
             l = rotor.ltor(l)
         end = num_to_letter(l)
+        end = self.plugboard.traverse(end)
         print(f'Cipher {letter} -> {end}')
         return end
 
@@ -196,7 +216,10 @@ class Enigma:
 
 
 if __name__ == '__main__':
-    e = Enigma([('I', 'A', 1), ('II', 'A', 0), ('III', 'A',0 )], 'B')
+    print('Creating Enigma')
+    e = Enigma([('I', 'A', 1), ('II', 'A', 0), ('III', 'A',0 )], 'B',
+                 plugboard= [ 'AN']
+                )
     e.process_message(' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut convallis augue, vitae tincidunt tortor. Morbi euismod Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut convallis augue, vitae tincidunt tortor. Morbi euismod')
     # rot = [Rotor_I(i) for i in range(3)]
     # reflector = Reflector_B(3)
