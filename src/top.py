@@ -40,9 +40,9 @@ class Enigma(wiring.Component):
         # Set up the plugboard as a memory
         m.submodules.memory = memory = \
             Memory(shape=unsigned(5), depth=26, 
-            init=[ 13,
+            init=[  0,
                     1,2,3,4,5,6,7,8,9,10,11,12,
-                    0,
+                    13,
                     14,15,16,17,18,19,20,21,22,23,24,25
             ]
             )
@@ -50,7 +50,7 @@ class Enigma(wiring.Component):
         rd_port_rtol = memory.read_port(domain="comb")
         rd_port_ltor = memory.read_port(domain="comb")
 
-
+        wr_port = memory.write_port()
 
         right_out     = Signal(5)
         right_out_ff1 = Signal(5)
@@ -60,14 +60,22 @@ class Enigma(wiring.Component):
         cmd      = self.ui_in[5:8]
         right_out_ff1 = self.uo_out[0:5]
         ready     = self.uo_out[5]
-        
 
+        # Plugboard traversal
         m.d.comb += rd_port_rtol.addr.eq(right_in)
         m.d.comb += rd_port_ltor.addr.eq(right_out)
+        
+        # Writing to the Plugboard (setting the pairs)
+        plugboard_addr = Signal(5) # Register to hold the address we want to write
+        m.d.comb += wr_port.en.eq(fsm.plugboard_wr_data)
+        m.d.comb += wr_port.addr.eq(plugboard_addr)
+        m.d.comb += wr_port.data.eq(right_in)
+
+        with m.If(fsm.plugboard_wr_addr):
+            m.d.sync += plugboard_addr.eq(right_in)
 
         with m.If(ready & (cmd==Cmd.ENCRYPT)):
-            #m.d.sync += right_out_ff2.eq(right_out_ff1)
-            #m.d.sync += right_out_ff1.eq(right_out)
+            # Hold the output of the enigma encoder stable until next encrypt command
             m.d.sync += right_out_ff1.eq(rd_port_ltor.data)
          
         m.d.comb += [

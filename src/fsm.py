@@ -11,6 +11,8 @@ class Cmd(Enum, shape=unsigned(3)):
     LOAD_RING = 2
     RESET = 3
     ENCRYPT = 4
+    LOAD_PLUG_ADDR = 5
+    LOAD_PLUG_DATA = 6
     
 class Control(wiring.Component):
 
@@ -22,6 +24,9 @@ class Control(wiring.Component):
     load_start: Out(1)
     load_ring: Out(1)
     inc: Out(3) # TODO: DO I really need separate inc signals??
+
+    plugboard_wr_addr: Out(1)
+    plugboard_wr_data: Out(1)
 
 
     def __init__(self):
@@ -59,7 +64,9 @@ class Control(wiring.Component):
 
         with m.FSM():
             with m.State("Initial"):
-                m.d.sync += cnt.eq(0)
+                m.d.sync += [
+                    cnt.eq(0),
+                ]
                 m.next = "Get command"
 
             with m.State("Get command"):
@@ -83,6 +90,10 @@ class Control(wiring.Component):
                     with m.Case(Cmd.LOAD_RING):
                         m.d.sync += cnt.eq(cnt+1)
                         m.next = "Load ring"
+                    with m.Case(Cmd.LOAD_PLUG_ADDR):
+                        m.next = "Load plug addr"
+                    with m.Case(Cmd.LOAD_PLUG_DATA):
+                        m.next = "Load plug data"
                     with m.Case(Cmd.ENCRYPT):
                         m.next = "Inc Rotor 0"
                         m.d.sync += cnt.eq(1)
@@ -90,6 +101,14 @@ class Control(wiring.Component):
                     with m.Default():
                         m.next = "Get command"
             
+            with m.State("Load plug addr"):
+                m.d.comb += self.plugboard_wr_addr.eq(1)
+                m.next = "Get command"
+            
+            with m.State("Load plug data"):
+                m.d.comb += self.plugboard_wr_data.eq(1)
+                m.next = "Get command"
+
             with m.State("Load start"):
                 m.d.comb += [ 
                     self.load_start.eq(1),

@@ -91,6 +91,9 @@ async def bench(ctx):
          'ring':24 
         },
     ]
+    # Plugboard
+    plugboard = [ "AN", "DE", "ZB", "GX", "HQ"]
+
     def to_val(c:str):
         assert len(c)==1
         return ord(c)-65
@@ -98,7 +101,7 @@ async def bench(ctx):
     my_enigma = EnigmaPy(
         [ list(x.values()) for x in rotors ],
         'B', # Reflector
-        plugboard = [ ('A', 'N')]
+        plugboard = plugboard
     )
     golden = my_enigma.process_message(plain)
     # Remove spaces from result
@@ -136,6 +139,31 @@ async def bench(ctx):
     ctx.set(dut.ui_in, Cat(val,cmd) )    
 
     await ready(ctx)
+
+    # Load the plugboard settings
+    for a,b in plugboard: 
+        print(f'Loading plugboard {a} <-> {b}')
+        # Add the wiring a->b
+        cmd = Const(Cmd.LOAD_PLUG_ADDR)
+        val = Const(to_val(a), unsigned(5))
+        ctx.set(dut.ui_in, Cat(val,cmd) )    
+        await ready(ctx)
+
+        cmd = Const(Cmd.LOAD_PLUG_DATA)
+        val = Const(to_val(b), unsigned(5))
+        ctx.set(dut.ui_in, Cat(val,cmd) )    
+        await ready(ctx)
+        
+        # Now the reverse mapping b->a
+        cmd = Const(Cmd.LOAD_PLUG_ADDR)
+        val = Const(to_val(b), unsigned(5))
+        ctx.set(dut.ui_in, Cat(val,cmd) )    
+        await ready(ctx)
+        
+        cmd = Const(Cmd.LOAD_PLUG_DATA)
+        val = Const(to_val(a), unsigned(5))
+        ctx.set(dut.ui_in, Cat(val,cmd) )    
+        await ready(ctx)
 
     # #ctx.set(dut.ui_in, 0b01001011)
     # cmd = Const(Cmd.ENCRYPT)
