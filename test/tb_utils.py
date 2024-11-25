@@ -100,12 +100,16 @@ def get_random_rotor_setting():
 def get_random_plugboard_setting():
     # Plugboard
     plugboard = []
+    already_plugged_letters = []
     for i in range(10):
         if randint(0,9) > 2:
             # with 70% probability
             a = to_letter(rnd_int())
             b = to_letter(rnd_int())
-            plugboard.append(f'{a}{b}')
+            if a not in already_plugged_letters and b not in already_plugged_letters:
+                plugboard.append(f'{a}{b}')
+                already_plugged_letters.append(a)
+                already_plugged_letters.append(b)
     return plugboard
 
 def get_golden_cipher(rotors, plugboard, plain_text):
