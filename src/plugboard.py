@@ -1,8 +1,6 @@
-from amaranth import *
+from amaranth import Signal, Module, unsigned, Mux
 from amaranth.lib import wiring
 from amaranth.lib.wiring import In, Out
-#from amaranth.lib.coding import Decoder
-from amaranth.lib.enum import Enum
 from amaranth.lib.memory import Memory
 
 class Plugboard(wiring.Component):
@@ -22,6 +20,7 @@ class Plugboard(wiring.Component):
        machine is another read port.
     """
 
+    en: In(1)    # If this is low, then the in just gets passed to the out
     in_ltor : In(5)
     out_ltor: Out(5)
 
@@ -56,11 +55,16 @@ class Plugboard(wiring.Component):
         cnt = Signal(5)
 
         # Plugboard traversal
+        
         m.d.comb += [
             rd_port_rtol.addr.eq(self.in_rtol),
             rd_port_ltor.addr.eq(self.in_ltor),
-            self.out_rtol.eq(rd_port_rtol.data),
-            self.out_ltor.eq(rd_port_ltor.data),
+            self.out_rtol.eq(
+                Mux(self.en, rd_port_rtol.data, self.in_rtol),
+            ),
+            self.out_ltor.eq(
+                Mux(self.en, rd_port_ltor.data, self.in_ltor),
+            )
         ]
         
         # Writing to the Plugboard (setting the pairs)

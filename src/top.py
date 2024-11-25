@@ -1,8 +1,7 @@
 
-from amaranth import *
+from amaranth import Signal, Module
 from amaranth.lib import wiring
 from amaranth.lib.wiring import In, Out
-from amaranth.lib.memory import Memory
 from .rotor import Rotor_I, Rotor_II, Rotor_III, Reflector_B
 from .fsm import Control, Cmd
 from .plugboard import Plugboard
@@ -54,13 +53,14 @@ class Enigma(wiring.Component):
             plugboard.in_rtol.eq(right_in),
             plugboard.in_ltor.eq(right_out),
 
+            plugboard.en.eq(fsm.plugboard_en),
             # Plugboard setting
             plugboard.wr_data.eq(right_in),
             plugboard.wr_data_en.eq(fsm.plugboard_wr_data),
             plugboard.wr_addr_en.eq(fsm.plugboard_wr_addr),
         ]
 
-        with m.If(ready & (cmd==Cmd.ENCRYPT)):
+        with m.If(fsm.result_ready & (cmd==Cmd.ENCRYPT)):
             # Hold the output of the enigma encoder stable until next encrypt command
             #m.d.sync += right_out_ff1.eq(rd_port_ltor.data)
             m.d.sync += right_out_ff1.eq(plugboard.out_ltor)

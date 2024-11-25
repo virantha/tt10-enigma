@@ -7,8 +7,6 @@ from .enigma import Enigma as EnigmaPy
 
 dut = Enigma()
 
-plain = ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
-plain = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut convallis augue, vitae tincidunt tortor. Morbi euismod Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut convallis augue, vitae tincidunt tortor. Morbi euismod'
 plain = """
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempus justo ac
 metus dignissim condimentum. Praesent consectetur dapibus nunc nec venenatis.
@@ -108,6 +106,31 @@ async def bench(ctx):
     golden = golden.replace(' ', '')
 
     await ready(ctx)
+    # Load the plugboard settings
+    for a,b in plugboard: 
+        print(f'Loading plugboard {a} <-> {b}')
+        # Add the wiring a->b
+        cmd = Const(Cmd.LOAD_PLUG_ADDR)
+        val = Const(to_val(a), unsigned(5))
+        ctx.set(dut.ui_in, Cat(val,cmd) )    
+        await ready(ctx)
+
+        cmd = Const(Cmd.LOAD_PLUG_DATA)
+        val = Const(to_val(b), unsigned(5))
+        ctx.set(dut.ui_in, Cat(val,cmd) )    
+        await ready(ctx)
+        
+        # Now the reverse mapping b->a
+        cmd = Const(Cmd.LOAD_PLUG_ADDR)
+        val = Const(to_val(b), unsigned(5))
+        ctx.set(dut.ui_in, Cat(val,cmd) )    
+        await ready(ctx)
+        
+        cmd = Const(Cmd.LOAD_PLUG_DATA)
+        val = Const(to_val(a), unsigned(5))
+        ctx.set(dut.ui_in, Cat(val,cmd) )    
+        await ready(ctx)
+
 
     cmd = Const(Cmd.LOAD_START)
     val = Const(to_val(rotors[0]['start']), unsigned(5))
@@ -140,50 +163,6 @@ async def bench(ctx):
 
     await ready(ctx)
 
-    # Load the plugboard settings
-    for a,b in plugboard: 
-        print(f'Loading plugboard {a} <-> {b}')
-        # Add the wiring a->b
-        cmd = Const(Cmd.LOAD_PLUG_ADDR)
-        val = Const(to_val(a), unsigned(5))
-        ctx.set(dut.ui_in, Cat(val,cmd) )    
-        await ready(ctx)
-
-        cmd = Const(Cmd.LOAD_PLUG_DATA)
-        val = Const(to_val(b), unsigned(5))
-        ctx.set(dut.ui_in, Cat(val,cmd) )    
-        await ready(ctx)
-        
-        # Now the reverse mapping b->a
-        cmd = Const(Cmd.LOAD_PLUG_ADDR)
-        val = Const(to_val(b), unsigned(5))
-        ctx.set(dut.ui_in, Cat(val,cmd) )    
-        await ready(ctx)
-        
-        cmd = Const(Cmd.LOAD_PLUG_DATA)
-        val = Const(to_val(a), unsigned(5))
-        ctx.set(dut.ui_in, Cat(val,cmd) )    
-        await ready(ctx)
-
-    # #ctx.set(dut.ui_in, 0b01001011)
-    # cmd = Const(Cmd.ENCRYPT)
-    # val = Const(11, unsigned(5))
-    # ctx.set(dut.ui_in, Cat(val,cmd) )    
-    # await ready(ctx)
-
-    # val = Const(14, unsigned(5))
-    # ctx.set(dut.ui_in, Cat(val,cmd) )    
-    # await ready(ctx)
-
-    # val = Const(17, unsigned(5))
-    # ctx.set(dut.ui_in, Cat(val,cmd) )    
-    # await ready(ctx)
-
-    # val = Const(4, unsigned(5))
-    # ctx.set(dut.ui_in, Cat(val,cmd) )    
-    # await ready(ctx)
-
-    # ctx.set(dut.ui_in, 0b000000000 )
     i=0
     for c in plain:
         c = c.upper()
@@ -204,51 +183,6 @@ async def bench(ctx):
             assert golden_val==out_val, f'Round {i}: Input {c} ({input_val}) -> {golden[i]} ({golden_val}), actual {out_val}'
             i+=1
 
-    #ctx.set(dut.rst, 1)
-
-    # Set all rotors
-    # ctx.set(dut.r0.en, 0)
-    # ctx.set(dut.r1.en, 0)
-    # ctx.set(dut.r2.en, 0)
-    # ctx.set(dut.ref.en, 0)
-
-    # ctx.set(dut.r0.inc, 0)
-    # ctx.set(dut.r1.inc, 0)
-    # ctx.set(dut.r2.inc, 0)
-    # ctx.set(dut.ref.inc, 0)
-
-    # ctx.set(dut.r0.load_start, 0)
-    # ctx.set(dut.r1.load_start, 0)
-    # ctx.set(dut.r2.load_start, 0)
-    # ctx.set(dut.ref.load_start, 0)
-
-    # ctx.set(dut.r0.load_ring, 0)
-    # ctx.set(dut.r1.load_ring, 0)
-    # ctx.set(dut.r2.load_ring, 0)
-    # ctx.set(dut.r2.load_ring, 0)
-
-    # await clk(ctx, 2)
-
-    # ctx.set(dut.rst, 0)
-    
-
-    # # Start the first round
-    # ctx.set(dut.r0.inc, 1)
-    # ctx.set(dut.r0.en, 1)
-    # i=0
-    # for c in plain:
-    #     c = c.upper()
-    #     if c >= 'A' and c <= 'Z':
-    #         input_val = ord(c)-65
-    #         ctx.set(dut.ui_in, input_val)
-    #         await clk(ctx)
-    #         cipher_val = ord(cipher[i]) - 65
-    #         out_val = ctx.get(dut.r0.right_out)
-
-    #         assert cipher_val==out_val, f'Round {i}: Input {c} ({input_val}) -> {cipher[i]} ({out_val}), actual {out_val}'
-    #         i+=1
-
-    #await clk(ctx, 10)
     print(f'Checked against: \n{golden}')
     print('Test passed!')
 

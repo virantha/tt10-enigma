@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 `default_nettype none
-`include "am_top.v"
+//`include "am_top.v"
 
 module tt_um_virantha_enigma (
     input  wire [7:0] ui_in,    // Dedicated inputs

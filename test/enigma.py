@@ -1,17 +1,29 @@
 #from itertools import batched 
+"""Enigma reference simulator.
+
+Usage:
+    enigma.py [options] <ARG>
+
+Options:
+    -h, --help       Show this screen
+    -d, --debug      Debug messages
 """
-    Each wheel is basically pairs of mappings
+import logging, sys
+from docopt import docopt
 
-    1 <-> 4
-    2 <-> 22 
+logger = logging.getLogger(__name__)
 
-    etc
+    # Each wheel is basically pairs of mappings
 
-    First, we need to find input position signal comes in on (contact point)
-    Then, we need to find the offsetted position on the wheel to find which pair is connected
+    # 1 <-> 4
+    # 2 <-> 22 
+
+    # etc
+
+    # First, we need to find input position signal comes in on (contact point)
+    # Then, we need to find the offsetted position on the wheel to find which pair is connected
 
 
-"""
 
 letter_to_num = {chr(i): i - ord('A') for i in range(ord('A'), ord('Z') + 1)}  # Map letter to num
 num_to_letter = lambda x: chr(x+65)  # noqa: E731
@@ -100,9 +112,9 @@ class Rotor:
         out_letter = chr(out_offset+65)
         in_letter = chr(in_offset+65)
         if r_to_l:
-            print(f'\t[{self.place}] - {self.name}: {self.ptr} => {out_offset}({out_letter})<-{in_offset}({in_letter})')
+            logger.debug(f'\t[{self.place}] - {self.name}: {self.ptr} => {out_offset}({out_letter})<-{in_offset}({in_letter})')
         else:
-            print(f'\t[{self.place}] - {self.name}: {self.ptr} => {in_offset}({in_letter})->{out_offset}({out_letter})')
+            logger.debug(f'\t[{self.place}] - {self.name}: {self.ptr} => {in_offset}({in_letter})->{out_offset}({out_letter})')
 
 
 
@@ -124,17 +136,17 @@ class Reflector_B(Rotor):
 
 class PlugBoard:
     def __init__(self, list_of_pairs:list):
-        print(f'Creating plugboard with {list_of_pairs}')
+        logger.info(f'Creating plugboard with {list_of_pairs}')
         self.board = {} # Map the connections A<->B
         assert len(list_of_pairs) <= 10, f'Plugboard supports max 10 settings. {len(list_of_pairs)} given in {list_of_pairs}'
         for a,b in list_of_pairs:
             if a in self.board:
-                print(f'WARNING: {a} <-> {b} but {a} <-> {self.board[a]} already exists in plugboard')
+                logger.debug(f'WARNING: {a} <-> {b} but {a} <-> {self.board[a]} already exists in plugboard')
             if b in self.board:
-                print(f'WARNING: {a} <-> {b} but {b} <-> {self.board[b]} already exists in plugboard')
+                logger.debug(f'WARNING: {a} <-> {b} but {b} <-> {self.board[b]} already exists in plugboard')
             self.board[a] = b
             self.board[b] = a
-        print(self.board)
+        logger.debug(self.board)
 
     def traverse(self, char:str):
         return self.board.get(char, char)
@@ -174,7 +186,7 @@ class Enigma:
             if self.rotors[1].is_at_turnover():
                 self.next_is_double_step = True
         elif self.next_is_double_step:
-            print("DOING DOUBLE STEP")
+            logger.debug("DOING DOUBLE STEP")
             turnover = self.rotors[1].inc() # Do the double step
             assert turnover
             self.next_is_double_step = False
@@ -188,7 +200,7 @@ class Enigma:
             l = rotor.ltor(l)
         end = num_to_letter(l)
         end = self.plugboard.traverse(end)
-        print(f'Cipher {letter} -> {end}')
+        logger.debug(f'Cipher {letter} -> {end}')
         return end
 
 
@@ -200,23 +212,28 @@ class Enigma:
         for i, c in enumerate(message):
             c = c.upper()
             if c >= "A" and c <= "Z":
-                print(f'{i} ', end='')
+                #logger.debug(f'{i} ', end='')
                 t = self.cipher(c)
                 output_list.append(t)
-        print(f'Plaintext: {message}')
-        print(f'Output:    ')
+        logger.info(f'Plaintext: {message}')
+        logger.info(f'Output:    ')
         #for chunk in batched(output_list, 5):
             #print(f'{"".join(chunk)} ', end='')
-        print()
         output = ''.join(output_list)
-        print(output)
+        logger.info(output)
         return output
 
 
 
 
 if __name__ == '__main__':
-    print('Creating Enigma')
+    args = docopt(__doc__, sys.argv)    
+    if args['--debug']:
+        logging.basicConfig(level=logging.DEBUG)
+    else:
+        logging.basicConfig(level=logging.INFO)
+
+    logger.info('Creating Enigma')
     e = Enigma([('I', 'A', 1), ('II', 'A', 0), ('III', 'A',0 )], 'B',
                  plugboard= [ 'AN']
                 )

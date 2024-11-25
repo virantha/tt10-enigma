@@ -1,8 +1,7 @@
 
-from amaranth import *
+from amaranth import Module, Signal, unsigned
 from amaranth.lib import wiring
 from amaranth.lib.wiring import In, Out
-#from amaranth.lib.coding import Decoder
 from amaranth.lib.enum import Enum
 
 class Cmd(Enum, shape=unsigned(3)):
@@ -20,6 +19,7 @@ class Control(wiring.Component):
     is_at_turnover: In(3)
     
     ready: Out(1)  # Signal if the FSM is ready to input
+    result_ready: Out(1)  # Signal if the FSM has a cipher value ready
     en: Out(3)   #  enables for each of the rotors
     load_start: Out(1)
     load_ring: Out(1)
@@ -27,6 +27,7 @@ class Control(wiring.Component):
 
     plugboard_wr_addr: Out(1)
     plugboard_wr_data: Out(1)
+    plugboard_en:  Out(1)
 
 
     def __init__(self):
@@ -74,6 +75,7 @@ class Control(wiring.Component):
                     self.ready.eq(1),
                     self.load_start.eq(0),
                     self.load_ring.eq(0),
+                    self.plugboard_en.eq(1),
                 ]
                 m.d.sync += [
                     cnt.eq(0),
@@ -127,14 +129,14 @@ class Control(wiring.Component):
                 ]
                 with m.If(cnt==3):
                     m.d.sync += cnt.eq(0)
-                    m.next = "Get command"
-                with m.Else():
-                    m.next = "Get command"
+
+                m.next = "Get command"
 
             with m.State("Inc Rotor 0"):
                 # For rotor zero, increment it before processing
                 m.d.comb += [
-                    active.eq(cnt)
+                    active.eq(cnt),
+                    self.plugboard_en.eq(1)
                 ]
                 with m.If(self.is_at_turnover[0] | double_step):
                     m.next = "Inc Rotor 1"
@@ -144,11 +146,12 @@ class Control(wiring.Component):
                         inc[1].eq(1),
                     ]
                 with m.Else():
-                    m.next = "Get command"
+                    m.next = "Delay"
 
             with m.State("Inc Rotor 1"):
                 m.d.comb += [
-                    active.eq(cnt)
+                    active.eq(cnt),
+                    self.plugboard_en.eq(1)
                 ]
                 m.d.sync += [
                     cnt.eq(2),
@@ -157,6 +160,9 @@ class Control(wiring.Component):
                 m.next = "Check Rotor 1 Turnover"  
 
             with m.State("Check Rotor 1 Turnover"):
+                m.d.comb += [
+                    self.plugboard_en.eq(1)
+                ]
                 m.d.sync += [
                     inc[0].eq(0),
                     inc[1].eq(0),
@@ -165,7 +171,7 @@ class Control(wiring.Component):
                     # to marking this Rotor 1 for a double step
                     # The next character input will cause Rotor 0, 1, and 2 to inc before outptuting the code
                     m.d.sync += double_step.eq(True)
-                    m.next = "Get command"
+                    m.next = "Delay"
                 with m.Elif(double_step):
                     m.d.sync += [
                         cnt.eq(3),
@@ -173,10 +179,13 @@ class Control(wiring.Component):
                     ]
                     m.next = "Inc Rotor 2"
                 with m.Else():
-                    m.next = "Get command"
+                    m.next = "Delay"
 
             with m.State("Inc Rotor 2"):
-                m.d.comb += active.eq(cnt)
+                m.d.comb += [
+                    active.eq(cnt),
+                    self.plugboard_en.eq(1)
+                ]
                 m.d.sync += [
                     double_step.eq(False),
                     cnt.eq(0),
@@ -184,9 +193,14 @@ class Control(wiring.Component):
                     inc[1].eq(0),
                     inc[2].eq(0),
                 ]
+                m.next = "Delay"
+
+            with m.State("Delay"):
+                m.d.comb += [
+                    self.plugboard_en.eq(1),
+                    self.result_ready.eq(1)
+                ]
                 m.next = "Get command"
-
-
         return m
 
                     
