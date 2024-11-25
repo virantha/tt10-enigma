@@ -83,24 +83,16 @@ class Enigma(wiring.Component):
         m.d.comb += wr_port.en.eq(fsm.plugboard_wr_data)
         m.d.comb += wr_port.addr.eq(plugboard_addr)
         m.d.comb += wr_port.data.eq(right_in)
-        with m.If(fsm.plugboard_wr_addr):
-            m.d.sync += plugboard_addr.eq(right_in)
 
         with m.If(fsm.result_ready & (cmd==Cmd.ENCRYPT)):
             # Hold the output of the enigma encoder stable until next encrypt command
-            m.d.sync += right_out_ff1.eq(
-                Mux(fsm.plugboard_en, rd_port_ltor.data, right_out)
-            )
-                #rd_port_ltor.data)
+            m.d.sync += right_out_ff1.eq(rd_port_ltor.data)
             #m.d.sync += right_out_ff1.eq(plugboard.out_ltor)
          
         m.d.comb += [
             # The right to left path
             #r0.right_in.eq(plugboard.out_rtol),
-            r0.right_in.eq(
-                Mux(fsm.plugboard_en, rd_port_rtol.data, right_in)
-            ),
-                #rd_port_rtol.data),
+            r0.right_in.eq(rd_port_rtol.data),
             r1.right_in.eq(r0.left_out),
             r2.right_in.eq(r1.left_out),
 
