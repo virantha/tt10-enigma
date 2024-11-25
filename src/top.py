@@ -4,7 +4,7 @@ from amaranth.lib import wiring
 from amaranth.lib.wiring import In, Out
 from .rotor import Rotor_I, Rotor_II, Rotor_III, Reflector_B
 from .fsm import Control, Cmd
-from .plugboard import Plugboard
+from .plugboard2 import Plugboard
 
 class Enigma(wiring.Component):
     ui_in: In(8)
