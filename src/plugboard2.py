@@ -47,15 +47,14 @@ class Plugboard(wiring.Component):
 
         m.d.comb+= [
             rtol[0].eq(self.in_rtol),
-            self.out_rtol.eq(rtol[20]),
-            #self.out_rtol.eq(
-                #Mux(self.en, rtol[20], self.in_rtol) ),
+            self.out_rtol.eq(
+                Mux(self.en, rtol[20], self.in_rtol) ),
 
             ltor[0].eq(self.in_ltor),
 
             self.out_ltor.eq(ltor[20]),
-            #self.out_ltor.eq(
-                #Mux(self.en, ltor[20], self.in_ltor)),
+            self.out_ltor.eq(
+                Mux(self.en, ltor[20], self.in_ltor)),
 
             self.wr_data_out.eq(b[9])
         ]
