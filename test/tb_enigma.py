@@ -107,6 +107,7 @@ async def bench(ctx):
 
     await ready(ctx)
     # Load the plugboard settings
+    scan_values = [31]*20
     for a,b in plugboard: 
         print(f'Loading plugboard {a} <-> {b}')
         # Add the wiring a->b
