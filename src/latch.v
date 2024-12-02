@@ -2,10 +2,10 @@
 module d_latch (
     input wire d,
     input wire clk,
-    output reg q,
-)
+    output reg q
+);
 
-    always @* begin
+    always_latch begin
         if (clk) begin
             q = d;
         end
