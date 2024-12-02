@@ -153,7 +153,7 @@ module top(clk, rst, uo_out, ui_in);
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:40" *)
   \top.plugboard  plugboard (
     .clk(clk),
-    .\en$163 (en),
+    .\en$446 (en),
     .in_ltor(in_ltor),
     .out_ltor(out_ltor),
     .out_rtol(right_in),
@@ -304,8 +304,8 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, load_ring, plu
   (* enum_value_0100 = "Load plug addr/4" *)
   (* enum_value_0101 = "Load plug data/5" *)
   (* enum_value_0110 = "Inc Rotor 0/6" *)
-  (* enum_value_0111 = "Inc Rotor 1/7" *)
-  (* enum_value_1000 = "Delay/8" *)
+  (* enum_value_0111 = "Delay/7" *)
+  (* enum_value_1000 = "Inc Rotor 1/8" *)
   (* enum_value_1001 = "Check Rotor 1 Turnover/9" *)
   (* enum_value_1010 = "Inc Rotor 2/10" *)
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:66" *)
@@ -447,13 +447,13 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, load_ring, plu
           /* empty */;
       4'h6:
           plugboard_en = 1'h1;
-      4'h7:
+      4'h8:
           plugboard_en = 1'h1;
       4'h9:
           plugboard_en = 1'h1;
       4'ha:
           plugboard_en = 1'h1;
-      4'h8:
+      4'h7:
           plugboard_en = 1'h1;
     endcase
   end
@@ -501,7 +501,7 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, load_ring, plu
           active = cnt;
       4'h6:
           active = cnt;
-      4'h7:
+      4'h8:
           active = cnt;
       4'h9:
           /* empty */;
@@ -527,13 +527,13 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, load_ring, plu
           /* empty */;
       4'h6:
           /* empty */;
-      4'h7:
+      4'h8:
           /* empty */;
       4'h9:
           /* empty */;
       4'ha:
           /* empty */;
-      4'h8:
+      4'h7:
           result_ready = 1'h1;
     endcase
   end
@@ -577,7 +577,7 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, load_ring, plu
           if (\$16 ) begin
             \$17  = 2'h2;
           end
-      4'h7:
+      4'h8:
           \$17  = 2'h2;
       4'h9:
           if (is_at_turnover[1]) begin
@@ -618,7 +618,7 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, load_ring, plu
       4'h4:
           \$18  = 4'h1;
       4'h5:
-          \$18  = 4'h1;
+          \$18  = 4'h7;
       4'h2:
           (* full_case = 32'd1 *)
           if (\$14 ) begin
@@ -631,24 +631,24 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, load_ring, plu
       4'h6:
           (* full_case = 32'd1 *)
           if (\$16 ) begin
-            \$18  = 4'h7;
-          end else begin
             \$18  = 4'h8;
+          end else begin
+            \$18  = 4'h7;
           end
-      4'h7:
+      4'h8:
           \$18  = 4'h9;
       4'h9:
           (* full_case = 32'd1 *)
           if (is_at_turnover[1]) begin
-            \$18  = 4'h8;
+            \$18  = 4'h7;
           end else if (double_step) begin
             \$18  = 4'ha;
           end else begin
-            \$18  = 4'h8;
+            \$18  = 4'h7;
           end
       4'ha:
-          \$18  = 4'h8;
-      4'h8:
+          \$18  = 4'h7;
+      4'h7:
           \$18  = 4'h1;
     endcase
     if (rst) begin
@@ -692,7 +692,7 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, load_ring, plu
             \$19 [0] = 1'h0;
             \$19 [1] = 1'h1;
           end
-      4'h7:
+      4'h8:
           \$19 [1] = 1'h0;
       4'h9:
         begin
@@ -732,7 +732,7 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, load_ring, plu
           /* empty */;
       4'h6:
           /* empty */;
-      4'h7:
+      4'h8:
           /* empty */;
       4'h9:
           if (is_at_turnover[1]) begin
@@ -750,49 +750,141 @@ endmodule
 
 (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:98" *)
 (* generator = "Amaranth" *)
-module \top.plugboard (clk, rst, in_ltor, out_rtol, out_ltor, \en$163 , wr_addr_en, wr_data_en, wr_data);
+module \top.plugboard (clk, rst, in_ltor, out_rtol, out_ltor, \en$446 , wr_addr_en, wr_data_en, wr_data);
   reg \$auto$verilog_backend.cc:2352:dump_module$3  = 0;
-  reg [4:0] \$1 ;
-  reg [4:0] \$2 ;
-  reg [4:0] \$3 ;
+  wire \$1 ;
+  wire \$10 ;
+  wire \$11 ;
+  wire \$12 ;
+  wire \$13 ;
+  wire \$14 ;
+  wire \$15 ;
+  wire \$16 ;
+  wire \$17 ;
+  wire \$18 ;
+  wire \$19 ;
+  wire \$2 ;
+  wire \$20 ;
+  wire \$21 ;
+  wire \$22 ;
+  wire \$23 ;
+  wire \$24 ;
+  wire \$25 ;
+  wire \$26 ;
+  reg [4:0] \$27 ;
+  reg [4:0] \$28 ;
+  reg [4:0] \$29 ;
+  wire \$3 ;
+  wire \$4 ;
+  wire \$5 ;
+  wire \$6 ;
+  wire \$7 ;
+  wire \$8 ;
+  wire \$9 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
   wire [4:0] \$signal ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
-  wire \$signal$107 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
-  wire \$signal$118 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
+  wire [4:0] \$signal$102 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
+  wire [4:0] \$signal$108 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
+  wire [4:0] \$signal$114 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
   wire [4:0] \$signal$12 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
+  wire [4:0] \$signal$120 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
+  wire [4:0] \$signal$126 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
+  wire [4:0] \$signal$132 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
+  wire [4:0] \$signal$138 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
+  wire [4:0] \$signal$144 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
+  wire [4:0] \$signal$150 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
-  wire \$signal$129 ;
+  wire \$signal$159 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
-  wire \$signal$140 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
-  wire \$signal$151 ;
+  wire \$signal$170 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
   wire [4:0] \$signal$18 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$181 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$192 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$203 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$214 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$225 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$236 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
   wire [4:0] \$signal$24 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$247 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$258 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$269 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$280 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$291 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
   wire [4:0] \$signal$30 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$302 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$313 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$324 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$335 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$346 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$357 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
   wire [4:0] \$signal$36 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$368 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$379 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$390 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$401 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$412 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
   wire [4:0] \$signal$42 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$423 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
+  wire \$signal$434 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
   wire [4:0] \$signal$48 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
   wire [4:0] \$signal$54 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
   wire [4:0] \$signal$6 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
-  wire \$signal$63 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
-  wire \$signal$74 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
-  wire \$signal$85 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:120" *)
-  wire \$signal$96 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
+  wire [4:0] \$signal$60 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
+  wire [4:0] \$signal$66 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
+  wire [4:0] \$signal$72 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
+  wire [4:0] \$signal$78 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
+  wire [4:0] \$signal$84 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
+  wire [4:0] \$signal$90 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:101" *)
+  wire [4:0] \$signal$96 ;
   (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_ir.py:215" *)
   input clk;
   wire clk;
@@ -801,186 +893,526 @@ module \top.plugboard (clk, rst, in_ltor, out_rtol, out_ltor, \en$163 , wr_addr_
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
   wire d;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$101 ;
+  wire \d$160 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$103 ;
+  wire \d$162 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$105 ;
+  wire \d$164 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$108 ;
+  wire \d$166 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$110 ;
+  wire \d$168 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$112 ;
+  wire \d$171 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$114 ;
+  wire \d$173 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$116 ;
+  wire \d$175 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$119 ;
+  wire \d$177 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$121 ;
+  wire \d$179 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$123 ;
+  wire \d$182 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$125 ;
+  wire \d$184 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$127 ;
+  wire \d$186 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$130 ;
+  wire \d$188 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$132 ;
+  wire \d$190 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$134 ;
+  wire \d$193 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$136 ;
+  wire \d$195 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$138 ;
+  wire \d$197 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$141 ;
+  wire \d$199 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$143 ;
+  wire \d$201 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$145 ;
+  wire \d$204 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$147 ;
+  wire \d$206 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$149 ;
+  wire \d$208 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$152 ;
+  wire \d$210 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$154 ;
+  wire \d$212 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$156 ;
+  wire \d$215 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$158 ;
+  wire \d$217 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$64 ;
+  wire \d$219 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$66 ;
+  wire \d$221 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$68 ;
+  wire \d$223 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$70 ;
+  wire \d$226 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$72 ;
+  wire \d$228 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$75 ;
+  wire \d$230 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$77 ;
+  wire \d$232 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$79 ;
+  wire \d$234 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$81 ;
+  wire \d$237 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$83 ;
+  wire \d$239 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$86 ;
+  wire \d$241 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$88 ;
+  wire \d$243 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$90 ;
+  wire \d$245 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$92 ;
+  wire \d$248 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$94 ;
+  wire \d$250 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$97 ;
+  wire \d$252 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
-  wire \d$99 ;
+  wire \d$254 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$256 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$259 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$261 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$263 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$265 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$267 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$270 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$272 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$274 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$276 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$278 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$281 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$283 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$285 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$287 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$289 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$292 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$294 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$296 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$298 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$300 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$303 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$305 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$307 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$309 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$311 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$314 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$316 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$318 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$320 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$322 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$325 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$327 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$329 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$331 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$333 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$336 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$338 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$340 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$342 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$344 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$347 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$349 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$351 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$353 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$355 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$358 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$360 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$362 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$364 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$366 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$369 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$371 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$373 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$375 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$377 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$380 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$382 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$384 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$386 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$388 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$391 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$393 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$395 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$397 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$399 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$402 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$404 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$406 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$408 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$410 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$413 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$415 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$417 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$419 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$421 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$424 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$426 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$428 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$430 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$432 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$435 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$437 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$439 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
+  wire \d$441 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
   reg en;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$100 ;
+  wire \en$161 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$102 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$104 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  reg \en$106 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$109 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$111 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$113 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$115 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  reg \en$117 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$120 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$122 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$124 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$126 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  reg \en$128 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$131 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$133 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$135 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$137 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  reg \en$139 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$142 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$144 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$146 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$148 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  reg \en$150 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$153 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$155 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$157 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$159 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:82" *)
-  input \en$163 ;
   wire \en$163 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$65 ;
+  wire \en$165 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$67 ;
+  wire \en$167 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$69 ;
+  reg \en$169 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$71 ;
+  wire \en$172 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  reg \en$73 ;
+  wire \en$174 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$76 ;
+  wire \en$176 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$78 ;
+  wire \en$178 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$80 ;
+  reg \en$180 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$82 ;
+  wire \en$183 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  reg \en$84 ;
+  wire \en$185 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$87 ;
+  wire \en$187 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$89 ;
+  wire \en$189 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$91 ;
+  reg \en$191 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$93 ;
+  wire \en$194 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  reg \en$95 ;
+  wire \en$196 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
-  wire \en$98 ;
+  wire \en$198 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$200 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$202 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$205 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$207 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$209 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$211 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$213 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$216 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$218 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$220 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$222 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$224 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$227 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$229 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$231 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$233 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$235 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$238 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$240 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$242 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$244 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$246 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$249 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$251 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$253 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$255 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$257 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$260 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$262 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$264 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$266 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$268 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$271 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$273 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$275 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$277 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$279 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$282 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$284 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$286 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$288 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$290 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$293 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$295 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$297 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$299 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$301 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$304 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$306 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$308 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$310 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$312 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$315 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$317 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$319 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$321 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$323 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$326 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$328 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$330 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$332 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$334 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$337 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$339 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$341 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$343 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$345 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$348 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$350 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$352 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$354 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$356 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$359 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$361 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$363 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$365 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$367 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$370 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$372 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$374 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$376 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$378 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$381 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$383 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$385 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$387 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$389 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$392 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$394 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$396 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$398 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$400 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$403 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$405 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$407 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$409 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$411 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$414 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$416 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$418 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$420 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$422 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$425 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$427 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$429 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$431 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  reg \en$433 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$436 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$438 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$440 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:48" *)
+  wire \en$442 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:82" *)
+  input \en$446 ;
+  wire \en$446 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
   input [4:0] in_ltor;
   wire [4:0] in_ltor;
@@ -997,13 +1429,107 @@ module \top.plugboard (clk, rst, in_ltor, out_rtol, out_ltor, \en$163 , wr_addr_
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
   wire \q$10 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$100 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$101 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$103 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$104 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$105 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$106 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$107 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$109 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
   wire \q$11 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$110 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$111 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$112 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$113 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$115 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$116 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$117 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$118 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$119 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$121 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$122 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$123 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$124 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$125 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$127 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$128 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$129 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
   wire \q$13 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$130 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$131 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$133 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$134 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$135 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$136 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$137 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$139 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
   wire \q$14 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$140 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$141 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$142 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$143 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$145 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$146 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$147 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$148 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$149 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
   wire \q$15 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$151 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$152 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$153 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$154 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$155 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
   wire \q$16 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
@@ -1087,11 +1613,77 @@ module \top.plugboard (clk, rst, in_ltor, out_rtol, out_ltor, \en$163 , wr_addr_
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
   wire \q$59 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$61 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$62 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$63 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$64 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$65 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$67 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$68 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$69 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
   wire \q$7 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$70 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$71 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$73 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$74 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$75 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$76 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$77 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$79 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
   wire \q$8 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$80 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$81 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$82 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$83 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$85 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$86 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$87 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$88 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$89 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
   wire \q$9 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$91 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$92 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$93 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$94 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$95 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$97 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$98 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
+  wire \q$99 ;
   (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_ir.py:215" *)
   input rst;
   wire rst;
@@ -1106,9 +1698,35 @@ module \top.plugboard (clk, rst, in_ltor, out_rtol, out_ltor, \en$163 , wr_addr_
   wire wr_data_en;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:126" *)
   always @(posedge clk)
-    cnt <= \$3 ;
-  assign out_rtol = \en$163  ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:151" *) \$1  : wr_data;
-  assign out_ltor = \en$163  ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:154" *) \$2  : in_ltor;
+    cnt <= \$29 ;
+  assign \$1  = ! (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) cnt;
+  assign \$2  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 1'h1;
+  assign \$3  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 2'h2;
+  assign \$4  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 2'h3;
+  assign \$5  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 3'h4;
+  assign \$6  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 3'h5;
+  assign \$7  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 3'h6;
+  assign \$8  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 3'h7;
+  assign \$9  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 4'h8;
+  assign \$10  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 4'h9;
+  assign \$11  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 4'ha;
+  assign \$12  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 4'hb;
+  assign \$13  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 4'hc;
+  assign \$14  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 4'hd;
+  assign \$15  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 4'he;
+  assign \$16  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 4'hf;
+  assign \$17  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 5'h10;
+  assign \$18  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 5'h11;
+  assign \$19  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 5'h12;
+  assign \$20  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 5'h13;
+  assign \$21  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 5'h14;
+  assign \$22  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 5'h15;
+  assign \$23  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 5'h16;
+  assign \$24  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 5'h17;
+  assign \$25  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 5'h18;
+  assign \$26  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:129" *) 5'h19;
+  assign out_rtol = \en$446  ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:154" *) \$27  : wr_data;
+  assign out_ltor = \en$446  ? (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:157" *) \$28  : in_ltor;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_0_0 (
     .clk(en),
@@ -1140,590 +1758,1404 @@ module \top.plugboard (clk, rst, in_ltor, out_rtol, out_ltor, \en$163 , wr_addr_
     .q(\q$5 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_10_0 (
+    .clk(\en$268 ),
+    .d(wr_data[0]),
+    .q(\q$61 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_10_1 (
+    .clk(\en$268 ),
+    .d(wr_data[1]),
+    .q(\q$62 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_10_2 (
+    .clk(\en$268 ),
+    .d(wr_data[2]),
+    .q(\q$63 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_10_3 (
+    .clk(\en$268 ),
+    .d(wr_data[3]),
+    .q(\q$64 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_10_4 (
+    .clk(\en$268 ),
+    .d(wr_data[4]),
+    .q(\q$65 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_11_0 (
+    .clk(\en$279 ),
+    .d(wr_data[0]),
+    .q(\q$67 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_11_1 (
+    .clk(\en$279 ),
+    .d(wr_data[1]),
+    .q(\q$68 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_11_2 (
+    .clk(\en$279 ),
+    .d(wr_data[2]),
+    .q(\q$69 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_11_3 (
+    .clk(\en$279 ),
+    .d(wr_data[3]),
+    .q(\q$70 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_11_4 (
+    .clk(\en$279 ),
+    .d(wr_data[4]),
+    .q(\q$71 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_12_0 (
+    .clk(\en$290 ),
+    .d(wr_data[0]),
+    .q(\q$73 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_12_1 (
+    .clk(\en$290 ),
+    .d(wr_data[1]),
+    .q(\q$74 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_12_2 (
+    .clk(\en$290 ),
+    .d(wr_data[2]),
+    .q(\q$75 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_12_3 (
+    .clk(\en$290 ),
+    .d(wr_data[3]),
+    .q(\q$76 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_12_4 (
+    .clk(\en$290 ),
+    .d(wr_data[4]),
+    .q(\q$77 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_13_0 (
+    .clk(\en$301 ),
+    .d(wr_data[0]),
+    .q(\q$79 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_13_1 (
+    .clk(\en$301 ),
+    .d(wr_data[1]),
+    .q(\q$80 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_13_2 (
+    .clk(\en$301 ),
+    .d(wr_data[2]),
+    .q(\q$81 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_13_3 (
+    .clk(\en$301 ),
+    .d(wr_data[3]),
+    .q(\q$82 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_13_4 (
+    .clk(\en$301 ),
+    .d(wr_data[4]),
+    .q(\q$83 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_14_0 (
+    .clk(\en$312 ),
+    .d(wr_data[0]),
+    .q(\q$85 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_14_1 (
+    .clk(\en$312 ),
+    .d(wr_data[1]),
+    .q(\q$86 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_14_2 (
+    .clk(\en$312 ),
+    .d(wr_data[2]),
+    .q(\q$87 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_14_3 (
+    .clk(\en$312 ),
+    .d(wr_data[3]),
+    .q(\q$88 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_14_4 (
+    .clk(\en$312 ),
+    .d(wr_data[4]),
+    .q(\q$89 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_15_0 (
+    .clk(\en$323 ),
+    .d(wr_data[0]),
+    .q(\q$91 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_15_1 (
+    .clk(\en$323 ),
+    .d(wr_data[1]),
+    .q(\q$92 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_15_2 (
+    .clk(\en$323 ),
+    .d(wr_data[2]),
+    .q(\q$93 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_15_3 (
+    .clk(\en$323 ),
+    .d(wr_data[3]),
+    .q(\q$94 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_15_4 (
+    .clk(\en$323 ),
+    .d(wr_data[4]),
+    .q(\q$95 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_16_0 (
+    .clk(\en$334 ),
+    .d(wr_data[0]),
+    .q(\q$97 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_16_1 (
+    .clk(\en$334 ),
+    .d(wr_data[1]),
+    .q(\q$98 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_16_2 (
+    .clk(\en$334 ),
+    .d(wr_data[2]),
+    .q(\q$99 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_16_3 (
+    .clk(\en$334 ),
+    .d(wr_data[3]),
+    .q(\q$100 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_16_4 (
+    .clk(\en$334 ),
+    .d(wr_data[4]),
+    .q(\q$101 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_17_0 (
+    .clk(\en$345 ),
+    .d(wr_data[0]),
+    .q(\q$103 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_17_1 (
+    .clk(\en$345 ),
+    .d(wr_data[1]),
+    .q(\q$104 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_17_2 (
+    .clk(\en$345 ),
+    .d(wr_data[2]),
+    .q(\q$105 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_17_3 (
+    .clk(\en$345 ),
+    .d(wr_data[3]),
+    .q(\q$106 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_17_4 (
+    .clk(\en$345 ),
+    .d(wr_data[4]),
+    .q(\q$107 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_18_0 (
+    .clk(\en$356 ),
+    .d(wr_data[0]),
+    .q(\q$109 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_18_1 (
+    .clk(\en$356 ),
+    .d(wr_data[1]),
+    .q(\q$110 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_18_2 (
+    .clk(\en$356 ),
+    .d(wr_data[2]),
+    .q(\q$111 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_18_3 (
+    .clk(\en$356 ),
+    .d(wr_data[3]),
+    .q(\q$112 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_18_4 (
+    .clk(\en$356 ),
+    .d(wr_data[4]),
+    .q(\q$113 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_19_0 (
+    .clk(\en$367 ),
+    .d(wr_data[0]),
+    .q(\q$115 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_19_1 (
+    .clk(\en$367 ),
+    .d(wr_data[1]),
+    .q(\q$116 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_19_2 (
+    .clk(\en$367 ),
+    .d(wr_data[2]),
+    .q(\q$117 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_19_3 (
+    .clk(\en$367 ),
+    .d(wr_data[3]),
+    .q(\q$118 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_19_4 (
+    .clk(\en$367 ),
+    .d(wr_data[4]),
+    .q(\q$119 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_1_0 (
-    .clk(\en$73 ),
+    .clk(\en$169 ),
     .d(wr_data[0]),
     .q(\q$7 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_1_1 (
-    .clk(\en$73 ),
+    .clk(\en$169 ),
     .d(wr_data[1]),
     .q(\q$8 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_1_2 (
-    .clk(\en$73 ),
+    .clk(\en$169 ),
     .d(wr_data[2]),
     .q(\q$9 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_1_3 (
-    .clk(\en$73 ),
+    .clk(\en$169 ),
     .d(wr_data[3]),
     .q(\q$10 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_1_4 (
-    .clk(\en$73 ),
+    .clk(\en$169 ),
     .d(wr_data[4]),
     .q(\q$11 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_20_0 (
+    .clk(\en$378 ),
+    .d(wr_data[0]),
+    .q(\q$121 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_20_1 (
+    .clk(\en$378 ),
+    .d(wr_data[1]),
+    .q(\q$122 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_20_2 (
+    .clk(\en$378 ),
+    .d(wr_data[2]),
+    .q(\q$123 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_20_3 (
+    .clk(\en$378 ),
+    .d(wr_data[3]),
+    .q(\q$124 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_20_4 (
+    .clk(\en$378 ),
+    .d(wr_data[4]),
+    .q(\q$125 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_21_0 (
+    .clk(\en$389 ),
+    .d(wr_data[0]),
+    .q(\q$127 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_21_1 (
+    .clk(\en$389 ),
+    .d(wr_data[1]),
+    .q(\q$128 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_21_2 (
+    .clk(\en$389 ),
+    .d(wr_data[2]),
+    .q(\q$129 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_21_3 (
+    .clk(\en$389 ),
+    .d(wr_data[3]),
+    .q(\q$130 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_21_4 (
+    .clk(\en$389 ),
+    .d(wr_data[4]),
+    .q(\q$131 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_22_0 (
+    .clk(\en$400 ),
+    .d(wr_data[0]),
+    .q(\q$133 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_22_1 (
+    .clk(\en$400 ),
+    .d(wr_data[1]),
+    .q(\q$134 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_22_2 (
+    .clk(\en$400 ),
+    .d(wr_data[2]),
+    .q(\q$135 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_22_3 (
+    .clk(\en$400 ),
+    .d(wr_data[3]),
+    .q(\q$136 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_22_4 (
+    .clk(\en$400 ),
+    .d(wr_data[4]),
+    .q(\q$137 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_23_0 (
+    .clk(\en$411 ),
+    .d(wr_data[0]),
+    .q(\q$139 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_23_1 (
+    .clk(\en$411 ),
+    .d(wr_data[1]),
+    .q(\q$140 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_23_2 (
+    .clk(\en$411 ),
+    .d(wr_data[2]),
+    .q(\q$141 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_23_3 (
+    .clk(\en$411 ),
+    .d(wr_data[3]),
+    .q(\q$142 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_23_4 (
+    .clk(\en$411 ),
+    .d(wr_data[4]),
+    .q(\q$143 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_24_0 (
+    .clk(\en$422 ),
+    .d(wr_data[0]),
+    .q(\q$145 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_24_1 (
+    .clk(\en$422 ),
+    .d(wr_data[1]),
+    .q(\q$146 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_24_2 (
+    .clk(\en$422 ),
+    .d(wr_data[2]),
+    .q(\q$147 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_24_3 (
+    .clk(\en$422 ),
+    .d(wr_data[3]),
+    .q(\q$148 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_24_4 (
+    .clk(\en$422 ),
+    .d(wr_data[4]),
+    .q(\q$149 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_25_0 (
+    .clk(\en$433 ),
+    .d(wr_data[0]),
+    .q(\q$151 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_25_1 (
+    .clk(\en$433 ),
+    .d(wr_data[1]),
+    .q(\q$152 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_25_2 (
+    .clk(\en$433 ),
+    .d(wr_data[2]),
+    .q(\q$153 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_25_3 (
+    .clk(\en$433 ),
+    .d(wr_data[3]),
+    .q(\q$154 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
+  d_latch bits_25_4 (
+    .clk(\en$433 ),
+    .d(wr_data[4]),
+    .q(\q$155 )
+  );
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_2_0 (
-    .clk(\en$84 ),
+    .clk(\en$180 ),
     .d(wr_data[0]),
     .q(\q$13 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_2_1 (
-    .clk(\en$84 ),
+    .clk(\en$180 ),
     .d(wr_data[1]),
     .q(\q$14 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_2_2 (
-    .clk(\en$84 ),
+    .clk(\en$180 ),
     .d(wr_data[2]),
     .q(\q$15 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_2_3 (
-    .clk(\en$84 ),
+    .clk(\en$180 ),
     .d(wr_data[3]),
     .q(\q$16 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_2_4 (
-    .clk(\en$84 ),
+    .clk(\en$180 ),
     .d(wr_data[4]),
     .q(\q$17 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_3_0 (
-    .clk(\en$95 ),
+    .clk(\en$191 ),
     .d(wr_data[0]),
     .q(\q$19 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_3_1 (
-    .clk(\en$95 ),
+    .clk(\en$191 ),
     .d(wr_data[1]),
     .q(\q$20 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_3_2 (
-    .clk(\en$95 ),
+    .clk(\en$191 ),
     .d(wr_data[2]),
     .q(\q$21 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_3_3 (
-    .clk(\en$95 ),
+    .clk(\en$191 ),
     .d(wr_data[3]),
     .q(\q$22 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_3_4 (
-    .clk(\en$95 ),
+    .clk(\en$191 ),
     .d(wr_data[4]),
     .q(\q$23 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_4_0 (
-    .clk(\en$106 ),
+    .clk(\en$202 ),
     .d(wr_data[0]),
     .q(\q$25 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_4_1 (
-    .clk(\en$106 ),
+    .clk(\en$202 ),
     .d(wr_data[1]),
     .q(\q$26 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_4_2 (
-    .clk(\en$106 ),
+    .clk(\en$202 ),
     .d(wr_data[2]),
     .q(\q$27 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_4_3 (
-    .clk(\en$106 ),
+    .clk(\en$202 ),
     .d(wr_data[3]),
     .q(\q$28 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_4_4 (
-    .clk(\en$106 ),
+    .clk(\en$202 ),
     .d(wr_data[4]),
     .q(\q$29 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_5_0 (
-    .clk(\en$117 ),
+    .clk(\en$213 ),
     .d(wr_data[0]),
     .q(\q$31 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_5_1 (
-    .clk(\en$117 ),
+    .clk(\en$213 ),
     .d(wr_data[1]),
     .q(\q$32 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_5_2 (
-    .clk(\en$117 ),
+    .clk(\en$213 ),
     .d(wr_data[2]),
     .q(\q$33 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_5_3 (
-    .clk(\en$117 ),
+    .clk(\en$213 ),
     .d(wr_data[3]),
     .q(\q$34 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_5_4 (
-    .clk(\en$117 ),
+    .clk(\en$213 ),
     .d(wr_data[4]),
     .q(\q$35 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_6_0 (
-    .clk(\en$128 ),
+    .clk(\en$224 ),
     .d(wr_data[0]),
     .q(\q$37 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_6_1 (
-    .clk(\en$128 ),
+    .clk(\en$224 ),
     .d(wr_data[1]),
     .q(\q$38 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_6_2 (
-    .clk(\en$128 ),
+    .clk(\en$224 ),
     .d(wr_data[2]),
     .q(\q$39 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_6_3 (
-    .clk(\en$128 ),
+    .clk(\en$224 ),
     .d(wr_data[3]),
     .q(\q$40 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_6_4 (
-    .clk(\en$128 ),
+    .clk(\en$224 ),
     .d(wr_data[4]),
     .q(\q$41 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_7_0 (
-    .clk(\en$139 ),
+    .clk(\en$235 ),
     .d(wr_data[0]),
     .q(\q$43 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_7_1 (
-    .clk(\en$139 ),
+    .clk(\en$235 ),
     .d(wr_data[1]),
     .q(\q$44 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_7_2 (
-    .clk(\en$139 ),
+    .clk(\en$235 ),
     .d(wr_data[2]),
     .q(\q$45 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_7_3 (
-    .clk(\en$139 ),
+    .clk(\en$235 ),
     .d(wr_data[3]),
     .q(\q$46 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_7_4 (
-    .clk(\en$139 ),
+    .clk(\en$235 ),
     .d(wr_data[4]),
     .q(\q$47 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_8_0 (
-    .clk(\en$150 ),
+    .clk(\en$246 ),
     .d(wr_data[0]),
     .q(\q$49 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_8_1 (
-    .clk(\en$150 ),
+    .clk(\en$246 ),
     .d(wr_data[1]),
     .q(\q$50 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_8_2 (
-    .clk(\en$150 ),
+    .clk(\en$246 ),
     .d(wr_data[2]),
     .q(\q$51 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_8_3 (
-    .clk(\en$150 ),
+    .clk(\en$246 ),
     .d(wr_data[3]),
     .q(\q$52 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_8_4 (
-    .clk(\en$150 ),
+    .clk(\en$246 ),
     .d(wr_data[4]),
     .q(\q$53 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_9_0 (
-    .clk(1'h0),
-    .d(1'h0),
+    .clk(\en$257 ),
+    .d(wr_data[0]),
     .q(\q$55 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_9_1 (
-    .clk(1'h0),
-    .d(1'h0),
+    .clk(\en$257 ),
+    .d(wr_data[1]),
     .q(\q$56 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_9_2 (
-    .clk(1'h0),
-    .d(1'h0),
+    .clk(\en$257 ),
+    .d(wr_data[2]),
     .q(\q$57 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_9_3 (
-    .clk(1'h0),
-    .d(1'h0),
+    .clk(\en$257 ),
+    .d(wr_data[3]),
     .q(\q$58 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:52" *)
   d_latch bits_9_4 (
-    .clk(1'h0),
-    .d(1'h0),
+    .clk(\en$257 ),
+    .d(wr_data[4]),
     .q(\q$59 )
   );
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
-    en = 1'h0;
+    \en$312  = 1'h0;
     if (wr_data_en) begin
-      casez (cnt)
-        5'h00:
-            en = 1'h1;
-      endcase
+      \en$312  = \$15 ;
     end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
-    \en$73  = 1'h0;
+    \en$323  = 1'h0;
     if (wr_data_en) begin
-      casez (cnt)
-        5'h00:
-            /* empty */;
-        5'h01:
-            \en$73  = 1'h1;
-      endcase
+      \en$323  = \$16 ;
     end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
-    \en$84  = 1'h0;
+    \en$334  = 1'h0;
     if (wr_data_en) begin
-      casez (cnt)
-        5'h00:
-            /* empty */;
-        5'h01:
-            /* empty */;
-        5'h02:
-            \en$84  = 1'h1;
-      endcase
+      \en$334  = \$17 ;
     end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
-    \en$95  = 1'h0;
+    \en$345  = 1'h0;
     if (wr_data_en) begin
-      casez (cnt)
-        5'h00:
-            /* empty */;
-        5'h01:
-            /* empty */;
-        5'h02:
-            /* empty */;
-        5'h03:
-            \en$95  = 1'h1;
-      endcase
+      \en$345  = \$18 ;
     end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
-    \en$106  = 1'h0;
+    \en$356  = 1'h0;
     if (wr_data_en) begin
-      casez (cnt)
-        5'h00:
-            /* empty */;
-        5'h01:
-            /* empty */;
-        5'h02:
-            /* empty */;
-        5'h03:
-            /* empty */;
-        5'h04:
-            \en$106  = 1'h1;
-      endcase
+      \en$356  = \$19 ;
     end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
-    \en$117  = 1'h0;
+    \en$367  = 1'h0;
     if (wr_data_en) begin
-      casez (cnt)
-        5'h00:
-            /* empty */;
-        5'h01:
-            /* empty */;
-        5'h02:
-            /* empty */;
-        5'h03:
-            /* empty */;
-        5'h04:
-            /* empty */;
-        5'h05:
-            \en$117  = 1'h1;
-      endcase
+      \en$367  = \$20 ;
     end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
-    \en$128  = 1'h0;
+    \en$378  = 1'h0;
     if (wr_data_en) begin
-      casez (cnt)
-        5'h00:
-            /* empty */;
-        5'h01:
-            /* empty */;
-        5'h02:
-            /* empty */;
-        5'h03:
-            /* empty */;
-        5'h04:
-            /* empty */;
-        5'h05:
-            /* empty */;
-        5'h06:
-            \en$128  = 1'h1;
-      endcase
+      \en$378  = \$21 ;
     end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
-    \en$139  = 1'h0;
+    \en$389  = 1'h0;
     if (wr_data_en) begin
-      casez (cnt)
-        5'h00:
-            /* empty */;
-        5'h01:
-            /* empty */;
-        5'h02:
-            /* empty */;
-        5'h03:
-            /* empty */;
-        5'h04:
-            /* empty */;
-        5'h05:
-            /* empty */;
-        5'h06:
-            /* empty */;
-        5'h07:
-            \en$139  = 1'h1;
-      endcase
+      \en$389  = \$22 ;
     end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
-    \en$150  = 1'h0;
+    \en$400  = 1'h0;
     if (wr_data_en) begin
-      casez (cnt)
-        5'h00:
-            /* empty */;
-        5'h01:
-            /* empty */;
-        5'h02:
-            /* empty */;
-        5'h03:
-            /* empty */;
-        5'h04:
-            /* empty */;
-        5'h05:
-            /* empty */;
-        5'h06:
-            /* empty */;
-        5'h07:
-            /* empty */;
-        5'h08:
-            \en$150  = 1'h1;
-      endcase
+      \en$400  = \$23 ;
     end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
-    \$3  = cnt;
+    \en$411  = 1'h0;
+    if (wr_data_en) begin
+      \en$411  = \$24 ;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
+    \en$422  = 1'h0;
+    if (wr_data_en) begin
+      \en$422  = \$25 ;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
+    \en$433  = 1'h0;
+    if (wr_data_en) begin
+      \en$433  = \$26 ;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
+    \$29  = cnt;
     if (wr_addr_en) begin
-      \$3  = wr_data;
+      \$29  = wr_data;
     end
     if (rst) begin
-      \$3  = 5'h00;
+      \$29  = 5'h00;
     end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
-    \$1  = 5'h00;
+    \$27  = 5'h00;
     casez (wr_data)
       5'h00:
-          \$1  = \$signal ;
+          \$27  = \$signal ;
       5'h01:
-          \$1  = \$signal$6 ;
+          \$27  = \$signal$6 ;
       5'h02:
-          \$1  = \$signal$12 ;
+          \$27  = \$signal$12 ;
       5'h03:
-          \$1  = \$signal$18 ;
+          \$27  = \$signal$18 ;
       5'h04:
-          \$1  = \$signal$24 ;
+          \$27  = \$signal$24 ;
       5'h05:
-          \$1  = \$signal$30 ;
+          \$27  = \$signal$30 ;
       5'h06:
-          \$1  = \$signal$36 ;
+          \$27  = \$signal$36 ;
       5'h07:
-          \$1  = \$signal$42 ;
+          \$27  = \$signal$42 ;
       5'h08:
-          \$1  = \$signal$48 ;
+          \$27  = \$signal$48 ;
       5'h09:
-          \$1  = \$signal$54 ;
+          \$27  = \$signal$54 ;
+      5'h0a:
+          \$27  = \$signal$60 ;
+      5'h0b:
+          \$27  = \$signal$66 ;
+      5'h0c:
+          \$27  = \$signal$72 ;
+      5'h0d:
+          \$27  = \$signal$78 ;
+      5'h0e:
+          \$27  = \$signal$84 ;
+      5'h0f:
+          \$27  = \$signal$90 ;
+      5'h10:
+          \$27  = \$signal$96 ;
+      5'h11:
+          \$27  = \$signal$102 ;
+      5'h12:
+          \$27  = \$signal$108 ;
+      5'h13:
+          \$27  = \$signal$114 ;
+      5'h14:
+          \$27  = \$signal$120 ;
+      5'h15:
+          \$27  = \$signal$126 ;
+      5'h16:
+          \$27  = \$signal$132 ;
+      5'h17:
+          \$27  = \$signal$138 ;
+      5'h18:
+          \$27  = \$signal$144 ;
+      5'h19:
+          \$27  = \$signal$150 ;
     endcase
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
-    \$2  = 5'h00;
+    \$28  = 5'h00;
     casez (in_ltor)
       5'h00:
-          \$2  = \$signal ;
+          \$28  = \$signal ;
       5'h01:
-          \$2  = \$signal$6 ;
+          \$28  = \$signal$6 ;
       5'h02:
-          \$2  = \$signal$12 ;
+          \$28  = \$signal$12 ;
       5'h03:
-          \$2  = \$signal$18 ;
+          \$28  = \$signal$18 ;
       5'h04:
-          \$2  = \$signal$24 ;
+          \$28  = \$signal$24 ;
       5'h05:
-          \$2  = \$signal$30 ;
+          \$28  = \$signal$30 ;
       5'h06:
-          \$2  = \$signal$36 ;
+          \$28  = \$signal$36 ;
       5'h07:
-          \$2  = \$signal$42 ;
+          \$28  = \$signal$42 ;
       5'h08:
-          \$2  = \$signal$48 ;
+          \$28  = \$signal$48 ;
       5'h09:
-          \$2  = \$signal$54 ;
+          \$28  = \$signal$54 ;
+      5'h0a:
+          \$28  = \$signal$60 ;
+      5'h0b:
+          \$28  = \$signal$66 ;
+      5'h0c:
+          \$28  = \$signal$72 ;
+      5'h0d:
+          \$28  = \$signal$78 ;
+      5'h0e:
+          \$28  = \$signal$84 ;
+      5'h0f:
+          \$28  = \$signal$90 ;
+      5'h10:
+          \$28  = \$signal$96 ;
+      5'h11:
+          \$28  = \$signal$102 ;
+      5'h12:
+          \$28  = \$signal$108 ;
+      5'h13:
+          \$28  = \$signal$114 ;
+      5'h14:
+          \$28  = \$signal$120 ;
+      5'h15:
+          \$28  = \$signal$126 ;
+      5'h16:
+          \$28  = \$signal$132 ;
+      5'h17:
+          \$28  = \$signal$138 ;
+      5'h18:
+          \$28  = \$signal$144 ;
+      5'h19:
+          \$28  = \$signal$150 ;
     endcase
   end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
+    en = 1'h0;
+    if (wr_data_en) begin
+      en = \$1 ;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
+    \en$169  = 1'h0;
+    if (wr_data_en) begin
+      \en$169  = \$2 ;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
+    \en$180  = 1'h0;
+    if (wr_data_en) begin
+      \en$180  = \$3 ;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
+    \en$191  = 1'h0;
+    if (wr_data_en) begin
+      \en$191  = \$4 ;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
+    \en$202  = 1'h0;
+    if (wr_data_en) begin
+      \en$202  = \$5 ;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
+    \en$213  = 1'h0;
+    if (wr_data_en) begin
+      \en$213  = \$6 ;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
+    \en$224  = 1'h0;
+    if (wr_data_en) begin
+      \en$224  = \$7 ;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
+    \en$235  = 1'h0;
+    if (wr_data_en) begin
+      \en$235  = \$8 ;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
+    \en$246  = 1'h0;
+    if (wr_data_en) begin
+      \en$246  = \$9 ;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
+    \en$257  = 1'h0;
+    if (wr_data_en) begin
+      \en$257  = \$10 ;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
+    \en$268  = 1'h0;
+    if (wr_data_en) begin
+      \en$268  = \$11 ;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
+    \en$279  = 1'h0;
+    if (wr_data_en) begin
+      \en$279  = \$12 ;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
+    \en$290  = 1'h0;
+    if (wr_data_en) begin
+      \en$290  = \$13 ;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end
+    \en$301  = 1'h0;
+    if (wr_data_en) begin
+      \en$301  = \$14 ;
+    end
+  end
   assign d = wr_data[0];
-  assign \$signal$63  = en;
-  assign \d$64  = wr_data[1];
-  assign \en$65  = en;
-  assign \d$66  = wr_data[2];
-  assign \en$67  = en;
-  assign \d$68  = wr_data[3];
-  assign \en$69  = en;
-  assign \d$70  = wr_data[4];
-  assign \en$71  = en;
-  assign \d$72  = wr_data[0];
-  assign \$signal$74  = \en$73 ;
-  assign \d$75  = wr_data[1];
-  assign \en$76  = \en$73 ;
-  assign \d$77  = wr_data[2];
-  assign \en$78  = \en$73 ;
-  assign \d$79  = wr_data[3];
-  assign \en$80  = \en$73 ;
-  assign \d$81  = wr_data[4];
-  assign \en$82  = \en$73 ;
-  assign \d$83  = wr_data[0];
-  assign \$signal$85  = \en$84 ;
-  assign \d$86  = wr_data[1];
-  assign \en$87  = \en$84 ;
-  assign \d$88  = wr_data[2];
-  assign \en$89  = \en$84 ;
-  assign \d$90  = wr_data[3];
-  assign \en$91  = \en$84 ;
-  assign \d$92  = wr_data[4];
-  assign \en$93  = \en$84 ;
-  assign \d$94  = wr_data[0];
-  assign \$signal$96  = \en$95 ;
-  assign \d$97  = wr_data[1];
-  assign \en$98  = \en$95 ;
-  assign \d$99  = wr_data[2];
-  assign \en$100  = \en$95 ;
-  assign \d$101  = wr_data[3];
-  assign \en$102  = \en$95 ;
-  assign \d$103  = wr_data[4];
-  assign \en$104  = \en$95 ;
-  assign \d$105  = wr_data[0];
-  assign \$signal$107  = \en$106 ;
-  assign \d$108  = wr_data[1];
-  assign \en$109  = \en$106 ;
-  assign \d$110  = wr_data[2];
-  assign \en$111  = \en$106 ;
-  assign \d$112  = wr_data[3];
-  assign \en$113  = \en$106 ;
-  assign \d$114  = wr_data[4];
-  assign \en$115  = \en$106 ;
-  assign \d$116  = wr_data[0];
-  assign \$signal$118  = \en$117 ;
-  assign \d$119  = wr_data[1];
-  assign \en$120  = \en$117 ;
-  assign \d$121  = wr_data[2];
-  assign \en$122  = \en$117 ;
-  assign \d$123  = wr_data[3];
-  assign \en$124  = \en$117 ;
-  assign \d$125  = wr_data[4];
-  assign \en$126  = \en$117 ;
-  assign \d$127  = wr_data[0];
-  assign \$signal$129  = \en$128 ;
-  assign \d$130  = wr_data[1];
-  assign \en$131  = \en$128 ;
-  assign \d$132  = wr_data[2];
-  assign \en$133  = \en$128 ;
-  assign \d$134  = wr_data[3];
-  assign \en$135  = \en$128 ;
-  assign \d$136  = wr_data[4];
-  assign \en$137  = \en$128 ;
-  assign \d$138  = wr_data[0];
-  assign \$signal$140  = \en$139 ;
-  assign \d$141  = wr_data[1];
-  assign \en$142  = \en$139 ;
-  assign \d$143  = wr_data[2];
-  assign \en$144  = \en$139 ;
-  assign \d$145  = wr_data[3];
-  assign \en$146  = \en$139 ;
-  assign \d$147  = wr_data[4];
-  assign \en$148  = \en$139 ;
-  assign \d$149  = wr_data[0];
-  assign \$signal$151  = \en$150 ;
-  assign \d$152  = wr_data[1];
-  assign \en$153  = \en$150 ;
-  assign \d$154  = wr_data[2];
-  assign \en$155  = \en$150 ;
-  assign \d$156  = wr_data[3];
-  assign \en$157  = \en$150 ;
-  assign \d$158  = wr_data[4];
-  assign \en$159  = \en$150 ;
+  assign \$signal$159  = en;
+  assign \d$160  = wr_data[1];
+  assign \en$161  = en;
+  assign \d$162  = wr_data[2];
+  assign \en$163  = en;
+  assign \d$164  = wr_data[3];
+  assign \en$165  = en;
+  assign \d$166  = wr_data[4];
+  assign \en$167  = en;
+  assign \d$168  = wr_data[0];
+  assign \$signal$170  = \en$169 ;
+  assign \d$171  = wr_data[1];
+  assign \en$172  = \en$169 ;
+  assign \d$173  = wr_data[2];
+  assign \en$174  = \en$169 ;
+  assign \d$175  = wr_data[3];
+  assign \en$176  = \en$169 ;
+  assign \d$177  = wr_data[4];
+  assign \en$178  = \en$169 ;
+  assign \d$179  = wr_data[0];
+  assign \$signal$181  = \en$180 ;
+  assign \d$182  = wr_data[1];
+  assign \en$183  = \en$180 ;
+  assign \d$184  = wr_data[2];
+  assign \en$185  = \en$180 ;
+  assign \d$186  = wr_data[3];
+  assign \en$187  = \en$180 ;
+  assign \d$188  = wr_data[4];
+  assign \en$189  = \en$180 ;
+  assign \d$190  = wr_data[0];
+  assign \$signal$192  = \en$191 ;
+  assign \d$193  = wr_data[1];
+  assign \en$194  = \en$191 ;
+  assign \d$195  = wr_data[2];
+  assign \en$196  = \en$191 ;
+  assign \d$197  = wr_data[3];
+  assign \en$198  = \en$191 ;
+  assign \d$199  = wr_data[4];
+  assign \en$200  = \en$191 ;
+  assign \d$201  = wr_data[0];
+  assign \$signal$203  = \en$202 ;
+  assign \d$204  = wr_data[1];
+  assign \en$205  = \en$202 ;
+  assign \d$206  = wr_data[2];
+  assign \en$207  = \en$202 ;
+  assign \d$208  = wr_data[3];
+  assign \en$209  = \en$202 ;
+  assign \d$210  = wr_data[4];
+  assign \en$211  = \en$202 ;
+  assign \d$212  = wr_data[0];
+  assign \$signal$214  = \en$213 ;
+  assign \d$215  = wr_data[1];
+  assign \en$216  = \en$213 ;
+  assign \d$217  = wr_data[2];
+  assign \en$218  = \en$213 ;
+  assign \d$219  = wr_data[3];
+  assign \en$220  = \en$213 ;
+  assign \d$221  = wr_data[4];
+  assign \en$222  = \en$213 ;
+  assign \d$223  = wr_data[0];
+  assign \$signal$225  = \en$224 ;
+  assign \d$226  = wr_data[1];
+  assign \en$227  = \en$224 ;
+  assign \d$228  = wr_data[2];
+  assign \en$229  = \en$224 ;
+  assign \d$230  = wr_data[3];
+  assign \en$231  = \en$224 ;
+  assign \d$232  = wr_data[4];
+  assign \en$233  = \en$224 ;
+  assign \d$234  = wr_data[0];
+  assign \$signal$236  = \en$235 ;
+  assign \d$237  = wr_data[1];
+  assign \en$238  = \en$235 ;
+  assign \d$239  = wr_data[2];
+  assign \en$240  = \en$235 ;
+  assign \d$241  = wr_data[3];
+  assign \en$242  = \en$235 ;
+  assign \d$243  = wr_data[4];
+  assign \en$244  = \en$235 ;
+  assign \d$245  = wr_data[0];
+  assign \$signal$247  = \en$246 ;
+  assign \d$248  = wr_data[1];
+  assign \en$249  = \en$246 ;
+  assign \d$250  = wr_data[2];
+  assign \en$251  = \en$246 ;
+  assign \d$252  = wr_data[3];
+  assign \en$253  = \en$246 ;
+  assign \d$254  = wr_data[4];
+  assign \en$255  = \en$246 ;
+  assign \d$256  = wr_data[0];
+  assign \$signal$258  = \en$257 ;
+  assign \d$259  = wr_data[1];
+  assign \en$260  = \en$257 ;
+  assign \d$261  = wr_data[2];
+  assign \en$262  = \en$257 ;
+  assign \d$263  = wr_data[3];
+  assign \en$264  = \en$257 ;
+  assign \d$265  = wr_data[4];
+  assign \en$266  = \en$257 ;
+  assign \d$267  = wr_data[0];
+  assign \$signal$269  = \en$268 ;
+  assign \d$270  = wr_data[1];
+  assign \en$271  = \en$268 ;
+  assign \d$272  = wr_data[2];
+  assign \en$273  = \en$268 ;
+  assign \d$274  = wr_data[3];
+  assign \en$275  = \en$268 ;
+  assign \d$276  = wr_data[4];
+  assign \en$277  = \en$268 ;
+  assign \d$278  = wr_data[0];
+  assign \$signal$280  = \en$279 ;
+  assign \d$281  = wr_data[1];
+  assign \en$282  = \en$279 ;
+  assign \d$283  = wr_data[2];
+  assign \en$284  = \en$279 ;
+  assign \d$285  = wr_data[3];
+  assign \en$286  = \en$279 ;
+  assign \d$287  = wr_data[4];
+  assign \en$288  = \en$279 ;
+  assign \d$289  = wr_data[0];
+  assign \$signal$291  = \en$290 ;
+  assign \d$292  = wr_data[1];
+  assign \en$293  = \en$290 ;
+  assign \d$294  = wr_data[2];
+  assign \en$295  = \en$290 ;
+  assign \d$296  = wr_data[3];
+  assign \en$297  = \en$290 ;
+  assign \d$298  = wr_data[4];
+  assign \en$299  = \en$290 ;
+  assign \d$300  = wr_data[0];
+  assign \$signal$302  = \en$301 ;
+  assign \d$303  = wr_data[1];
+  assign \en$304  = \en$301 ;
+  assign \d$305  = wr_data[2];
+  assign \en$306  = \en$301 ;
+  assign \d$307  = wr_data[3];
+  assign \en$308  = \en$301 ;
+  assign \d$309  = wr_data[4];
+  assign \en$310  = \en$301 ;
+  assign \d$311  = wr_data[0];
+  assign \$signal$313  = \en$312 ;
+  assign \d$314  = wr_data[1];
+  assign \en$315  = \en$312 ;
+  assign \d$316  = wr_data[2];
+  assign \en$317  = \en$312 ;
+  assign \d$318  = wr_data[3];
+  assign \en$319  = \en$312 ;
+  assign \d$320  = wr_data[4];
+  assign \en$321  = \en$312 ;
+  assign \d$322  = wr_data[0];
+  assign \$signal$324  = \en$323 ;
+  assign \d$325  = wr_data[1];
+  assign \en$326  = \en$323 ;
+  assign \d$327  = wr_data[2];
+  assign \en$328  = \en$323 ;
+  assign \d$329  = wr_data[3];
+  assign \en$330  = \en$323 ;
+  assign \d$331  = wr_data[4];
+  assign \en$332  = \en$323 ;
+  assign \d$333  = wr_data[0];
+  assign \$signal$335  = \en$334 ;
+  assign \d$336  = wr_data[1];
+  assign \en$337  = \en$334 ;
+  assign \d$338  = wr_data[2];
+  assign \en$339  = \en$334 ;
+  assign \d$340  = wr_data[3];
+  assign \en$341  = \en$334 ;
+  assign \d$342  = wr_data[4];
+  assign \en$343  = \en$334 ;
+  assign \d$344  = wr_data[0];
+  assign \$signal$346  = \en$345 ;
+  assign \d$347  = wr_data[1];
+  assign \en$348  = \en$345 ;
+  assign \d$349  = wr_data[2];
+  assign \en$350  = \en$345 ;
+  assign \d$351  = wr_data[3];
+  assign \en$352  = \en$345 ;
+  assign \d$353  = wr_data[4];
+  assign \en$354  = \en$345 ;
+  assign \d$355  = wr_data[0];
+  assign \$signal$357  = \en$356 ;
+  assign \d$358  = wr_data[1];
+  assign \en$359  = \en$356 ;
+  assign \d$360  = wr_data[2];
+  assign \en$361  = \en$356 ;
+  assign \d$362  = wr_data[3];
+  assign \en$363  = \en$356 ;
+  assign \d$364  = wr_data[4];
+  assign \en$365  = \en$356 ;
+  assign \d$366  = wr_data[0];
+  assign \$signal$368  = \en$367 ;
+  assign \d$369  = wr_data[1];
+  assign \en$370  = \en$367 ;
+  assign \d$371  = wr_data[2];
+  assign \en$372  = \en$367 ;
+  assign \d$373  = wr_data[3];
+  assign \en$374  = \en$367 ;
+  assign \d$375  = wr_data[4];
+  assign \en$376  = \en$367 ;
+  assign \d$377  = wr_data[0];
+  assign \$signal$379  = \en$378 ;
+  assign \d$380  = wr_data[1];
+  assign \en$381  = \en$378 ;
+  assign \d$382  = wr_data[2];
+  assign \en$383  = \en$378 ;
+  assign \d$384  = wr_data[3];
+  assign \en$385  = \en$378 ;
+  assign \d$386  = wr_data[4];
+  assign \en$387  = \en$378 ;
+  assign \d$388  = wr_data[0];
+  assign \$signal$390  = \en$389 ;
+  assign \d$391  = wr_data[1];
+  assign \en$392  = \en$389 ;
+  assign \d$393  = wr_data[2];
+  assign \en$394  = \en$389 ;
+  assign \d$395  = wr_data[3];
+  assign \en$396  = \en$389 ;
+  assign \d$397  = wr_data[4];
+  assign \en$398  = \en$389 ;
+  assign \d$399  = wr_data[0];
+  assign \$signal$401  = \en$400 ;
+  assign \d$402  = wr_data[1];
+  assign \en$403  = \en$400 ;
+  assign \d$404  = wr_data[2];
+  assign \en$405  = \en$400 ;
+  assign \d$406  = wr_data[3];
+  assign \en$407  = \en$400 ;
+  assign \d$408  = wr_data[4];
+  assign \en$409  = \en$400 ;
+  assign \d$410  = wr_data[0];
+  assign \$signal$412  = \en$411 ;
+  assign \d$413  = wr_data[1];
+  assign \en$414  = \en$411 ;
+  assign \d$415  = wr_data[2];
+  assign \en$416  = \en$411 ;
+  assign \d$417  = wr_data[3];
+  assign \en$418  = \en$411 ;
+  assign \d$419  = wr_data[4];
+  assign \en$420  = \en$411 ;
+  assign \d$421  = wr_data[0];
+  assign \$signal$423  = \en$422 ;
+  assign \d$424  = wr_data[1];
+  assign \en$425  = \en$422 ;
+  assign \d$426  = wr_data[2];
+  assign \en$427  = \en$422 ;
+  assign \d$428  = wr_data[3];
+  assign \en$429  = \en$422 ;
+  assign \d$430  = wr_data[4];
+  assign \en$431  = \en$422 ;
+  assign \d$432  = wr_data[0];
+  assign \$signal$434  = \en$433 ;
+  assign \d$435  = wr_data[1];
+  assign \en$436  = \en$433 ;
+  assign \d$437  = wr_data[2];
+  assign \en$438  = \en$433 ;
+  assign \d$439  = wr_data[3];
+  assign \en$440  = \en$433 ;
+  assign \d$441  = wr_data[4];
+  assign \en$442  = \en$433 ;
   assign in_rtol = wr_data;
+  assign \$signal$150 [4] = \q$155 ;
+  assign \$signal$150 [3] = \q$154 ;
+  assign \$signal$150 [2] = \q$153 ;
+  assign \$signal$150 [1] = \q$152 ;
+  assign \$signal$150 [0] = \q$151 ;
+  assign \$signal$144 [4] = \q$149 ;
+  assign \$signal$144 [3] = \q$148 ;
+  assign \$signal$144 [2] = \q$147 ;
+  assign \$signal$144 [1] = \q$146 ;
+  assign \$signal$144 [0] = \q$145 ;
+  assign \$signal$138 [4] = \q$143 ;
+  assign \$signal$138 [3] = \q$142 ;
+  assign \$signal$138 [2] = \q$141 ;
+  assign \$signal$138 [1] = \q$140 ;
+  assign \$signal$138 [0] = \q$139 ;
+  assign \$signal$132 [4] = \q$137 ;
+  assign \$signal$132 [3] = \q$136 ;
+  assign \$signal$132 [2] = \q$135 ;
+  assign \$signal$132 [1] = \q$134 ;
+  assign \$signal$132 [0] = \q$133 ;
+  assign \$signal$126 [4] = \q$131 ;
+  assign \$signal$126 [3] = \q$130 ;
+  assign \$signal$126 [2] = \q$129 ;
+  assign \$signal$126 [1] = \q$128 ;
+  assign \$signal$126 [0] = \q$127 ;
+  assign \$signal$120 [4] = \q$125 ;
+  assign \$signal$120 [3] = \q$124 ;
+  assign \$signal$120 [2] = \q$123 ;
+  assign \$signal$120 [1] = \q$122 ;
+  assign \$signal$120 [0] = \q$121 ;
+  assign \$signal$114 [4] = \q$119 ;
+  assign \$signal$114 [3] = \q$118 ;
+  assign \$signal$114 [2] = \q$117 ;
+  assign \$signal$114 [1] = \q$116 ;
+  assign \$signal$114 [0] = \q$115 ;
+  assign \$signal$108 [4] = \q$113 ;
+  assign \$signal$108 [3] = \q$112 ;
+  assign \$signal$108 [2] = \q$111 ;
+  assign \$signal$108 [1] = \q$110 ;
+  assign \$signal$108 [0] = \q$109 ;
+  assign \$signal$102 [4] = \q$107 ;
+  assign \$signal$102 [3] = \q$106 ;
+  assign \$signal$102 [2] = \q$105 ;
+  assign \$signal$102 [1] = \q$104 ;
+  assign \$signal$102 [0] = \q$103 ;
+  assign \$signal$96 [4] = \q$101 ;
+  assign \$signal$96 [3] = \q$100 ;
+  assign \$signal$96 [2] = \q$99 ;
+  assign \$signal$96 [1] = \q$98 ;
+  assign \$signal$96 [0] = \q$97 ;
+  assign \$signal$90 [4] = \q$95 ;
+  assign \$signal$90 [3] = \q$94 ;
+  assign \$signal$90 [2] = \q$93 ;
+  assign \$signal$90 [1] = \q$92 ;
+  assign \$signal$90 [0] = \q$91 ;
+  assign \$signal$84 [4] = \q$89 ;
+  assign \$signal$84 [3] = \q$88 ;
+  assign \$signal$84 [2] = \q$87 ;
+  assign \$signal$84 [1] = \q$86 ;
+  assign \$signal$84 [0] = \q$85 ;
+  assign \$signal$78 [4] = \q$83 ;
+  assign \$signal$78 [3] = \q$82 ;
+  assign \$signal$78 [2] = \q$81 ;
+  assign \$signal$78 [1] = \q$80 ;
+  assign \$signal$78 [0] = \q$79 ;
+  assign \$signal$72 [4] = \q$77 ;
+  assign \$signal$72 [3] = \q$76 ;
+  assign \$signal$72 [2] = \q$75 ;
+  assign \$signal$72 [1] = \q$74 ;
+  assign \$signal$72 [0] = \q$73 ;
+  assign \$signal$66 [4] = \q$71 ;
+  assign \$signal$66 [3] = \q$70 ;
+  assign \$signal$66 [2] = \q$69 ;
+  assign \$signal$66 [1] = \q$68 ;
+  assign \$signal$66 [0] = \q$67 ;
+  assign \$signal$60 [4] = \q$65 ;
+  assign \$signal$60 [3] = \q$64 ;
+  assign \$signal$60 [2] = \q$63 ;
+  assign \$signal$60 [1] = \q$62 ;
+  assign \$signal$60 [0] = \q$61 ;
   assign \$signal$54 [4] = \q$59 ;
   assign \$signal$54 [3] = \q$58 ;
   assign \$signal$54 [2] = \q$57 ;

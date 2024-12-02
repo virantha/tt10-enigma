@@ -98,10 +98,10 @@ class Plugboard(wiring.Component):
         m = Module()
     
         # Array of 5 columns of 32-rows 
-        self.mem = mem = Array([Signal(5) for i in range(10)])
+        self.mem = mem = Array([Signal(5) for i in range(26)])
 
-        bits = [[0]*5 for i in range(10)]
-        for i in range(10):
+        bits = [[0]*5 for i in range(26)]
+        for i in range(26):
             for j in range(5):
                 m.submodules[f'bits_{i}_{j}'] = bits[i][j] = Latch()
                 # Connect the memory signals
@@ -117,33 +117,36 @@ class Plugboard(wiring.Component):
         #     m.d.comb += self.wr_data_out[j].eq(bits[9][j].q)
         
         # Make the write like a wordline/bitline
-        wl = [Signal(1) for i in range(10)]
-        for i in range(9):
+        wl = [Signal(1) for i in range(26)]
+        for i in range(26):
             for j in range(5):
                 m.d.comb += bits[i][j].d.eq(self.wr_data[j])
                 m.d.comb += bits[i][j].en.eq(wl[i])
 
         cnt = Signal(5)
         with m.If(self.wr_data_en):
-            with m.Switch(cnt):
-                with m.Case(0):
-                    m.d.comb+=wl[0].eq(1)
-                with m.Case(1):
-                    m.d.comb+=wl[1].eq(1)
-                with m.Case(2):
-                    m.d.comb+=wl[2].eq(1)
-                with m.Case(3):
-                    m.d.comb+=wl[3].eq(1)
-                with m.Case(4):
-                    m.d.comb+=wl[4].eq(1)
-                with m.Case(5):
-                    m.d.comb+=wl[5].eq(1)
-                with m.Case(6):
-                    m.d.comb+=wl[6].eq(1)
-                with m.Case(7):
-                    m.d.comb+=wl[7].eq(1)
-                with m.Case(8):
-                    m.d.comb+=wl[8].eq(1)
+            for i in range(26):
+                m.d.comb+= wl[i].eq(cnt==i)
+
+            # with m.Switch(cnt):
+            #     with m.Case(0):
+            #         m.d.comb+=wl[0].eq(1)
+            #     with m.Case(1):
+            #         m.d.comb+=wl[1].eq(1)
+            #     with m.Case(2):
+            #         m.d.comb+=wl[2].eq(1)
+            #     with m.Case(3):
+            #         m.d.comb+=wl[3].eq(1)
+            #     with m.Case(4):
+            #         m.d.comb+=wl[4].eq(1)
+            #     with m.Case(5):
+            #         m.d.comb+=wl[5].eq(1)
+            #     with m.Case(6):
+            #         m.d.comb+=wl[6].eq(1)
+            #     with m.Case(7):
+            #         m.d.comb+=wl[7].eq(1)
+            #     with m.Case(8):
+            #         m.d.comb+=wl[8].eq(1)
 
         m.d.comb += [
             # First and second read port

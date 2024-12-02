@@ -109,7 +109,7 @@ class Control(wiring.Component):
             
             with m.State("Load plug data"):
                 m.d.comb += self.plugboard_wr_data.eq(1)
-                m.next = "Get command"
+                m.next = "Delay"
 
             with m.State("Load start"):
                 m.d.comb += [ 
