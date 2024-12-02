@@ -123,8 +123,9 @@ class Plugboard(wiring.Component):
                 m.d.comb += bits[i][j].d.eq(self.wr_data[j])
                 m.d.comb += bits[i][j].en.eq(wl[i])
 
+        cnt = Signal(5)
         with m.If(self.wr_data_en):
-            with m.Switch(self.wr_data):
+            with m.Switch(cnt):
                 with m.Case(0):
                     m.d.comb+=wl[0].eq(1)
                 with m.Case(1):
@@ -146,10 +147,16 @@ class Plugboard(wiring.Component):
 
         m.d.comb += [
             # First and second read port
-            self.out_rtol.eq(mem[self.in_rtol]),
-            self.out_ltor.eq(mem[self.in_ltor]),
-
+            self.out_rtol.eq(
+                Mux(self.en, mem[self.in_rtol], self.in_rtol),
+            ),
+            self.out_ltor.eq(
+                Mux(self.en, mem[self.in_ltor], self.in_ltor),
+            ),
         ]
+        
+        with m.If(self.wr_addr_en):
+            m.d.sync += cnt.eq(self.wr_data)
         
         return m
 
