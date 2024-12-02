@@ -14,7 +14,7 @@ module top(clk, rst, uo_out, ui_in);
   wire clk;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:18" *)
   wire [2:0] cmd;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:81" *)
   wire en;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:14" *)
   wire \en$30 ;
@@ -26,9 +26,9 @@ module top(clk, rst, uo_out, ui_in);
   wire \en$33 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:14" *)
   wire \en$34 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:75" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:82" *)
   wire [4:0] in_ltor;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:78" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:85" *)
   wire [4:0] in_rtol;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:17" *)
   wire inc;
@@ -84,9 +84,9 @@ module top(clk, rst, uo_out, ui_in);
   wire \load_start$38 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/rotor.py:15" *)
   wire \load_start$39 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:76" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
   wire [4:0] out_ltor;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:79" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:86" *)
   wire [4:0] out_rtol;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm.py:30" *)
   wire plugboard_en;
@@ -123,11 +123,11 @@ module top(clk, rst, uo_out, ui_in);
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:11" *)
   output [5:0] uo_out;
   wire [5:0] uo_out;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:84" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:91" *)
   wire wr_addr_en;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:81" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:88" *)
   wire [4:0] wr_data;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:90" *)
   wire wr_data_en;
   assign \$1  = ui_in[7:5] == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:63" *) 3'h4;
   assign \$2  = result_ready & (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/top.py:63" *) \$1 ;
@@ -744,29 +744,29 @@ module \top.fsm (clk, rst, is_at_turnover, en, ready, load_start, load_ring, plu
   assign \inc$1  = inc;
 endmodule
 
-(* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:90" *)
+(* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:97" *)
 (* generator = "Amaranth" *)
 module \top.plugboard (clk, in_ltor, out_rtol, out_ltor, wr_data);
   reg \$auto$verilog_backend.cc:2352:dump_module$3  = 0;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:93" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:100" *)
   wire [4:0] \$signal ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:93" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:100" *)
   wire [4:0] \$signal$12 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:93" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:100" *)
   wire [4:0] \$signal$18 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:93" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:100" *)
   wire [4:0] \$signal$24 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:93" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:100" *)
   wire [4:0] \$signal$30 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:93" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:100" *)
   wire [4:0] \$signal$36 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:93" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:100" *)
   wire [4:0] \$signal$42 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:93" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:100" *)
   wire [4:0] \$signal$48 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:93" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:100" *)
   wire [4:0] \$signal$54 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:93" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:100" *)
   wire [4:0] \$signal$6 ;
   (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_ir.py:215" *)
   input clk;
@@ -871,15 +871,15 @@ module \top.plugboard (clk, in_ltor, out_rtol, out_ltor, wr_data);
   wire \d$98 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:46" *)
   wire \d$99 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:75" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:82" *)
   input [4:0] in_ltor;
   wire [4:0] in_ltor;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:78" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:85" *)
   wire [4:0] in_rtol;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:76" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
   output [4:0] out_ltor;
   reg [4:0] out_ltor;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:79" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:86" *)
   output [4:0] out_rtol;
   reg [4:0] out_rtol;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
@@ -982,260 +982,310 @@ module \top.plugboard (clk, in_ltor, out_rtol, out_ltor, wr_data);
   wire \q$8 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
   wire \q$9 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:78" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:85" *)
   input [4:0] wr_data;
   wire [4:0] wr_data;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:82" *)
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:89" *)
   wire [4:0] wr_data_out;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_0_0 (
-    .GATE(clk),
-    .Q(q)
+  d_latch bits_0_0 (
+    .clk(clk),
+    .d(wr_data[0]),
+    .q(q)
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_0_1 (
-    .GATE(clk),
-    .Q(\q$2 )
+  d_latch bits_0_1 (
+    .clk(clk),
+    .d(wr_data[1]),
+    .q(\q$2 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_0_2 (
-    .GATE(clk),
-    .Q(\q$3 )
+  d_latch bits_0_2 (
+    .clk(clk),
+    .d(wr_data[2]),
+    .q(\q$3 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_0_3 (
-    .GATE(clk),
-    .Q(\q$4 )
+  d_latch bits_0_3 (
+    .clk(clk),
+    .d(wr_data[3]),
+    .q(\q$4 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_0_4 (
-    .GATE(clk),
-    .Q(\q$5 )
+  d_latch bits_0_4 (
+    .clk(clk),
+    .d(wr_data[4]),
+    .q(\q$5 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_1_0 (
-    .GATE(clk),
-    .Q(\q$7 )
+  d_latch bits_1_0 (
+    .clk(clk),
+    .d(q),
+    .q(\q$7 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_1_1 (
-    .GATE(clk),
-    .Q(\q$8 )
+  d_latch bits_1_1 (
+    .clk(clk),
+    .d(\q$2 ),
+    .q(\q$8 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_1_2 (
-    .GATE(clk),
-    .Q(\q$9 )
+  d_latch bits_1_2 (
+    .clk(clk),
+    .d(\q$3 ),
+    .q(\q$9 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_1_3 (
-    .GATE(clk),
-    .Q(\q$10 )
+  d_latch bits_1_3 (
+    .clk(clk),
+    .d(\q$4 ),
+    .q(\q$10 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_1_4 (
-    .GATE(clk),
-    .Q(\q$11 )
+  d_latch bits_1_4 (
+    .clk(clk),
+    .d(\q$5 ),
+    .q(\q$11 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_2_0 (
-    .GATE(clk),
-    .Q(\q$13 )
+  d_latch bits_2_0 (
+    .clk(clk),
+    .d(\q$7 ),
+    .q(\q$13 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_2_1 (
-    .GATE(clk),
-    .Q(\q$14 )
+  d_latch bits_2_1 (
+    .clk(clk),
+    .d(\q$8 ),
+    .q(\q$14 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_2_2 (
-    .GATE(clk),
-    .Q(\q$15 )
+  d_latch bits_2_2 (
+    .clk(clk),
+    .d(\q$9 ),
+    .q(\q$15 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_2_3 (
-    .GATE(clk),
-    .Q(\q$16 )
+  d_latch bits_2_3 (
+    .clk(clk),
+    .d(\q$10 ),
+    .q(\q$16 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_2_4 (
-    .GATE(clk),
-    .Q(\q$17 )
+  d_latch bits_2_4 (
+    .clk(clk),
+    .d(\q$11 ),
+    .q(\q$17 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_3_0 (
-    .GATE(clk),
-    .Q(\q$19 )
+  d_latch bits_3_0 (
+    .clk(clk),
+    .d(\q$13 ),
+    .q(\q$19 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_3_1 (
-    .GATE(clk),
-    .Q(\q$20 )
+  d_latch bits_3_1 (
+    .clk(clk),
+    .d(\q$14 ),
+    .q(\q$20 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_3_2 (
-    .GATE(clk),
-    .Q(\q$21 )
+  d_latch bits_3_2 (
+    .clk(clk),
+    .d(\q$15 ),
+    .q(\q$21 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_3_3 (
-    .GATE(clk),
-    .Q(\q$22 )
+  d_latch bits_3_3 (
+    .clk(clk),
+    .d(\q$16 ),
+    .q(\q$22 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_3_4 (
-    .GATE(clk),
-    .Q(\q$23 )
+  d_latch bits_3_4 (
+    .clk(clk),
+    .d(\q$17 ),
+    .q(\q$23 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_4_0 (
-    .GATE(clk),
-    .Q(\q$25 )
+  d_latch bits_4_0 (
+    .clk(clk),
+    .d(\q$19 ),
+    .q(\q$25 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_4_1 (
-    .GATE(clk),
-    .Q(\q$26 )
+  d_latch bits_4_1 (
+    .clk(clk),
+    .d(\q$20 ),
+    .q(\q$26 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_4_2 (
-    .GATE(clk),
-    .Q(\q$27 )
+  d_latch bits_4_2 (
+    .clk(clk),
+    .d(\q$21 ),
+    .q(\q$27 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_4_3 (
-    .GATE(clk),
-    .Q(\q$28 )
+  d_latch bits_4_3 (
+    .clk(clk),
+    .d(\q$22 ),
+    .q(\q$28 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_4_4 (
-    .GATE(clk),
-    .Q(\q$29 )
+  d_latch bits_4_4 (
+    .clk(clk),
+    .d(\q$23 ),
+    .q(\q$29 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_5_0 (
-    .GATE(clk),
-    .Q(\q$31 )
+  d_latch bits_5_0 (
+    .clk(clk),
+    .d(\q$25 ),
+    .q(\q$31 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_5_1 (
-    .GATE(clk),
-    .Q(\q$32 )
+  d_latch bits_5_1 (
+    .clk(clk),
+    .d(\q$26 ),
+    .q(\q$32 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_5_2 (
-    .GATE(clk),
-    .Q(\q$33 )
+  d_latch bits_5_2 (
+    .clk(clk),
+    .d(\q$27 ),
+    .q(\q$33 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_5_3 (
-    .GATE(clk),
-    .Q(\q$34 )
+  d_latch bits_5_3 (
+    .clk(clk),
+    .d(\q$28 ),
+    .q(\q$34 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_5_4 (
-    .GATE(clk),
-    .Q(\q$35 )
+  d_latch bits_5_4 (
+    .clk(clk),
+    .d(\q$29 ),
+    .q(\q$35 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_6_0 (
-    .GATE(clk),
-    .Q(\q$37 )
+  d_latch bits_6_0 (
+    .clk(clk),
+    .d(\q$31 ),
+    .q(\q$37 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_6_1 (
-    .GATE(clk),
-    .Q(\q$38 )
+  d_latch bits_6_1 (
+    .clk(clk),
+    .d(\q$32 ),
+    .q(\q$38 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_6_2 (
-    .GATE(clk),
-    .Q(\q$39 )
+  d_latch bits_6_2 (
+    .clk(clk),
+    .d(\q$33 ),
+    .q(\q$39 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_6_3 (
-    .GATE(clk),
-    .Q(\q$40 )
+  d_latch bits_6_3 (
+    .clk(clk),
+    .d(\q$34 ),
+    .q(\q$40 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_6_4 (
-    .GATE(clk),
-    .Q(\q$41 )
+  d_latch bits_6_4 (
+    .clk(clk),
+    .d(\q$35 ),
+    .q(\q$41 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_7_0 (
-    .GATE(clk),
-    .Q(\q$43 )
+  d_latch bits_7_0 (
+    .clk(clk),
+    .d(\q$37 ),
+    .q(\q$43 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_7_1 (
-    .GATE(clk),
-    .Q(\q$44 )
+  d_latch bits_7_1 (
+    .clk(clk),
+    .d(\q$38 ),
+    .q(\q$44 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_7_2 (
-    .GATE(clk),
-    .Q(\q$45 )
+  d_latch bits_7_2 (
+    .clk(clk),
+    .d(\q$39 ),
+    .q(\q$45 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_7_3 (
-    .GATE(clk),
-    .Q(\q$46 )
+  d_latch bits_7_3 (
+    .clk(clk),
+    .d(\q$40 ),
+    .q(\q$46 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_7_4 (
-    .GATE(clk),
-    .Q(\q$47 )
+  d_latch bits_7_4 (
+    .clk(clk),
+    .d(\q$41 ),
+    .q(\q$47 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_8_0 (
-    .GATE(clk),
-    .Q(\q$49 )
+  d_latch bits_8_0 (
+    .clk(clk),
+    .d(\q$43 ),
+    .q(\q$49 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_8_1 (
-    .GATE(clk),
-    .Q(\q$50 )
+  d_latch bits_8_1 (
+    .clk(clk),
+    .d(\q$44 ),
+    .q(\q$50 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_8_2 (
-    .GATE(clk),
-    .Q(\q$51 )
+  d_latch bits_8_2 (
+    .clk(clk),
+    .d(\q$45 ),
+    .q(\q$51 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_8_3 (
-    .GATE(clk),
-    .Q(\q$52 )
+  d_latch bits_8_3 (
+    .clk(clk),
+    .d(\q$46 ),
+    .q(\q$52 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_8_4 (
-    .GATE(clk),
-    .Q(\q$53 )
+  d_latch bits_8_4 (
+    .clk(clk),
+    .d(\q$47 ),
+    .q(\q$53 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_9_0 (
-    .GATE(clk),
-    .Q(\q$55 )
+  d_latch bits_9_0 (
+    .clk(clk),
+    .d(\q$49 ),
+    .q(\q$55 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_9_1 (
-    .GATE(clk),
-    .Q(\q$56 )
+  d_latch bits_9_1 (
+    .clk(clk),
+    .d(\q$50 ),
+    .q(\q$56 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_9_2 (
-    .GATE(clk),
-    .Q(\q$57 )
+  d_latch bits_9_2 (
+    .clk(clk),
+    .d(\q$51 ),
+    .q(\q$57 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_9_3 (
-    .GATE(clk),
-    .Q(\q$58 )
+  d_latch bits_9_3 (
+    .clk(clk),
+    .d(\q$52 ),
+    .q(\q$58 )
   );
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
-  sky130_fd_sc_hd__dlxtp bits_9_4 (
-    .GATE(clk),
-    .Q(\q$59 )
+  d_latch bits_9_4 (
+    .clk(clk),
+    .d(\q$53 ),
+    .q(\q$59 )
   );
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$3 ) begin end

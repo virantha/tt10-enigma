@@ -47,12 +47,19 @@ class Latch(wiring.Component):
     q: Out(1)      
 
     def elaborate(self, platform):
-        if True:
-            return Instance("sky130_fd_sc_hd__dlxtp",
-                        i_Q = self.d,
-                        i_GATE = ClockSignal(),
-                        o_Q = self.q,
-            )
+        
+        return Instance("d_latch",
+                        i_d = self.d,
+                        i_clk = ClockSignal(),
+                        o_q = self.q,
+        
+        )
+        # if True:
+        #     return Instance("sky130_fd_sc_hd__dlxtp",
+        #                 i_D = self.d,
+        #                 i_GATE = ClockSignal(),
+        #                 o_Q = self.q,
+        #     )
 
 class Plugboard(wiring.Component):
     """In the ENIGMA, the plugboard allowed up to 10 keys to be swapped with a different key.

@@ -19,6 +19,7 @@ project:
   source_files:
     - "project.v"
     - "am_top.v"
+    - "latch.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
