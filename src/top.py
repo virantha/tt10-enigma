@@ -71,6 +71,7 @@ class Enigma(wiring.Component):
             r.load_start.eq(fsm.load_start),
             r.load_ring.eq(fsm.load_ring),
             r.inc.eq(fsm.inc),
+            r.rtol.eq(fsm.is_rtol),
 
             fsm.is_at_turnover.eq(r.is_at_turnover),
             fsm.cmd.eq(cmd),
