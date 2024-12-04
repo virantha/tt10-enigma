@@ -23,7 +23,7 @@ class Control(wiring.Component):
     en: Out(3)   #  enables for each of the rotors
     load_start: Out(1)
     load_ring: Out(1)
-    inc: Out(3) # TODO: DO I really need separate inc signals??
+    inc: Out(1) # 
 
     plugboard_wr_addr: Out(1)
     plugboard_wr_data: Out(1)

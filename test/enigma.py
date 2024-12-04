@@ -234,8 +234,8 @@ if __name__ == '__main__':
         logging.basicConfig(level=logging.INFO)
 
     logger.info('Creating Enigma')
-    e = Enigma([('I', 'A', 1), ('II', 'A', 0), ('III', 'A',0 )], 'B',
-                 plugboard= [ 'AN']
+    e = Enigma([('I', 'A', 0), ('II', 'A', 0), ('III', 'A',0 )], 'B',
+                 plugboard= [ ]
                 )
     e.process_message(' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut convallis augue, vitae tincidunt tortor. Morbi euismod Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut convallis augue, vitae tincidunt tortor. Morbi euismod')
     # rot = [Rotor_I(i) for i in range(3)]

@@ -2,8 +2,8 @@
 from amaranth import Signal, Module
 from amaranth.lib import wiring
 from amaranth.lib.wiring import In, Out
-from .rotor import Rotor_I, Rotor_II, Rotor_III, Reflector_B
-from .fsm import Control, Cmd
+from .rotor2 import Rotor, Reflector_B
+from .fsm2 import Control, Cmd
 from .plugboard3 import Plugboard
 
 class Enigma(wiring.Component):
@@ -12,30 +12,17 @@ class Enigma(wiring.Component):
 
     def __init__(self):
 
-        # The rotors
-        rotors = { 'I': Rotor_I,
-                   'II': Rotor_II,
-                   'III': Rotor_III,
-        }
-        # The reflectors
-        reflectors = { 'A': None,
-                       'B': Reflector_B,
-        }
-        my_rotors = ['I', 'II', 'III'] # Right to left
-        self.rotors = [rotors[r]() for r in my_rotors]
-        self.reflector = reflectors['B']()
+        self.rotor = Rotor()
+        self.reflector = Reflector_B()
         self.fsm = Control() 
         self.plugboard = Plugboard()
         super().__init__()
 
 
-
     def elaborate(self, platform):
         m = Module()
-        m.submodules.r0 = self.r0 = r0 = self.rotors[0]
-        m.submodules.r1 = self.r1 = r1 = self.rotors[1]
-        m.submodules.r2 = self.r2 = r2 = self.rotors[2]
-        m.submodules.ref = self.ref = ref  = self.reflector
+        m.submodules.r = r = self.rotor
+        m.submodules.ref = ref = self.reflector
         m.submodules.fsm = fsm = self.fsm
         m.submodules.plugboard = plugboard = self.plugboard
 
@@ -67,47 +54,25 @@ class Enigma(wiring.Component):
          
         m.d.comb += [
             # The right to left path
-            r0.right_in.eq(plugboard.out_rtol),
-            r1.right_in.eq(r0.left_out),
-            r2.right_in.eq(r1.left_out),
+            r.din.eq(plugboard.out_rtol),
 
-            ref.right_in.eq(r2.left_out),
+            ref.din.eq(r.dout),
+
             
             # Loop back, left to right
             # (Reflector's left_in to right_out path is not used)
-            ref.left_in.eq(0),
-            r2.left_in.eq(ref.left_out),
-            r1.left_in.eq(r2.right_out),
-            r0.left_in.eq(r1.right_out),
+            r.reflector_in.eq(ref.dout),
 
-            right_out.eq(r0.right_out) ,
+            right_out.eq(r.dout) ,
 
 
             # Connect up the control FSM
+            r.en.eq(fsm.en),
+            r.load_start.eq(fsm.load_start),
+            r.load_ring.eq(fsm.load_ring),
+            r.inc.eq(fsm.inc),
 
-            r0.en.eq(fsm.en[0]),
-            r1.en.eq(fsm.en[1]),
-            r2.en.eq(fsm.en[2]),
-            ref.en.eq(0),
-
-            r0.load_start.eq(fsm.load_start),
-            r1.load_start.eq(fsm.load_start),
-            r2.load_start.eq(fsm.load_start),
-            ref.load_start.eq(0),
-
-            r0.load_ring.eq(fsm.load_ring),
-            r1.load_ring.eq(fsm.load_ring),
-            r2.load_ring.eq(fsm.load_ring),
-            ref.load_ring.eq(0),
-
-            r0.inc.eq(fsm.inc[0]),
-            r1.inc.eq(fsm.inc[1]),
-            r2.inc.eq(fsm.inc[2]),
-            ref.inc.eq(0),
-
-            fsm.is_at_turnover[0].eq(r0.is_at_turnover),
-            fsm.is_at_turnover[1].eq(r1.is_at_turnover),
-            fsm.is_at_turnover[2].eq(r2.is_at_turnover),
+            fsm.is_at_turnover.eq(r.is_at_turnover),
             fsm.cmd.eq(cmd),
             ready.eq(fsm.ready),
 
