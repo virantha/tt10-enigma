@@ -12,6 +12,7 @@ class Enigma(wiring.Component):
 
     # Let's put a debug port to look at the output of the rotor before going into the plugboard
     debug_out: Out(5)
+    debug_pen: Out(1)
 
     def __init__(self):
 
@@ -40,7 +41,8 @@ class Enigma(wiring.Component):
 
         # DEBUG PORT
         m.d.comb += [
-            self.debug_out.eq(r.dout)
+            self.debug_out.eq(r.dout),
+            self.debug_pen.eq(fsm.plugboard_en)
         ]
         m.d.comb += [
             # Plugboard traversal
