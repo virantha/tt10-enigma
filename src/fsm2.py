@@ -79,6 +79,7 @@ class Control(wiring.Component):
                 ]
                 m.d.sync += [
                     cnt.eq(0),
+                    double_step.eq(0),
                 ]
                 m.next = "Get command"
 
@@ -144,7 +145,9 @@ class Control(wiring.Component):
                     self.plugboard_en.eq(1),
                 ]
                 # Check if at turnover in this cycle before incrementing in next cycle
-                with m.If(self.is_at_turnover[0]):
+                with m.If(double_step):
+                    m.next = "Inc Rotor 1"
+                with m.Elif(self.is_at_turnover[0]):
                     m.next = "Inc Rotor 1"
                 with m.Else():
                     m.next = "Rotor 0"

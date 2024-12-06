@@ -195,8 +195,8 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
   wire \$21 ;
   wire \$22 ;
   reg [1:0] \$23 ;
-  reg [4:0] \$24 ;
-  reg \$25 ;
+  reg \$24 ;
+  reg [4:0] \$25 ;
   wire \$3 ;
   wire \$4 ;
   wire \$5 ;
@@ -296,19 +296,19 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
   assign \$16  = fsm_state == (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_dsl.py:486" *) 4'hf;
   assign \$17  = fsm_state == (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_dsl.py:486" *) 5'h10;
   assign \$18  = fsm_state == (* src = "/Users/virantha/dev/tinytapeout/ttsetup/env/lib/python3.12/site-packages/amaranth/hdl/_dsl.py:486" *) 5'h11;
-  assign \$19  = cnt + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm2.py:96" *) 1'h1;
-  assign \$20  = cnt + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm2.py:99" *) 1'h1;
-  assign \$21  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm2.py:123" *) 2'h3;
-  assign \$22  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm2.py:134" *) 2'h3;
+  assign \$19  = cnt + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm2.py:97" *) 1'h1;
+  assign \$20  = cnt + (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm2.py:100" *) 1'h1;
+  assign \$21  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm2.py:124" *) 2'h3;
+  assign \$22  = cnt == (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm2.py:135" *) 2'h3;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm2.py:41" *)
   always @(posedge clk)
     cnt <= \$23 ;
-  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm2.py:71" *)
-  always @(posedge clk)
-    fsm_state <= \$24 ;
   (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm2.py:44" *)
   always @(posedge clk)
-    double_step <= \$25 ;
+    double_step <= \$24 ;
+  (* src = "/Users/virantha/dev/tinytapeout/tt10-enigma/src/fsm2.py:71" *)
+  always @(posedge clk)
+    fsm_state <= \$25 ;
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$2 ) begin end
     (* full_case = 32'd1 *)
@@ -639,125 +639,127 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$2 ) begin end
-    \$24  = fsm_state;
+    \$24  = double_step;
     casez (fsm_state)
       5'h00:
-          \$24  = 5'h01;
+          \$24  = 1'h0;
       5'h01:
-          (* full_case = 32'd1 *)
-          casez (cmd)
-            3'h3:
-                \$24  = 5'h00;
-            3'h1:
-                \$24  = 5'h02;
-            3'h2:
-                \$24  = 5'h03;
-            3'h5:
-                \$24  = 5'h04;
-            3'h6:
-                \$24  = 5'h05;
-            3'h4:
-                \$24  = 5'h06;
-            default:
-                \$24  = 5'h01;
-          endcase
+          /* empty */;
       5'h04:
-          \$24  = 5'h01;
+          /* empty */;
       5'h05:
-          \$24  = 5'h07;
+          /* empty */;
       5'h02:
-          (* full_case = 32'd1 *)
-          if (\$21 ) begin
-            \$24  = 5'h01;
-          end else begin
-            \$24  = 5'h01;
-          end
+          /* empty */;
       5'h03:
-          \$24  = 5'h01;
+          /* empty */;
       5'h06:
-          (* full_case = 32'd1 *)
-          if (is_at_turnover[0]) begin
-            \$24  = 5'h08;
-          end else begin
-            \$24  = 5'h09;
-          end
+          /* empty */;
       5'h09:
-          \$24  = 5'h0a;
+          /* empty */;
       5'h0a:
-          \$24  = 5'h0b;
+          /* empty */;
       5'h0b:
-          \$24  = 5'h0c;
+          /* empty */;
       5'h0c:
-          \$24  = 5'h0d;
+          /* empty */;
       5'h0d:
-          \$24  = 5'h0e;
+          /* empty */;
       5'h0e:
-          \$24  = 5'h07;
+          /* empty */;
       5'h07:
-          \$24  = 5'h01;
+          /* empty */;
       5'h08:
-          \$24  = 5'h0f;
+          /* empty */;
       5'h0f:
-          (* full_case = 32'd1 *)
-          if (double_step) begin
-            \$24  = 5'h10;
-          end else if (is_at_turnover[1]) begin
-            \$24  = 5'h11;
-          end else begin
-            \$24  = 5'h09;
-          end
+          /* empty */;
       5'h10:
-          \$24  = 5'h09;
+          \$24  = 1'h0;
       5'h11:
-          \$24  = 5'h09;
+          \$24  = 1'h1;
     endcase
     if (rst) begin
-      \$24  = 5'h00;
+      \$24  = 1'h0;
     end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$2 ) begin end
-    \$25  = double_step;
+    \$25  = fsm_state;
     casez (fsm_state)
       5'h00:
-          /* empty */;
+          \$25  = 5'h01;
       5'h01:
-          /* empty */;
+          (* full_case = 32'd1 *)
+          casez (cmd)
+            3'h3:
+                \$25  = 5'h00;
+            3'h1:
+                \$25  = 5'h02;
+            3'h2:
+                \$25  = 5'h03;
+            3'h5:
+                \$25  = 5'h04;
+            3'h6:
+                \$25  = 5'h05;
+            3'h4:
+                \$25  = 5'h06;
+            default:
+                \$25  = 5'h01;
+          endcase
       5'h04:
-          /* empty */;
+          \$25  = 5'h01;
       5'h05:
-          /* empty */;
+          \$25  = 5'h07;
       5'h02:
-          /* empty */;
+          (* full_case = 32'd1 *)
+          if (\$21 ) begin
+            \$25  = 5'h01;
+          end else begin
+            \$25  = 5'h01;
+          end
       5'h03:
-          /* empty */;
+          \$25  = 5'h01;
       5'h06:
-          /* empty */;
+          (* full_case = 32'd1 *)
+          if (double_step) begin
+            \$25  = 5'h08;
+          end else if (is_at_turnover[0]) begin
+            \$25  = 5'h08;
+          end else begin
+            \$25  = 5'h09;
+          end
       5'h09:
-          /* empty */;
+          \$25  = 5'h0a;
       5'h0a:
-          /* empty */;
+          \$25  = 5'h0b;
       5'h0b:
-          /* empty */;
+          \$25  = 5'h0c;
       5'h0c:
-          /* empty */;
+          \$25  = 5'h0d;
       5'h0d:
-          /* empty */;
+          \$25  = 5'h0e;
       5'h0e:
-          /* empty */;
+          \$25  = 5'h07;
       5'h07:
-          /* empty */;
+          \$25  = 5'h01;
       5'h08:
-          /* empty */;
+          \$25  = 5'h0f;
       5'h0f:
-          /* empty */;
+          (* full_case = 32'd1 *)
+          if (double_step) begin
+            \$25  = 5'h10;
+          end else if (is_at_turnover[1]) begin
+            \$25  = 5'h11;
+          end else begin
+            \$25  = 5'h09;
+          end
       5'h10:
-          \$25  = 1'h0;
+          \$25  = 5'h09;
       5'h11:
-          \$25  = 1'h1;
+          \$25  = 5'h09;
     endcase
     if (rst) begin
-      \$25  = 1'h0;
+      \$25  = 5'h00;
     end
   end
   assign \inc$1  = inc;
