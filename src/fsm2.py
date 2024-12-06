@@ -13,6 +13,14 @@ class Cmd(Enum, shape=unsigned(3)):
     ENCRYPT = 4
     LOAD_PLUG_ADDR = 5
     LOAD_PLUG_DATA = 6
+
+class En(Enum, shape=unsigned(2)):
+    # Just to make sure I'm picking the proper rotor (rotor 0 = 1, rotor 1 = 2, rotor 2 = 3)
+    NONE = 0
+    ROTOR0 = 1
+    ROTOR1 = 2
+    ROTOR2 = 3
+
     
 class Control(wiring.Component):
 
@@ -72,7 +80,7 @@ class Control(wiring.Component):
             with m.State("Initial"):
                 m.d.comb += [
                     inc.eq(0),
-                    din_sel.eq(0),
+                    din_sel.eq(Din.DIN),
                     is_ltor.eq (0),
                     self.load_start.eq(0),
                     self.load_ring.eq(0),
@@ -121,8 +129,8 @@ class Control(wiring.Component):
                     self.load_start.eq(1),
                     active.eq(cnt),
                 ]
-                with m.If(cnt==3):
-                    m.d.sync += cnt.eq(0)
+                with m.If(cnt == En.ROTOR2):
+                    m.d.sync += cnt.eq(En.NONE)
                     m.next = "Get command"
                 with m.Else():
                     m.next = "Get command"
@@ -132,8 +140,8 @@ class Control(wiring.Component):
                     self.load_ring.eq(1),
                     active.eq(cnt)
                 ]
-                with m.If(cnt==3):
-                    m.d.sync += cnt.eq(0)
+                with m.If(cnt == En.ROTOR2):
+                    m.d.sync += cnt.eq(En.NONE)
 
                 m.next = "Get command"
 

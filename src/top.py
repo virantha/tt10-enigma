@@ -60,7 +60,6 @@ class Enigma(wiring.Component):
 
             
             # Loop back, left to right
-            # (Reflector's left_in to right_out path is not used)
             r.reflector_in.eq(ref.dout),
 
             right_out.eq(r.dout) ,

@@ -14,7 +14,6 @@ class Rotor (wiring.Component):
 
     reflector_in: In(5)
 
-
     is_at_turnover: Out(3)
     en: In(3)
     load_start: In(1)

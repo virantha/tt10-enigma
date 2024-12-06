@@ -58,32 +58,18 @@ def get_fixed_rotor_setting():
 
     rotors = [
         {'type': 'I',
-         'start': to_letter(0),
-         'ring':0  
+         'start': to_letter(15),
+         'ring': 18
         },
         {'type': 'II',
-         'start': to_letter(0),
-         'ring': 0 
+         'start': to_letter(5),
+         'ring': 5 
         },
         { 'type': 'III',
-         'start': to_letter(0),
-         'ring':  0
+         'start': to_letter(1),
+         'ring':24 
         },
     ]
-    # rotors = [
-    #     {'type': 'I',
-    #      'start': to_letter(15),
-    #      'ring': 18
-    #     },
-    #     {'type': 'II',
-    #      'start': to_letter(5),
-    #      'ring': 5 
-    #     },
-    #     { 'type': 'III',
-    #      'start': to_letter(1),
-    #      'ring':24 
-    #     },
-    # ]
     # Plugboard
     return rotors
     
