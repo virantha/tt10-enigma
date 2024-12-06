@@ -18,13 +18,14 @@ module tt_um_virantha_enigma (
 
   // All output pins must be assigned. If not used, assign to 0.
   //assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
-  assign uio_out = 0;
+  assign uio_out[7:5] = 0;
   assign uio_oe  = 1;
 
   assign uo_out[7:6] = 0;
   top enigma (
     .ui_in (ui_in),
     .uo_out (uo_out[5:0]),
+    .debug_out (uio_out[4:0]),
     .clk (clk),
     .rst (~rst_n)
   );

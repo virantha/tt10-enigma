@@ -200,7 +200,7 @@ class Enigma:
             l = rotor.ltor(l)
         end = num_to_letter(l)
         end = self.plugboard.traverse(end)
-        logger.debug(f'Cipher {letter} -> {end}')
+        logger.debug(f'Cipher {letter} -> {end} {letter_to_num[end]}')
         return end
 
 
@@ -234,10 +234,11 @@ if __name__ == '__main__':
         logging.basicConfig(level=logging.INFO)
 
     logger.info('Creating Enigma')
-    e = Enigma([('I', 'A', 0), ('II', 'A', 0), ('III', 'A',0 )], 'B',
-                 plugboard= [ ]
+    e = Enigma([('I', 'P', 18), ('II', 'F', 5), ('III', 'B',24 )], 'B',
+                 #plugboard= [ 'AN', 'DE', 'ZB', 'GX', 'HQ']
+                 plugboard= [ 'AN', 'DE', 'ZB', 'GX', 'HQ']
                 )
-    e.process_message(' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut convallis augue, vitae tincidunt tortor. Morbi euismod Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut convallis augue, vitae tincidunt tortor. Morbi euismod')
+    e.process_message('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut convallis augue, vitae tincidunt tortor. Morbi euismod Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut convallis augue, vitae tincidunt tortor. Morbi euismod')
     # rot = [Rotor_I(i) for i in range(3)]
     # reflector = Reflector_B(3)
     # rot[0].inc()

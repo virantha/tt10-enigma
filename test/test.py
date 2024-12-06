@@ -112,12 +112,14 @@ async def set_plugboard_setting(dut, a,b):
     return
 
 async def set_rotor_setting(dut, rotor_num, letter_setting):
+    dut._log.info(f"Setting Rotor{rotor_num} start to {letter_setting}")
     cmd = Cmd.LOAD_START.value
     val = to_val(letter_setting)
     dut.ui_in.value = get_ui_in(cmd, val) 
     await ready(dut)
 
 async def set_ring_setting(dut, rotor_num, val:int):
+    dut._log.info(f"Setting Rotor{rotor_num} Ring setting to {val}")
     cmd = Cmd.LOAD_RING.value
     dut.ui_in.value = get_ui_in(cmd, val) 
     await ready(dut)
@@ -165,7 +167,7 @@ async def run_cipher(dut, rotors, plugboard, plain):
         input_val = val
         #dut._log.info(f'{golden_val:0b}, {out_val}, {out_val.integer}')
         log_msg = f'Round {i}: Input {input_char} (0x{input_val:x} / {input_val}) -> {golden[i]} (0x{golden_val:x} / {golden_val}) expected, actual 0x{out_val.integer:x} / {out_val.integer}'
-        #dut._log.info(log_msg)
+        dut._log.info(log_msg)
         assert golden_val==out_val.integer, log_msg
 
 @cocotb.test()
@@ -183,6 +185,7 @@ async def test_enigma_fixed(dut):
     rotors = get_fixed_rotor_setting()
     plugboard = get_fixed_plugboard_setting()
 
+    #await run_cipher(dut, rotors, plugboard, plain[:15])
     await run_cipher(dut, rotors, plugboard, plain)
 
 
