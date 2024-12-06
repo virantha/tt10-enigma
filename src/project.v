@@ -21,7 +21,7 @@ module tt_um_virantha_enigma (
   assign uio_out = 0;
   assign uio_oe  = 1;
 
-
+  assign uo_out[7:6] = 0;
   top enigma (
     .ui_in (ui_in),
     .uo_out (uo_out[5:0]),
