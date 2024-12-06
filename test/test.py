@@ -53,10 +53,7 @@ async def test_load(dut):
     for i in range(3):
         start_vals.append([randint(0,26) for i in range(10)])
 
-    rotor_cnt = [dut.user_project.enigma.r0, 
-                 dut.user_project.enigma.r1,
-                 dut.user_project.enigma.r2,
-    ]
+    rotor = dut.user_project.enigma.r 
     
     rdy = dut.user_project.enigma.ready
     prev_r2 = None
@@ -69,20 +66,20 @@ async def test_load(dut):
         
         await ready(dut)
         if prev_r2:
-            assert rotor_cnt[2].cnt.value == prev_r2
+            assert rotor.cnts_debug2.value == prev_r2
 
         val = get_ui_in(cmd,r1)
         dut.ui_in.value = val
         dut._log.info(f"Rotor 1: BINARY VALUE {val}")
         await ready(dut)
-        assert rotor_cnt[0].cnt.value == r0
+        assert rotor.cnts_debug0.value == r0
 
 
         val = get_ui_in(cmd,r2)
         dut.ui_in.value = val
         dut._log.info(f"Rotor 2: BINARY VALUE {val}")
         await ready(dut)
-        assert rotor_cnt[1].cnt.value == r1
+        assert rotor.cnts_debug1.value == r1
         prev_r2 = r2
 
         #assert rotor_cnt[rotor].cnt.value==start_val

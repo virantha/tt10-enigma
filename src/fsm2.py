@@ -71,12 +71,14 @@ class Control(wiring.Component):
         with m.FSM():
             with m.State("Initial"):
                 m.d.comb += [
-                    cnt.eq(0),
                     inc.eq(0),
                     din_sel.eq(0),
                     is_ltor.eq (0),
                     self.load_start.eq(0),
                     self.load_ring.eq(0),
+                ]
+                m.d.sync += [
+                    cnt.eq(0),
                 ]
                 m.next = "Get command"
 
@@ -101,7 +103,7 @@ class Control(wiring.Component):
                     with m.Case(Cmd.LOAD_PLUG_DATA):
                         m.next = "Load plug data"
                     with m.Case(Cmd.ENCRYPT):
-                        m.next = "Inc Rotor 0"
+                        m.next = "Encrypt"
                     with m.Default():
                         m.next = "Get command"
             
@@ -142,8 +144,8 @@ class Control(wiring.Component):
                     self.plugboard_en.eq(1),
                 ]
                 # Check if at turnover in this cycle before incrementing in next cycle
-                with m.If(self.is_at_turnover(0)):
-                    m.next = "Rotor 0"
+                with m.If(self.is_at_turnover[0]):
+                    m.next = "Inc Rotor 1"
                 with m.Else():
                     m.next = "Rotor 0"
 
@@ -188,7 +190,7 @@ class Control(wiring.Component):
             with m.State("Rotor 0 back"):
                 m.d.comb += [
                     din_sel.eq(Din.DOUT),  # Get Rotor 2 output
-                    active.eq(2),   # Activate rotor 1 on next edge going left to right
+                    active.eq(1),   # Activate rotor 0 on next edge going left to right
                     is_ltor.eq(1),
                     self.plugboard_en.eq(1),
                 ]
@@ -200,6 +202,40 @@ class Control(wiring.Component):
                     self.result_ready.eq(1)
                 ]
                 m.next = "Get command"
+
+            # The portion of the state machine for handling the double stepping
+            with m.State("Inc Rotor 1"):
+                m.d.comb += [
+                    active.eq(2), # Activate rotor 1 on next edge
+                    inc.eq(1),    # Increment it
+                ]
+                m.next = "Check turnover"
+
+            with m.State("Check turnover"):
+                with m.If(double_step):
+                    m.next = "Inc Rotor 2"
+                with m.Elif(self.is_at_turnover[1]):
+                    m.next = "Activate double step"
+                with m.Else():
+                    m.next = "Rotor 0"
+            
+            with m.State("Inc Rotor 2"):
+                m.d.comb += [
+                    active.eq(3),  # Activate rotor 2
+                    inc.eq(1),
+                ]
+                m.d.sync += [
+                    double_step.eq(0)
+                ]
+                m.next = "Rotor 0"
+            
+            with m.State("Activate double step"):
+                # Moore machine, otherwise we could probably eliminate states
+                m.d.sync += [
+                    double_step.eq(1)
+                ]
+                m.next = "Rotor 0"
+                
 
             # with m.State("Inc Rotor 0"):
             #     # For rotor zero, increment it before processing

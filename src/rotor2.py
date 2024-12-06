@@ -72,6 +72,13 @@ class Rotor (wiring.Component):
         wiring_rtol = Signal(5)
         wiring_ltor = Signal(5)
         
+        # Pull out the array for debug
+        cnts_debug0 = Signal(5)
+        cnts_debug1 = Signal(5)
+        cnts_debug2 = Signal(5)
+        m.d.comb+= cnts_debug0.eq(self.cnts[0]) 
+        m.d.comb+= cnts_debug1.eq(self.cnts[1]) 
+        m.d.comb+= cnts_debug2.eq(self.cnts[2]) 
         # Mux on the inputs
         with m.Switch(self.din_sel):
             with m.Case(1):
@@ -167,8 +174,8 @@ class Rotor (wiring.Component):
 
         m.d.sync += self.dout.eq(
             Mux(self.ltor,
-                swizz_minus_cnt_ring,
-                swizz_l_minus_cnt_ring,))
+                swizz_l_minus_cnt_ring,
+                swizz_minus_cnt_ring,))
 
         return m
             
@@ -186,7 +193,7 @@ class Reflector_B(wiring.Component):
 
         Wiring = Array(mapping) # right_to_left mapping
         
-        m.d.sync += self.dout.eq(Wiring[self.din])
+        m.d.comb += self.dout.eq(Wiring[self.din])
 
         return m
 
