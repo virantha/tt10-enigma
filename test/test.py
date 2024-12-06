@@ -11,6 +11,17 @@ from fsm import Cmd
 from tb_utils import *
 
 async def ready(dut):
+    await ClockCycles(dut.clk,1,rising=True)
+    rdy = dut.uo_out
+    prev = rdy[5].value
+    while True:
+        await Edge(dut.uo_out)
+        if prev==0 and rdy[5].value==1:
+            break
+        else:
+            prev = rdy[5].value
+
+async def ready_old(dut):
     #await RisingEdge(dut.user_project.enigma.fsm.ready) 
     await ClockCycles(dut.clk,1)
     rdy = dut.user_project.enigma.ready
@@ -31,6 +42,7 @@ async def reset(dut):
     dut.rst_n.value = 0
     await ClockCycles(dut.clk, 10)
     dut.rst_n.value = 1
+    await ClockCycles(dut.clk, 1)
 
 def get_ui_in(cmd, val):
     cmd = BinaryValue(value=cmd, n_bits=3, bigEndian=False) 
@@ -47,7 +59,7 @@ async def test_load(dut):
 
     await reset(dut)
     
-    await ready(dut)
+    #await ready(dut)
 
     start_vals = []
     for i in range(3):
@@ -165,7 +177,7 @@ async def test_enigma_fixed(dut):
 
     await reset(dut)
     
-    await ready(dut)
+    #await ready(dut)
 
     # Create a randomized Enigma settings
     rotors = get_fixed_rotor_setting()
@@ -184,7 +196,6 @@ async def test_enigma_randomx10(dut):
 
     for i in range(10):
         await reset(dut)
-        await ready(dut)
         random_text = [chr(randint(0,25)+65) for count in range(3000)]
         random_text = ''.join(random_text)
 
