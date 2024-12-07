@@ -500,13 +500,13 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
       5'h09:
           plugboard_en = 1'h1;
       5'h0a:
-          /* empty */;
+          plugboard_en = 1'h1;
       5'h0b:
-          /* empty */;
+          plugboard_en = 1'h1;
       5'h0c:
-          /* empty */;
+          plugboard_en = 1'h1;
       5'h0d:
-          /* empty */;
+          plugboard_en = 1'h1;
       5'h0e:
           plugboard_en = 1'h1;
       5'h07:

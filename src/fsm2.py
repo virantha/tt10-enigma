@@ -172,6 +172,7 @@ class Control(wiring.Component):
                 m.d.comb += [
                     din_sel.eq(Din.DOUT),
                     active.eq(2),   # Activate rotor 1 on next edge
+                    self.plugboard_en.eq(1),
                 ]
                 m.next = "Rotor 2"
 
@@ -179,6 +180,7 @@ class Control(wiring.Component):
                 m.d.comb += [
                     din_sel.eq(Din.DOUT),
                     active.eq(3),   # Activate rotor 2 on next edge
+                    self.plugboard_en.eq(1),
                 ]
                 m.next = "Rotor 2 back"
             
@@ -187,6 +189,7 @@ class Control(wiring.Component):
                     din_sel.eq(Din.REF),  # Get reflected input
                     active.eq(3),   # Activate rotor 2 on next edge going left to right
                     is_ltor.eq(1),
+                    self.plugboard_en.eq(1),
                 ]
                 m.next = "Rotor 1 back"
 
@@ -195,12 +198,13 @@ class Control(wiring.Component):
                     din_sel.eq(Din.DOUT),  # Get Rotor 2 output
                     active.eq(2),   # Activate rotor 1 on next edge going left to right
                     is_ltor.eq(1),
+                    self.plugboard_en.eq(1),
                 ]
                 m.next = "Rotor 0 back"
 
             with m.State("Rotor 0 back"):
                 m.d.comb += [
-                    din_sel.eq(Din.DOUT),  # Get Rotor 2 output
+                    din_sel.eq(Din.DOUT),  # Get Rotor 1 output
                     active.eq(1),   # Activate rotor 0 on next edge going left to right
                     is_ltor.eq(1),
                     self.plugboard_en.eq(1),
