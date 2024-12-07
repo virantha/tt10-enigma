@@ -120,7 +120,7 @@ async def run_cipher(dut, rotors, plugboard, plain):
         input_val = val
         #dut._log.info(f'{golden_val:0b}, {out_val}, {out_val.integer}')
         log_msg = f'Round {i}: Input {input_char} (0x{input_val:x} / {input_val}) -> {golden[i]} (0x{golden_val:x} / {golden_val}) expected, actual 0x{out_val.integer:x} / {out_val.integer}'
-        #dut._log.info(log_msg)
+        dut._log.info(log_msg)
         assert golden_val==out_val.integer, log_msg
 
 @cocotb.test()
