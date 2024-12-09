@@ -13,7 +13,7 @@ from tb_utils import *
 async def ready(dut):
     await ClockCycles(dut.clk,1,rising=True)
     rdy = dut.uo_out
-    prev = rdy[5].value
+    prev = dut.uo_out[5].value
     while True:
         await Edge(dut.uo_out)
         if prev==0 and rdy[5].value==1:
@@ -158,41 +158,3 @@ async def test_enigma_randomx10(dut):
         rotors = get_random_rotor_setting()
         plugboard = get_random_plugboard_setting()
         await run_cipher(dut, rotors, plugboard, random_text)
-
-    # golden = get_golden_cipher(rotors, plugboard, plain)
-
-    # # Reset the plugboard
-    # for i in range(26):
-    #     await set_plugboard_setting(dut, to_letter(i), to_letter(i))
-
-    # for a,b in plugboard:
-    #     await set_plugboard_setting(dut, a, b)
-    #     await set_plugboard_setting(dut, b, a)
-
-    # for rotor_num, rotor in enumerate(rotors):
-    #     await set_rotor_setting(dut, rotor_num, rotor['start'])
-
-    # for rotor_num, rotor in enumerate(rotors):
-    #     await set_ring_setting(dut, rotor_num, rotor['ring'])
-
-    # # Encrypt and compare against the expected value
-    # for i, (input_char, val) in enumerate(iter_plain_text(plain)):
-    #     cmd = Cmd.ENCRYPT.value
-    #     dut.ui_in.value = get_ui_in(cmd, val)
-    #     await ready(dut)
-
-    #     cmd = Cmd.NOP.value
-    #     dut.ui_in.value = get_ui_in(cmd, val)
-    #     await ClockCycles(dut.clk,3)
-
-
-    #     golden_val = ord(golden[i]) - 65
-
-    #     out_val = LogicArray(dut.uo_out.value)[4:]
-
-    #     input_val = val
-    #     #dut._log.info(f'{golden_val:0b}, {out_val}, {out_val.integer}')
-    #     log_msg = f'Round {i}: Input {input_char} (0x{input_val:x} / {input_val}) -> {golden[i]} (0x{golden_val:x} / {golden_val}) expected, actual 0x{out_val.integer:x} / {out_val.integer}'
-    #     dut._log.info(log_msg)
-    #     assert golden_val==out_val.integer, log_msg
-

@@ -3,44 +3,6 @@ from amaranth.lib import wiring
 from amaranth.lib.wiring import In, Out
 from amaranth.lib.memory import Memory
 
-class Switch2x2(wiring.Component):
-    a: In(2)
-    addr: In(1)
-
-    out: Out(2)
-
-    scan_in: In(1)
-    scan_en: In(2)
-    scan_out: Out(1)
-
-    def __init__(self):
-        self.swap = Signal(1) # State bit
-        super().__init__()
-
-    def elaborate(self, platform):
-        m = module()
-
-        sel = Signal(1)
-        in1 = Signal(1)
-
-        m.d.comb += [
-            self.scan_out.eq(self.swap), # Scan out
-            sel.eq(Mux2(self.swap, ~self.addr, self.addr)),
-            in1.eq(self.a[0] | self.a[1])
-        ]
-
-        with m.If(self.sel):
-            self.out[1].eq(in1)
-            self.out[0].eq(0)
-        with m.Else():
-            self.out[0].eq(in1)
-            self.out[1].eq(0)
-
-        m.d.comb += self.out[0].eq()
-
-        with m.If(self.scan_en):
-            m.d.sync += self.swap.eq(self.scan_in)
-        
 class Latch(wiring.Component):
 
     d: In(1)
@@ -79,15 +41,16 @@ class Plugboard(wiring.Component):
        machine is another read port.
     """
 
-    en: In(1)    # If this is low, then the in just gets passed to the out
+    enable: In(1)    # If this is low, then the in just gets passed to the out
+    
+    # Mux between the "left to right" or "right to path" side
+    is_ltor: In(1)
     in_ltor : In(5)
-    out_ltor: Out(5)
-
     in_rtol : In(5)
-    out_rtol: Out(5)
+
+    out: Out(5)
 
     wr_data: In(5)    # Used for both wr_addr and wr_data
-    wr_data_out:  Out(5) # End of scain chain
     wr_data_en: In(1)
     wr_addr_en: In(1)
 
@@ -124,42 +87,37 @@ class Plugboard(wiring.Component):
                 m.d.comb += bits[i][j].en.eq(wl[i])
 
         cnt = Signal(5)
+        with m.If(self.wr_addr_en):
+            m.d.sync += cnt.eq(self.wr_data)
+
         with m.If(self.wr_data_en):
             for i in range(26):
                 m.d.comb+= wl[i].eq(cnt==i)
 
-            # with m.Switch(cnt):
-            #     with m.Case(0):
-            #         m.d.comb+=wl[0].eq(1)
-            #     with m.Case(1):
-            #         m.d.comb+=wl[1].eq(1)
-            #     with m.Case(2):
-            #         m.d.comb+=wl[2].eq(1)
-            #     with m.Case(3):
-            #         m.d.comb+=wl[3].eq(1)
-            #     with m.Case(4):
-            #         m.d.comb+=wl[4].eq(1)
-            #     with m.Case(5):
-            #         m.d.comb+=wl[5].eq(1)
-            #     with m.Case(6):
-            #         m.d.comb+=wl[6].eq(1)
-            #     with m.Case(7):
-            #         m.d.comb+=wl[7].eq(1)
-            #     with m.Case(8):
-            #         m.d.comb+=wl[8].eq(1)
 
-        m.d.comb += [
-            # First and second read port
-            self.out_rtol.eq(
-                Mux(self.en, mem[self.in_rtol], self.in_rtol),
-            ),
-            self.out_ltor.eq(
-                Mux(self.en, mem[self.in_ltor], self.in_ltor),
-            ),
-        ]
+        addr = Signal(5)
+        read = Signal(5)
+
+        with m.If(self.is_ltor):
+            m.d.comb += addr.eq(self.in_ltor)
+        with m.Else():
+            m.d.comb += addr.eq(self.in_rtol)
+
+        m.d.comb += [ 
+            read.eq( mem[addr] ),
+            self.out.eq( Mux(self.enable, read, addr) )
+         ]
+
+        # m.d.comb += [
+        #     # First and second read port
+        #     self.out_rtol.eq(
+        #         Mux(self.en, mem[self.in_rtol], self.in_rtol),
+        #     ),
+        #     self.out_ltor.eq(
+        #         Mux(self.en, mem[self.in_ltor], self.in_ltor),
+        #     ),
+        # ]
         
-        with m.If(self.wr_addr_en):
-            m.d.sync += cnt.eq(self.wr_data)
         
         return m
 

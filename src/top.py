@@ -49,7 +49,7 @@ class Enigma(wiring.Component):
             plugboard.in_rtol.eq(right_in),
             plugboard.in_ltor.eq(right_out),
 
-            plugboard.en.eq(fsm.plugboard_en),
+            plugboard.enable.eq(fsm.plugboard_en),
             # Plugboard setting
             plugboard.wr_data.eq(right_in),
             plugboard.wr_data_en.eq(fsm.plugboard_wr_data),
@@ -59,11 +59,11 @@ class Enigma(wiring.Component):
         with m.If(fsm.result_ready & (cmd==Cmd.ENCRYPT)):
             # Hold the output of the enigma encoder stable until next encrypt command
             #m.d.sync += right_out_ff1.eq(rd_port_ltor.data)
-            m.d.sync += right_out_ff1.eq(plugboard.out_ltor)
+            m.d.sync += right_out_ff1.eq(plugboard.out)
          
         m.d.comb += [
             # The right to left path
-            r.din.eq(plugboard.out_rtol),
+            r.din.eq(plugboard.out),
 
             ref.din.eq(r.dout),
 
@@ -80,6 +80,7 @@ class Enigma(wiring.Component):
             r.load_ring.eq(fsm.load_ring),
             r.inc.eq(fsm.inc),
             r.ltor.eq(fsm.is_ltor),
+            plugboard.is_ltor.eq(fsm.is_ltor),
             r.din_sel.eq(fsm.din_sel),
 
             fsm.is_at_turnover.eq(r.is_at_turnover),

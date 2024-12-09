@@ -1,4 +1,4 @@
 pytest==8.2.2
 cocotb==1.9.1
 docopt-ng
-amaranth
+amaranth[builtin-yosys] @ git+https://github.com/amaranth-lang/amaranth.git

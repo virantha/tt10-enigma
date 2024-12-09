@@ -94,7 +94,7 @@ class Control(wiring.Component):
             with m.State("Get command"):
                 m.d.comb += [
                     self.ready.eq(1),
-                    self.plugboard_en.eq(1),
+                    self.plugboard_en.eq(0),
                 ]
 
                 with m.Switch(self.cmd):
@@ -118,11 +118,16 @@ class Control(wiring.Component):
             
             with m.State("Load plug addr"):
                 m.d.comb += self.plugboard_wr_addr.eq(1)
-                m.next = "Get command"
+                m.next = "Delay plug"
             
             with m.State("Load plug data"):
                 m.d.comb += self.plugboard_wr_data.eq(1)
-                m.next = "Delay"
+                m.next = "Delay plug"
+
+            with m.State("Delay plug"):
+                m.d.comb += [
+                ]
+                m.next = "Get command"
 
             with m.State("Load start"):
                 m.d.comb += [ 
@@ -214,7 +219,15 @@ class Control(wiring.Component):
             with m.State("Delay"):
                 m.d.comb += [
                     self.plugboard_en.eq(1),
-                    self.result_ready.eq(1)
+                    is_ltor.eq(1),
+                    self.result_ready.eq(1)  # Keep plugboard and is_ltor stable until we flop the pb output using result_ready
+                ]
+                m.next = "Delay 2"
+
+            with m.State("Delay 2"):
+                m.d.comb += [
+                    self.plugboard_en.eq(1),
+                    is_ltor.eq(1),
                 ]
                 m.next = "Get command"
 
@@ -252,83 +265,6 @@ class Control(wiring.Component):
                 m.next = "Rotor 0"
                 
 
-            # with m.State("Inc Rotor 0"):
-            #     # For rotor zero, increment it before processing
-            #     # The increment is enabled in the previous state, so 
-            #     # in this state, we already have the proper rotor 0 setting
-            #     m.d.comb += [
-            #         active.eq(cnt),
-            #         self.plugboard_en.eq(1)
-            #     ]
-            #     with m.If(self.is_at_turnover[0] | double_step):
-            #         m.next = "Inc Rotor 1"
-            #         m.d.sync += [
-            #             cnt.eq(2),
-            #             inc.eq(1),
-            #         ]
-            #     with m.Else():
-            #         m.next = "Delay"
-
-            # with m.State("Rotor 1"):
-            #     m.d.comb += [
-            #         active.eq(cnt),
-            #         self.plugboard_en.eq(1)
-            #     ]
-
-
-
-            # with m.State("Inc Rotor 1"):
-            #     m.d.comb += [
-            #         active.eq(cnt),
-            #         self.plugboard_en.eq(1)
-            #     ]
-            #     m.d.sync += [
-            #         cnt.eq(2),
-            #         inc.eq(0),
-            #     ]
-            #     m.next = "Check Rotor 1 Turnover"  
-
-            # with m.State("Check Rotor 1 Turnover"):
-            #     m.d.comb += [
-            #         self.plugboard_en.eq(1)
-            #     ]
-            #     m.d.sync += [
-            #         inc.eq(0),
-            #     ]
-            #     with m.If(self.is_at_turnover[1]):
-            #         # to marking this Rotor 1 for a double step
-            #         # The next character input will cause Rotor 0, 1, and 2 to inc before outptuting the code
-            #         m.d.sync += double_step.eq(True)
-            #         m.next = "Delay"
-            #     with m.Elif(double_step):
-            #         m.d.sync += [
-            #             cnt.eq(3),
-            #             inc.eq(1),
-            #         ]
-            #         m.next = "Inc Rotor 2"
-            #     with m.Else():
-            #         m.next = "Delay"
-
-            # with m.State("Inc Rotor 2"):
-            #     m.d.comb += [
-            #         active.eq(cnt),
-            #         self.plugboard_en.eq(1)
-            #     ]
-            #     m.d.sync += [
-            #         double_step.eq(False),
-            #         cnt.eq(0),
-            #         inc.eq(0),
-            #         # TODO:
-            #         self.is_rtol.eq(0),
-            #     ]
-            #     m.next = "Delay"
-
-            # with m.State("Delay"):
-            #     m.d.comb += [
-            #         self.plugboard_en.eq(1),
-            #         self.result_ready.eq(1)
-            #     ]
-            #     m.next = "Get command"
         return m
 
                     
