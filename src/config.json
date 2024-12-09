@@ -37,9 +37,9 @@
   "//": "GRT_ANTENNA_MARGIN overfix margin, default is 10, try 20%",
   "GRT_ANTENNA_MARGIN": 15,
   "//": "DESIGN_REPAIR_MAX_WIRE_LENGTH in um",
-  "DESIGN_REPAIR_MAX_WIRE_LENGTH": 70,
+  "DESIGN_REPAIR_MAX_WIRE_LENGTH": 100,
 
-  "PL_TARGET_DENSITY_PCT": 70,
+  "PL_TARGET_DENSITY_PCT": 68,
   "DRT_THREADS": 4,
 
   "//": "CLOCK_PERIOD - Increase this in case you are getting setup time violations.",
