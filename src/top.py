@@ -84,6 +84,7 @@ class Enigma(wiring.Component):
             r.din_sel.eq(fsm.din_sel),
 
             fsm.is_at_turnover.eq(r.is_at_turnover),
+            r.load_rotor_type.eq(fsm.set_rotors),
             fsm.cmd.eq(cmd),
             ready.eq(fsm.ready),
 

@@ -1,6 +1,7 @@
 
 from enigma import Enigma as EnigmaPy
-from random import randint
+from random import randint, sample
+from defines import Rotors
 
 plain = """
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempus justo ac
@@ -79,17 +80,20 @@ def get_fixed_plugboard_setting():
 
 def get_random_rotor_setting():
 
+    rotor_types = [list(Rotors.keys())[x] for x in sample(range(5), 3)]
     # Create the golden results using the python simulator
     rotors = [
-        {'type': 'I',
+        {
+         'type': rotor_types[0],
          'start': to_letter(rnd_int()),
          'ring': rnd_int(),
         },
-        {'type': 'II',
+        {
+         'type': rotor_types[1],
          'start': to_letter(rnd_int()),
          'ring': rnd_int(), 
         },
-        { 'type': 'III',
+        { 'type': rotor_types[2],
          'start': to_letter(rnd_int()),
          'ring': rnd_int(), 
         },

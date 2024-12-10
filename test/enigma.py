@@ -131,6 +131,14 @@ class Rotor_III(Rotor):
     wiring = 'BDFHJLCPRTXVZNYEIWGAKMUSQO'
     turnover = 'V'
 
+class Rotor_IV(Rotor): 
+    wiring = 'ESOVPZJAYQUIRHXLNFTGKDCMWB'
+    turnover = 'J'
+
+class Rotor_V(Rotor): 
+    wiring = 'VZBRGITYUPSDNHLXAWMJQOFECK'
+    turnover = 'Z'
+
 class Reflector_B(Rotor):
     wiring = 'YRUHQSLDPXNGOKMIEBFZCWVJAT'
 
@@ -158,6 +166,8 @@ class Enigma:
         'I': Rotor_I,
         'II': Rotor_II,
         'III': Rotor_III,
+        'IV': Rotor_IV,
+        'V': Rotor_V,
     }
     REFLECTORS = { 
         'A': None,

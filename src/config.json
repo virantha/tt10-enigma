@@ -39,7 +39,7 @@
   "//": "DESIGN_REPAIR_MAX_WIRE_LENGTH in um",
   "DESIGN_REPAIR_MAX_WIRE_LENGTH": 70,
 
-  "PL_TARGET_DENSITY_PCT": 71,
+  "PL_TARGET_DENSITY_PCT": 82,
   "DRT_THREADS": 4,
 
   "//": "CLOCK_PERIOD - Increase this in case you are getting setup time violations.",

@@ -70,15 +70,6 @@ class Plugboard(wiring.Component):
                 # Connect the memory signals
                 m.d.comb += mem[i][j].eq(bits[i][j].q)
 
-
-        # chain the input to the output for now for the write
-        # for i in range(9):
-        #     for j in range(5):
-        #         m.d.comb += bits[i+1][j].d.eq(bits[i][j].q)
-        # for j in range(5):
-        #     m.d.comb += bits[0][j].d.eq(self.wr_data[j])
-        #     m.d.comb += self.wr_data_out[j].eq(bits[9][j].q)
-        
         # Make the write like a wordline/bitline
         wl = [Signal(1) for i in range(26)]
         for i in range(26):
@@ -108,17 +99,6 @@ class Plugboard(wiring.Component):
             self.out.eq( Mux(self.enable, read, addr) )
          ]
 
-        # m.d.comb += [
-        #     # First and second read port
-        #     self.out_rtol.eq(
-        #         Mux(self.en, mem[self.in_rtol], self.in_rtol),
-        #     ),
-        #     self.out_ltor.eq(
-        #         Mux(self.en, mem[self.in_ltor], self.in_ltor),
-        #     ),
-        # ]
-        
-        
         return m
 
 

@@ -7,7 +7,7 @@ from cocotb.clock import Clock
 from cocotb.binary import BinaryValue
 from cocotb.triggers import ClockCycles, RisingEdge, FallingEdge, Edge, ReadOnly, NextTimeStep
 from random import randint
-from fsm import Cmd
+from defines import Cmd, Rotors
 from tb_utils import *
 
 async def ready(dut):
@@ -128,6 +128,12 @@ async def set_ring_setting(dut, rotor_num, val:int):
     dut.ui_in.value = get_ui_in(cmd, val) 
     await ready(dut)
 
+async def select_rotors(dut, rotor_num, rotor_type):
+    dut._log.info(f"Setting Rotor{rotor_num} type to Rotor TYPE {rotor_type}")
+    cmd = Cmd.SET_ROTORS.value
+    dut.ui_in.value = get_ui_in(cmd, rotor_type) 
+    await ready(dut)
+
 def iter_plain_text(plain):
     for c in plain:
         c = c.upper()
@@ -146,6 +152,11 @@ async def run_cipher(dut, rotors, plugboard, plain):
     for a,b in plugboard:
         await set_plugboard_setting(dut, a, b)
         await set_plugboard_setting(dut, b, a)
+
+    rotor_types = Rotors
+    for rotor_num, rotor_type in enumerate(rotors):
+        await select_rotors(dut, rotor_num, rotor_types[rotor_type['type']])
+
 
     for rotor_num, rotor in enumerate(rotors):
         await set_rotor_setting(dut, rotor_num, rotor['start'])

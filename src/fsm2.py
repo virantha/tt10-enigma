@@ -4,22 +4,7 @@ from amaranth.lib import wiring
 from amaranth.lib.wiring import In, Out
 from amaranth.lib.enum import Enum
 from .rotor2 import Din
-
-class Cmd(Enum, shape=unsigned(3)):
-    NOP = 0
-    LOAD_START = 1
-    LOAD_RING = 2
-    RESET = 3
-    ENCRYPT = 4
-    LOAD_PLUG_ADDR = 5
-    LOAD_PLUG_DATA = 6
-
-class En(Enum, shape=unsigned(2)):
-    # Just to make sure I'm picking the proper rotor (rotor 0 = 1, rotor 1 = 2, rotor 2 = 3)
-    NONE = 0
-    ROTOR0 = 1
-    ROTOR1 = 2
-    ROTOR2 = 3
+from .defines import Cmd, En
 
     
 class Control(wiring.Component):
@@ -32,6 +17,7 @@ class Control(wiring.Component):
     en: Out(3)   #  enables for each of the rotors
     load_start: Out(1)
     load_ring: Out(1)
+    set_rotors: Out(1)
     inc: Out(1) # 
     is_ltor: Out(1)
     din_sel: Out(2) # To Rotor to determin where it takes its input
@@ -107,6 +93,9 @@ class Control(wiring.Component):
                     with m.Case(Cmd.LOAD_RING):
                         m.d.sync += cnt.eq(cnt+1)
                         m.next = "Load ring"
+                    with m.Case(Cmd.SET_ROTORS):
+                        m.d.sync += cnt.eq(cnt+1)
+                        m.next = "Set rotors"
                     with m.Case(Cmd.LOAD_PLUG_ADDR):
                         m.next = "Load plug addr"
                     with m.Case(Cmd.LOAD_PLUG_DATA):
@@ -123,6 +112,7 @@ class Control(wiring.Component):
             with m.State("Load plug data"):
                 m.d.comb += self.plugboard_wr_data.eq(1)
                 m.next = "Delay plug"
+
 
             with m.State("Delay plug"):
                 m.d.comb += [
@@ -148,6 +138,15 @@ class Control(wiring.Component):
                 with m.If(cnt == En.ROTOR2):
                     m.d.sync += cnt.eq(En.NONE)
 
+                m.next = "Get command"
+
+            with m.State("Set rotors"):
+                m.d.comb += [
+                    self.set_rotors.eq(1),
+                    active.eq(cnt)
+                ]
+                with m.If(cnt == En.ROTOR2):
+                    m.d.sync += cnt.eq(En.NONE)
                 m.next = "Get command"
 
             with m.State("Encrypt"):

@@ -12,9 +12,9 @@ module top(clk, rst, uo_out, debug_out, debug_pen, ui_in);
   (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_ir.py:215" *)
   input clk;
   wire clk;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:27" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:12" *)
   wire [2:0] cmd;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:185" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:208" *)
   output [4:0] debug_out;
   wire [4:0] debug_out;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:44" *)
@@ -22,19 +22,19 @@ module top(clk, rst, uo_out, debug_out, debug_pen, ui_in);
   wire debug_pen;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:12" *)
   wire [4:0] din;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:185" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:208" *)
   wire [4:0] \din$19 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:24" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:32" *)
   wire [1:0] din_sel;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:37" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:23" *)
   wire [1:0] \din_sel$34 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:13" *)
   wire [4:0] dout;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:186" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:209" *)
   wire [4:0] \dout$21 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:18" *)
   wire [2:0] en;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:32" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:17" *)
   wire [2:0] \en$23 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:44" *)
   wire enable;
@@ -42,47 +42,51 @@ module top(clk, rst, uo_out, debug_out, debug_pen, ui_in);
   wire [4:0] in_ltor;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:49" *)
   wire [4:0] in_rtol;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:21" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:26" *)
   wire inc;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:35" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:21" *)
   wire \inc$29 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:28" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:13" *)
   wire [2:0] is_at_turnover;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:17" *)
   wire [2:0] \is_at_turnover$36 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:36" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:22" *)
   wire is_ltor;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:47" *)
   wire \is_ltor$32 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:20" *)
-  wire load_ring;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:34" *)
-  wire \load_ring$27 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:19" *)
-  wire load_start;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:33" *)
-  wire \load_start$25 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:22" *)
+  wire load_ring;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:19" *)
+  wire \load_ring$27 ;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:23" *)
+  wire load_rotor_type;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:21" *)
+  wire load_start;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:18" *)
+  wire \load_start$25 ;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:29" *)
   wire ltor;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:51" *)
   wire [4:0] out;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:41" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:27" *)
   wire plugboard_en;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:39" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:25" *)
   wire plugboard_wr_addr;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:40" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:26" *)
   wire plugboard_wr_data;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:30" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:15" *)
   wire ready;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:15" *)
   wire [4:0] reflector_in;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:31" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:16" *)
   wire result_ready;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/top.py:33" *)
   wire [4:0] right_out;
   (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_ir.py:215" *)
   input rst;
   wire rst;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:20" *)
+  wire set_rotors;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/top.py:10" *)
   input [7:0] ui_in;
   wire [7:0] ui_in;
@@ -116,7 +120,8 @@ module top(clk, rst, uo_out, debug_out, debug_pen, ui_in);
     .plugboard_wr_data(wr_data_en),
     .ready(ready),
     .result_ready(result_ready),
-    .rst(rst)
+    .rst(rst),
+    .set_rotors(load_rotor_type)
   );
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/top.py:31" *)
   \top.plugboard  plugboard (
@@ -140,6 +145,7 @@ module top(clk, rst, uo_out, debug_out, debug_pen, ui_in);
     .inc(inc),
     .is_at_turnover(is_at_turnover),
     .load_ring(load_ring),
+    .load_rotor_type(load_rotor_type),
     .load_start(load_start),
     .ltor(ltor),
     .reflector_in(reflector_in),
@@ -180,13 +186,14 @@ module top(clk, rst, uo_out, debug_out, debug_pen, ui_in);
   assign \is_ltor$32  = ltor;
   assign \din_sel$34  = din_sel;
   assign \is_at_turnover$36  = is_at_turnover;
+  assign set_rotors = load_rotor_type;
   assign cmd = ui_in[7:5];
   assign uo_out = { ready, \$4  };
 endmodule
 
-(* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:48" *)
+(* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:34" *)
 (* generator = "Amaranth" *)
-module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start, load_ring, ready, plugboard_en, plugboard_wr_addr, plugboard_wr_data, result_ready, cmd);
+module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start, load_ring, ready, plugboard_en, plugboard_wr_addr, plugboard_wr_data, set_rotors, result_ready, cmd);
   reg \$auto$verilog_backend.cc:2352:dump_module$2  = 0;
   wire \$1 ;
   wire \$10 ;
@@ -201,36 +208,39 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
   wire \$19 ;
   wire \$2 ;
   wire \$20 ;
-  wire [2:0] \$21 ;
+  wire \$21 ;
   wire [2:0] \$22 ;
-  wire \$23 ;
-  wire \$24 ;
-  reg [1:0] \$25 ;
-  reg \$26 ;
-  reg [4:0] \$27 ;
+  wire [2:0] \$23 ;
+  wire [2:0] \$24 ;
+  wire \$25 ;
+  wire \$26 ;
+  wire \$27 ;
+  reg [1:0] \$28 ;
+  reg \$29 ;
   wire \$3 ;
+  reg [4:0] \$30 ;
   wire \$4 ;
   wire \$5 ;
   wire \$6 ;
   wire \$7 ;
   wire \$8 ;
   wire \$9 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:50" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:36" *)
   reg [1:0] active;
   (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_ir.py:215" *)
   input clk;
   wire clk;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:27" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:12" *)
   input [2:0] cmd;
   wire [2:0] cmd;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:49" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:35" *)
   reg [1:0] cnt = 2'h0;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:37" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:23" *)
   output [1:0] din_sel;
   reg [1:0] din_sel;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:52" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:38" *)
   reg double_step = 1'h0;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:32" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:17" *)
   output [2:0] en;
   reg [2:0] en;
   (* enum_base_type = "fsmState" *)
@@ -238,59 +248,63 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
   (* enum_value_00001 = "Get command/1" *)
   (* enum_value_00010 = "Load start/2" *)
   (* enum_value_00011 = "Load ring/3" *)
-  (* enum_value_00100 = "Load plug addr/4" *)
-  (* enum_value_00101 = "Load plug data/5" *)
-  (* enum_value_00110 = "Encrypt/6" *)
-  (* enum_value_00111 = "Delay plug/7" *)
-  (* enum_value_01000 = "Inc Rotor 1/8" *)
-  (* enum_value_01001 = "Rotor 0/9" *)
-  (* enum_value_01010 = "Rotor 1/10" *)
-  (* enum_value_01011 = "Rotor 2/11" *)
-  (* enum_value_01100 = "Rotor 2 back/12" *)
-  (* enum_value_01101 = "Rotor 1 back/13" *)
-  (* enum_value_01110 = "Rotor 0 back/14" *)
-  (* enum_value_01111 = "Delay/15" *)
-  (* enum_value_10000 = "Delay 2/16" *)
-  (* enum_value_10001 = "Check turnover/17" *)
-  (* enum_value_10010 = "Inc Rotor 2/18" *)
-  (* enum_value_10011 = "Activate double step/19" *)
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:79" *)
+  (* enum_value_00100 = "Set rotors/4" *)
+  (* enum_value_00101 = "Load plug addr/5" *)
+  (* enum_value_00110 = "Load plug data/6" *)
+  (* enum_value_00111 = "Encrypt/7" *)
+  (* enum_value_01000 = "Delay plug/8" *)
+  (* enum_value_01001 = "Inc Rotor 1/9" *)
+  (* enum_value_01010 = "Rotor 0/10" *)
+  (* enum_value_01011 = "Rotor 1/11" *)
+  (* enum_value_01100 = "Rotor 2/12" *)
+  (* enum_value_01101 = "Rotor 2 back/13" *)
+  (* enum_value_01110 = "Rotor 1 back/14" *)
+  (* enum_value_01111 = "Rotor 0 back/15" *)
+  (* enum_value_10000 = "Delay/16" *)
+  (* enum_value_10001 = "Delay 2/17" *)
+  (* enum_value_10010 = "Check turnover/18" *)
+  (* enum_value_10011 = "Inc Rotor 2/19" *)
+  (* enum_value_10100 = "Activate double step/20" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:65" *)
   reg [4:0] fsm_state = 5'h00;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:51" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:37" *)
   output inc;
   reg inc;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:51" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:37" *)
   wire \inc$1 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:28" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:13" *)
   input [2:0] is_at_turnover;
   wire [2:0] is_at_turnover;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:36" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:22" *)
   output is_ltor;
   reg is_ltor;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:34" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:19" *)
   output load_ring;
   reg load_ring;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:33" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:18" *)
   output load_start;
   reg load_start;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:41" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:27" *)
   output plugboard_en;
   reg plugboard_en;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:39" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:25" *)
   output plugboard_wr_addr;
   reg plugboard_wr_addr;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:40" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:26" *)
   output plugboard_wr_data;
   reg plugboard_wr_data;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:30" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:15" *)
   output ready;
   reg ready;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:31" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:16" *)
   output result_ready;
   reg result_ready;
   (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_ir.py:215" *)
   input rst;
   wire rst;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:20" *)
+  output set_rotors;
+  reg set_rotors;
   assign \$1  = ! (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_dsl.py:486" *) fsm_state;
   assign \$2  = fsm_state == (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_dsl.py:486" *) 1'h1;
   assign \$3  = fsm_state == (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_dsl.py:486" *) 2'h2;
@@ -311,19 +325,22 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
   assign \$18  = fsm_state == (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_dsl.py:486" *) 5'h11;
   assign \$19  = fsm_state == (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_dsl.py:486" *) 5'h12;
   assign \$20  = fsm_state == (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_dsl.py:486" *) 5'h13;
-  assign \$21  = cnt + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:105" *) 1'h1;
-  assign \$22  = cnt + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:108" *) 1'h1;
-  assign \$23  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:137" *) 2'h3;
-  assign \$24  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:148" *) 2'h3;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:49" *)
+  assign \$21  = fsm_state == (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_dsl.py:486" *) 5'h14;
+  assign \$22  = cnt + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:91" *) 1'h1;
+  assign \$23  = cnt + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:94" *) 1'h1;
+  assign \$24  = cnt + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:97" *) 1'h1;
+  assign \$25  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:127" *) 2'h3;
+  assign \$26  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:138" *) 2'h3;
+  assign \$27  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:148" *) 2'h3;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:35" *)
   always @(posedge clk)
-    cnt <= \$25 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:52" *)
+    cnt <= \$28 ;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:38" *)
   always @(posedge clk)
-    double_step <= \$26 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:79" *)
+    double_step <= \$29 ;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/fsm2.py:65" *)
   always @(posedge clk)
-    fsm_state <= \$27 ;
+    fsm_state <= \$30 ;
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$2 ) begin end
     (* full_case = 32'd1 *)
@@ -346,20 +363,20 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
           inc = 1'h0;
       5'h01:
           /* empty */;
-      5'h04:
-          /* empty */;
       5'h05:
           /* empty */;
-      5'h07:
+      5'h06:
+          /* empty */;
+      5'h08:
           /* empty */;
       5'h02:
           /* empty */;
       5'h03:
           /* empty */;
-      5'h06:
-          inc = 1'h1;
-      5'h09:
+      5'h04:
           /* empty */;
+      5'h07:
+          inc = 1'h1;
       5'h0a:
           /* empty */;
       5'h0b:
@@ -374,11 +391,13 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
           /* empty */;
       5'h10:
           /* empty */;
-      5'h08:
-          inc = 1'h1;
       5'h11:
           /* empty */;
+      5'h09:
+          inc = 1'h1;
       5'h12:
+          /* empty */;
+      5'h13:
           inc = 1'h1;
     endcase
   end
@@ -390,29 +409,31 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
           din_sel = 2'h0;
       5'h01:
           /* empty */;
-      5'h04:
-          /* empty */;
       5'h05:
           /* empty */;
-      5'h07:
+      5'h06:
+          /* empty */;
+      5'h08:
           /* empty */;
       5'h02:
           /* empty */;
       5'h03:
           /* empty */;
-      5'h06:
+      5'h04:
           /* empty */;
-      5'h09:
-          din_sel = 2'h0;
+      5'h07:
+          /* empty */;
       5'h0a:
-          din_sel = 2'h1;
+          din_sel = 2'h0;
       5'h0b:
           din_sel = 2'h1;
       5'h0c:
-          din_sel = 2'h2;
-      5'h0d:
           din_sel = 2'h1;
+      5'h0d:
+          din_sel = 2'h2;
       5'h0e:
+          din_sel = 2'h1;
+      5'h0f:
           din_sel = 2'h1;
     endcase
   end
@@ -424,26 +445,26 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
           is_ltor = 1'h0;
       5'h01:
           /* empty */;
-      5'h04:
-          /* empty */;
       5'h05:
           /* empty */;
-      5'h07:
+      5'h06:
+          /* empty */;
+      5'h08:
           /* empty */;
       5'h02:
           /* empty */;
       5'h03:
           /* empty */;
-      5'h06:
+      5'h04:
           /* empty */;
-      5'h09:
+      5'h07:
           /* empty */;
       5'h0a:
           /* empty */;
       5'h0b:
           /* empty */;
       5'h0c:
-          is_ltor = 1'h1;
+          /* empty */;
       5'h0d:
           is_ltor = 1'h1;
       5'h0e:
@@ -451,6 +472,8 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
       5'h0f:
           is_ltor = 1'h1;
       5'h10:
+          is_ltor = 1'h1;
+      5'h11:
           is_ltor = 1'h1;
     endcase
   end
@@ -462,11 +485,11 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
           load_start = 1'h0;
       5'h01:
           /* empty */;
-      5'h04:
-          /* empty */;
       5'h05:
           /* empty */;
-      5'h07:
+      5'h06:
+          /* empty */;
+      5'h08:
           /* empty */;
       5'h02:
           load_start = 1'h1;
@@ -480,11 +503,11 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
           load_ring = 1'h0;
       5'h01:
           /* empty */;
-      5'h04:
-          /* empty */;
       5'h05:
           /* empty */;
-      5'h07:
+      5'h06:
+          /* empty */;
+      5'h08:
           /* empty */;
       5'h02:
           /* empty */;
@@ -510,19 +533,19 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
           /* empty */;
       5'h01:
           plugboard_en = 1'h0;
-      5'h04:
-          /* empty */;
       5'h05:
           /* empty */;
-      5'h07:
+      5'h06:
+          /* empty */;
+      5'h08:
           /* empty */;
       5'h02:
           /* empty */;
       5'h03:
           /* empty */;
-      5'h06:
-          plugboard_en = 1'h1;
-      5'h09:
+      5'h04:
+          /* empty */;
+      5'h07:
           plugboard_en = 1'h1;
       5'h0a:
           plugboard_en = 1'h1;
@@ -537,6 +560,8 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
       5'h0f:
           plugboard_en = 1'h1;
       5'h10:
+          plugboard_en = 1'h1;
+      5'h11:
           plugboard_en = 1'h1;
     endcase
   end
@@ -548,7 +573,7 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
           /* empty */;
       5'h01:
           /* empty */;
-      5'h04:
+      5'h05:
           plugboard_wr_addr = 1'h1;
     endcase
   end
@@ -560,9 +585,9 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
           /* empty */;
       5'h01:
           /* empty */;
-      5'h04:
-          /* empty */;
       5'h05:
+          /* empty */;
+      5'h06:
           plugboard_wr_data = 1'h1;
     endcase
   end
@@ -574,40 +599,64 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
           /* empty */;
       5'h01:
           /* empty */;
-      5'h04:
-          /* empty */;
       5'h05:
           /* empty */;
-      5'h07:
+      5'h06:
+          /* empty */;
+      5'h08:
           /* empty */;
       5'h02:
           active = cnt;
       5'h03:
           active = cnt;
-      5'h06:
-          active = 2'h1;
-      5'h09:
+      5'h04:
+          active = cnt;
+      5'h07:
           active = 2'h1;
       5'h0a:
-          active = 2'h2;
+          active = 2'h1;
       5'h0b:
-          active = 2'h3;
+          active = 2'h2;
       5'h0c:
           active = 2'h3;
       5'h0d:
-          active = 2'h2;
+          active = 2'h3;
       5'h0e:
-          active = 2'h1;
+          active = 2'h2;
       5'h0f:
-          /* empty */;
+          active = 2'h1;
       5'h10:
           /* empty */;
-      5'h08:
-          active = 2'h2;
       5'h11:
           /* empty */;
+      5'h09:
+          active = 2'h2;
       5'h12:
+          /* empty */;
+      5'h13:
           active = 2'h3;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$2 ) begin end
+    set_rotors = 1'h0;
+    casez (fsm_state)
+      5'h00:
+          /* empty */;
+      5'h01:
+          /* empty */;
+      5'h05:
+          /* empty */;
+      5'h06:
+          /* empty */;
+      5'h08:
+          /* empty */;
+      5'h02:
+          /* empty */;
+      5'h03:
+          /* empty */;
+      5'h04:
+          set_rotors = 1'h1;
     endcase
   end
   always @* begin
@@ -618,19 +667,19 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
           /* empty */;
       5'h01:
           /* empty */;
-      5'h04:
-          /* empty */;
       5'h05:
           /* empty */;
-      5'h07:
+      5'h06:
+          /* empty */;
+      5'h08:
           /* empty */;
       5'h02:
           /* empty */;
       5'h03:
           /* empty */;
-      5'h06:
+      5'h04:
           /* empty */;
-      5'h09:
+      5'h07:
           /* empty */;
       5'h0a:
           /* empty */;
@@ -643,64 +692,72 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
       5'h0e:
           /* empty */;
       5'h0f:
+          /* empty */;
+      5'h10:
           result_ready = 1'h1;
     endcase
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$2 ) begin end
-    \$25  = cnt;
+    \$28  = cnt;
     casez (fsm_state)
       5'h00:
-          \$25  = 2'h0;
+          \$28  = 2'h0;
       5'h01:
           casez (cmd)
             3'h3:
                 /* empty */;
             3'h1:
-                \$25  = \$21 [1:0];
+                \$28  = \$22 [1:0];
             3'h2:
-                \$25  = \$22 [1:0];
+                \$28  = \$23 [1:0];
+            3'h7:
+                \$28  = \$24 [1:0];
           endcase
-      5'h04:
-          /* empty */;
       5'h05:
           /* empty */;
-      5'h07:
+      5'h06:
+          /* empty */;
+      5'h08:
           /* empty */;
       5'h02:
-          if (\$23 ) begin
-            \$25  = 2'h0;
+          if (\$25 ) begin
+            \$28  = 2'h0;
           end
       5'h03:
-          if (\$24 ) begin
-            \$25  = 2'h0;
+          if (\$26 ) begin
+            \$28  = 2'h0;
+          end
+      5'h04:
+          if (\$27 ) begin
+            \$28  = 2'h0;
           end
     endcase
     if (rst) begin
-      \$25  = 2'h0;
+      \$28  = 2'h0;
     end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$2 ) begin end
-    \$26  = double_step;
+    \$29  = double_step;
     casez (fsm_state)
       5'h00:
-          \$26  = 1'h0;
+          \$29  = 1'h0;
       5'h01:
-          /* empty */;
-      5'h04:
           /* empty */;
       5'h05:
           /* empty */;
-      5'h07:
+      5'h06:
+          /* empty */;
+      5'h08:
           /* empty */;
       5'h02:
           /* empty */;
       5'h03:
           /* empty */;
-      5'h06:
+      5'h04:
           /* empty */;
-      5'h09:
+      5'h07:
           /* empty */;
       5'h0a:
           /* empty */;
@@ -716,101 +773,107 @@ module \top.fsm (clk, rst, is_at_turnover, en, inc, din_sel, is_ltor, load_start
           /* empty */;
       5'h10:
           /* empty */;
-      5'h08:
-          /* empty */;
       5'h11:
           /* empty */;
+      5'h09:
+          /* empty */;
       5'h12:
-          \$26  = 1'h0;
+          /* empty */;
       5'h13:
-          \$26  = 1'h1;
+          \$29  = 1'h0;
+      5'h14:
+          \$29  = 1'h1;
     endcase
     if (rst) begin
-      \$26  = 1'h0;
+      \$29  = 1'h0;
     end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$2 ) begin end
-    \$27  = fsm_state;
+    \$30  = fsm_state;
     casez (fsm_state)
       5'h00:
-          \$27  = 5'h01;
+          \$30  = 5'h01;
       5'h01:
           (* full_case = 32'd1 *)
           casez (cmd)
             3'h3:
-                \$27  = 5'h00;
+                \$30  = 5'h00;
             3'h1:
-                \$27  = 5'h02;
+                \$30  = 5'h02;
             3'h2:
-                \$27  = 5'h03;
+                \$30  = 5'h03;
+            3'h7:
+                \$30  = 5'h04;
             3'h5:
-                \$27  = 5'h04;
+                \$30  = 5'h05;
             3'h6:
-                \$27  = 5'h05;
+                \$30  = 5'h06;
             3'h4:
-                \$27  = 5'h06;
+                \$30  = 5'h07;
             default:
-                \$27  = 5'h01;
+                \$30  = 5'h01;
           endcase
-      5'h04:
-          \$27  = 5'h07;
       5'h05:
-          \$27  = 5'h07;
-      5'h07:
-          \$27  = 5'h01;
+          \$30  = 5'h08;
+      5'h06:
+          \$30  = 5'h08;
+      5'h08:
+          \$30  = 5'h01;
       5'h02:
           (* full_case = 32'd1 *)
-          if (\$23 ) begin
-            \$27  = 5'h01;
+          if (\$25 ) begin
+            \$30  = 5'h01;
           end else begin
-            \$27  = 5'h01;
+            \$30  = 5'h01;
           end
       5'h03:
-          \$27  = 5'h01;
-      5'h06:
+          \$30  = 5'h01;
+      5'h04:
+          \$30  = 5'h01;
+      5'h07:
           (* full_case = 32'd1 *)
           if (double_step) begin
-            \$27  = 5'h08;
+            \$30  = 5'h09;
           end else if (is_at_turnover[0]) begin
-            \$27  = 5'h08;
+            \$30  = 5'h09;
           end else begin
-            \$27  = 5'h09;
+            \$30  = 5'h0a;
           end
-      5'h09:
-          \$27  = 5'h0a;
       5'h0a:
-          \$27  = 5'h0b;
+          \$30  = 5'h0b;
       5'h0b:
-          \$27  = 5'h0c;
+          \$30  = 5'h0c;
       5'h0c:
-          \$27  = 5'h0d;
+          \$30  = 5'h0d;
       5'h0d:
-          \$27  = 5'h0e;
+          \$30  = 5'h0e;
       5'h0e:
-          \$27  = 5'h0f;
+          \$30  = 5'h0f;
       5'h0f:
-          \$27  = 5'h10;
+          \$30  = 5'h10;
       5'h10:
-          \$27  = 5'h01;
-      5'h08:
-          \$27  = 5'h11;
+          \$30  = 5'h11;
       5'h11:
+          \$30  = 5'h01;
+      5'h09:
+          \$30  = 5'h12;
+      5'h12:
           (* full_case = 32'd1 *)
           if (double_step) begin
-            \$27  = 5'h12;
+            \$30  = 5'h13;
           end else if (is_at_turnover[1]) begin
-            \$27  = 5'h13;
+            \$30  = 5'h14;
           end else begin
-            \$27  = 5'h09;
+            \$30  = 5'h0a;
           end
-      5'h12:
-          \$27  = 5'h09;
       5'h13:
-          \$27  = 5'h09;
+          \$30  = 5'h0a;
+      5'h14:
+          \$30  = 5'h0a;
     endcase
     if (rst) begin
-      \$27  = 5'h00;
+      \$30  = 5'h00;
     end
   end
   assign \inc$1  = inc;
@@ -869,67 +932,67 @@ module \top.plugboard (clk, rst, out, in_ltor, is_ltor, enable, wr_addr_en, wr_d
   wire [4:0] \$signal$144 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:64" *)
   wire [4:0] \$signal$150 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$159 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$170 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:64" *)
   wire [4:0] \$signal$18 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$181 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$192 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$203 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$214 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$225 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$236 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:64" *)
   wire [4:0] \$signal$24 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$247 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$258 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$269 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$280 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$291 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:64" *)
   wire [4:0] \$signal$30 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$302 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$313 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$324 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$335 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$346 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$357 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:64" *)
   wire [4:0] \$signal$36 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$368 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$379 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$390 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$401 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$412 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:64" *)
   wire [4:0] \$signal$42 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$423 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:83" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:74" *)
   wire \$signal$434 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:64" *)
   wire [4:0] \$signal$48 ;
@@ -951,12 +1014,12 @@ module \top.plugboard (clk, rst, out, in_ltor, is_ltor, enable, wr_addr_en, wr_d
   wire [4:0] \$signal$90 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:64" *)
   wire [4:0] \$signal$96 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:98" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:89" *)
   reg [4:0] addr;
   (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_ir.py:215" *)
   input clk;
   wire clk;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:89" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:80" *)
   reg [4:0] cnt = 5'h00;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:8" *)
   wire d;
@@ -1752,7 +1815,7 @@ module \top.plugboard (clk, rst, out, in_ltor, is_ltor, enable, wr_addr_en, wr_d
   wire \q$98 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:9" *)
   wire \q$99 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:99" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:90" *)
   reg [4:0] read;
   (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_ir.py:215" *)
   input rst;
@@ -1766,36 +1829,36 @@ module \top.plugboard (clk, rst, out, in_ltor, is_ltor, enable, wr_addr_en, wr_d
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:54" *)
   input wr_data_en;
   wire wr_data_en;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:89" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:80" *)
   always @(posedge clk)
     cnt <= \$27 ;
-  assign \$1  = ! (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) cnt;
-  assign \$2  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 1'h1;
-  assign \$3  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 2'h2;
-  assign \$4  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 2'h3;
-  assign \$5  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 3'h4;
-  assign \$6  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 3'h5;
-  assign \$7  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 3'h6;
-  assign \$8  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 3'h7;
-  assign \$9  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 4'h8;
-  assign \$10  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 4'h9;
-  assign \$11  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 4'ha;
-  assign \$12  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 4'hb;
-  assign \$13  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 4'hc;
-  assign \$14  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 4'hd;
-  assign \$15  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 4'he;
-  assign \$16  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 4'hf;
-  assign \$17  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 5'h10;
-  assign \$18  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 5'h11;
-  assign \$19  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 5'h12;
-  assign \$20  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 5'h13;
-  assign \$21  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 5'h14;
-  assign \$22  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 5'h15;
-  assign \$23  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 5'h16;
-  assign \$24  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 5'h17;
-  assign \$25  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 5'h18;
-  assign \$26  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:95" *) 5'h19;
-  assign out = enable ? (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:108" *) read : addr;
+  assign \$1  = ! (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) cnt;
+  assign \$2  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 1'h1;
+  assign \$3  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 2'h2;
+  assign \$4  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 2'h3;
+  assign \$5  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 3'h4;
+  assign \$6  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 3'h5;
+  assign \$7  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 3'h6;
+  assign \$8  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 3'h7;
+  assign \$9  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 4'h8;
+  assign \$10  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 4'h9;
+  assign \$11  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 4'ha;
+  assign \$12  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 4'hb;
+  assign \$13  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 4'hc;
+  assign \$14  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 4'hd;
+  assign \$15  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 4'he;
+  assign \$16  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 4'hf;
+  assign \$17  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 5'h10;
+  assign \$18  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 5'h11;
+  assign \$19  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 5'h12;
+  assign \$20  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 5'h13;
+  assign \$21  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 5'h14;
+  assign \$22  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 5'h15;
+  assign \$23  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 5'h16;
+  assign \$24  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 5'h17;
+  assign \$25  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 5'h18;
+  assign \$26  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:86" *) 5'h19;
+  assign out = enable ? (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:99" *) read : addr;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard3.py:14" *)
   d_latch bits_0_0 (
     .clk(en),
@@ -3228,30 +3291,30 @@ module \top.plugboard (clk, rst, out, in_ltor, is_ltor, enable, wr_addr_en, wr_d
   assign \$signal [0] = q;
 endmodule
 
-(* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:63" *)
+(* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:80" *)
 (* generator = "Amaranth" *)
-module \top.r (rst, reflector_in, din, is_at_turnover, dout, en, inc, din_sel, ltor, load_start, load_ring, clk);
+module \top.r (rst, reflector_in, din, is_at_turnover, dout, en, inc, din_sel, ltor, load_start, load_ring, load_rotor_type, clk);
   reg \$auto$verilog_backend.cc:2352:dump_module$4  = 0;
   reg [4:0] \$1 ;
-  wire [5:0] \$10 ;
-  wire \$11 ;
-  wire \$12 ;
-  wire \$13 ;
-  wire \$14 ;
-  wire \$15 ;
-  wire [6:0] \$16 ;
-  wire [6:0] \$17 ;
-  wire [6:0] \$18 ;
-  wire [6:0] \$19 ;
+  reg [4:0] \$10 ;
+  reg [4:0] \$11 ;
+  reg [4:0] \$12 ;
+  reg [4:0] \$13 ;
+  reg [4:0] \$14 ;
+  reg [4:0] \$15 ;
+  reg [4:0] \$16 ;
+  reg [4:0] \$17 ;
+  reg [4:0] \$18 ;
+  reg [4:0] \$19 ;
   reg [4:0] \$2 ;
-  wire [6:0] \$20 ;
-  wire \$21 ;
-  wire [5:0] \$22 ;
-  wire \$23 ;
-  wire [5:0] \$24 ;
-  wire \$25 ;
-  wire [5:0] \$26 ;
-  wire [4:0] \$27 ;
+  reg [4:0] \$20 ;
+  reg [4:0] \$21 ;
+  reg [4:0] \$22 ;
+  reg [4:0] \$23 ;
+  reg [4:0] \$24 ;
+  reg [4:0] \$25 ;
+  reg [4:0] \$26 ;
+  reg [4:0] \$27 ;
   reg [4:0] \$28 ;
   reg [4:0] \$29 ;
   reg [4:0] \$3 ;
@@ -3260,62 +3323,104 @@ module \top.r (rst, reflector_in, din, is_at_turnover, dout, en, inc, din_sel, l
   reg [4:0] \$32 ;
   reg [4:0] \$33 ;
   reg [4:0] \$34 ;
+  reg [4:0] \$35 ;
+  reg [4:0] \$36 ;
+  wire \$37 ;
+  wire [5:0] \$38 ;
+  wire [6:0] \$39 ;
   reg [4:0] \$4 ;
+  wire [5:0] \$40 ;
+  reg [4:0] \$41 ;
+  wire \$42 ;
+  reg [4:0] \$43 ;
+  wire \$44 ;
+  reg [4:0] \$45 ;
+  wire \$46 ;
+  wire \$47 ;
+  wire \$48 ;
+  wire [6:0] \$49 ;
   reg [4:0] \$5 ;
+  wire [6:0] \$50 ;
+  wire [6:0] \$51 ;
+  wire [6:0] \$52 ;
+  wire [6:0] \$53 ;
+  wire \$54 ;
+  wire [5:0] \$55 ;
+  wire \$56 ;
+  wire [5:0] \$57 ;
+  wire \$58 ;
+  wire [5:0] \$59 ;
   reg [4:0] \$6 ;
-  wire \$7 ;
-  wire [5:0] \$8 ;
-  wire [6:0] \$9 ;
+  wire [4:0] \$60 ;
+  reg [4:0] \$61 ;
+  reg [4:0] \$62 ;
+  reg [2:0] \$63 ;
+  reg [4:0] \$64 ;
+  reg [4:0] \$65 ;
+  reg [2:0] \$66 ;
+  reg [4:0] \$67 ;
+  reg [4:0] \$68 ;
+  reg [2:0] \$69 ;
+  reg [4:0] \$7 ;
+  reg [4:0] \$70 ;
+  reg [4:0] \$8 ;
+  reg [4:0] \$9 ;
   (* init = 5'h00 *)
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:30" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:38" *)
   wire [4:0] \$signal ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:32" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:40" *)
   wire [1:0] \$signal$11 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:32" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:40" *)
   wire [1:0] \$signal$12 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:32" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:40" *)
   wire [1:0] \$signal$13 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:31" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:39" *)
   reg [4:0] \$signal$16  = 5'h00;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:31" *)
-  reg [4:0] \$signal$21  = 5'h00;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:31" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:92" *)
+  reg [2:0] \$signal$19  = 3'h0;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:39" *)
   reg [4:0] \$signal$22  = 5'h00;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:92" *)
+  reg [2:0] \$signal$23  = 3'h1;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:39" *)
+  reg [4:0] \$signal$24  = 5'h00;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:92" *)
+  reg [2:0] \$signal$25  = 3'h2;
   (* init = 5'h00 *)
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:30" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:38" *)
   wire [4:0] \$signal$3 ;
   (* init = 5'h00 *)
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:30" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:38" *)
   wire [4:0] \$signal$5 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:151" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:174" *)
   wire [5:0] a_ext;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:151" *)
-  wire [5:0] \a_ext$33 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:152" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:174" *)
+  wire [5:0] \a_ext$36 ;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:175" *)
   wire [5:0] b_ext;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:152" *)
-  wire [5:0] \b_ext$34 ;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:175" *)
+  wire [5:0] \b_ext$37 ;
   (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_ir.py:215" *)
   input clk;
   wire clk;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:68" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:85" *)
   reg [4:0] cnt;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:66" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:83" *)
   reg [4:0] cnt_ring_combined;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:75" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:95" *)
   reg [4:0] cnts_debug0 = 5'h00;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:76" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:96" *)
   reg [4:0] cnts_debug1 = 5'h00;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:77" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:97" *)
   reg [4:0] cnts_debug2 = 5'h00;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:153" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:176" *)
   wire [5:0] diff_plus_26;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:153" *)
-  wire [5:0] \diff_plus_26$36 ;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:176" *)
+  wire [5:0] \diff_plus_26$39 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:12" *)
   input [4:0] din;
   wire [4:0] din;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:24" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:32" *)
   input [1:0] din_sel;
   wire [1:0] din_sel;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:13" *)
@@ -3324,97 +3429,730 @@ module \top.r (rst, reflector_in, din, is_at_turnover, dout, en, inc, din_sel, l
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:18" *)
   input [2:0] en;
   wire [2:0] en;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:21" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:26" *)
   input inc;
   wire inc;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:17" *)
   output [2:0] is_at_turnover;
   wire [2:0] is_at_turnover;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:20" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:22" *)
   input load_ring;
   wire load_ring;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:19" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:23" *)
+  input load_rotor_type;
+  wire load_rotor_type;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:21" *)
   input load_start;
   wire load_start;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:22" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:29" *)
   input ltor;
   wire ltor;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:69" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:86" *)
   reg [4:0] muxed_din;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:15" *)
   input [4:0] reflector_in;
   wire [4:0] reflector_in;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:70" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:87" *)
   wire [4:0] right_ptr;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:67" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:84" *)
   reg [4:0] ring_setting;
   (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_ir.py:215" *)
   input rst;
   wire rst;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:139" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:162" *)
   wire [5:0] s;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:150" *)
-  wire [5:0] \s$30 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:150" *)
-  wire [5:0] \s$35 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:141" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:173" *)
+  wire [5:0] \s$33 ;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:173" *)
+  wire [5:0] \s$38 ;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:164" *)
   wire s_ge_26;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:140" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:163" *)
   wire [5:0] s_m_26;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:171" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:194" *)
   wire [4:0] swizz_l_minus_cnt_ring;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:167" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:190" *)
   wire [4:0] swizz_minus_cnt_ring;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:72" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:89" *)
   reg [4:0] wiring_ltor;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:71" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:88" *)
   reg [4:0] wiring_rtol;
-  assign \$7  = ring_setting > (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:125" *) cnt;
-  assign \$8  = ring_setting - (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:126" *) cnt;
-  assign \$9  = $signed(6'h1a) - (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:126" *) $signed(\$8 );
-  assign \$10  = cnt - (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:128" *) ring_setting;
-  assign \$11  = cnts_debug0 == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:132" *) 5'h10;
-  assign \$12  = cnts_debug1 == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:132" *) 3'h4;
-  assign \$13  = cnts_debug2 == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:132" *) 5'h15;
-  assign s = muxed_din + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:143" *) cnt_ring_combined;
-  assign \$15  = s[4:0] >= (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:144" *) 5'h1a;
-  assign s_ge_26 = \$14  | (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:144" *) \$15 ;
-  assign \$16  = s - (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:145" *) 5'h1a;
-  assign right_ptr = s_ge_26 ? (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:146" *) \$16 [4:0] : s[4:0];
-  assign \$17  = wiring_rtol - (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:158" *) cnt_ring_combined;
-  assign \$18  = \$17 [5:0] + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:159" *) 5'h1a;
-  assign swizz_minus_cnt_ring = \$17 [5] ? (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:161" *) \$18 [4:0] : \$17 [4:0];
-  assign \$19  = wiring_ltor - (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:158" *) cnt_ring_combined;
-  assign \$20  = \$19 [5:0] + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:159" *) 5'h1a;
-  assign swizz_l_minus_cnt_ring = \$19 [5] ? (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:161" *) \$20 [4:0] : \$19 [4:0];
-  assign \$21  = cnts_debug0 == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:115" *) 5'h19;
-  assign \$22  = cnts_debug0 + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:118" *) 1'h1;
-  assign \$23  = cnts_debug1 == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:115" *) 5'h19;
-  assign \$24  = cnts_debug1 + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:118" *) 1'h1;
-  assign \$25  = cnts_debug2 == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:115" *) 5'h19;
-  assign \$26  = cnts_debug2 + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:118" *) 1'h1;
-  assign \$27  = ltor ? (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:175" *) swizz_l_minus_cnt_ring : swizz_minus_cnt_ring;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:30" *)
+  assign \$37  = ring_setting > (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:147" *) cnt;
+  assign \$38  = ring_setting - (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:148" *) cnt;
+  assign \$39  = $signed(6'h1a) - (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:148" *) $signed(\$38 );
+  assign \$40  = cnt - (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:150" *) ring_setting;
+  assign \$42  = \$41  == (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_ast.py:2368" *) cnts_debug0;
+  assign \$44  = \$43  == (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_ast.py:2368" *) cnts_debug1;
+  assign \$46  = \$45  == (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_ast.py:2368" *) cnts_debug2;
+  assign s = muxed_din + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:166" *) cnt_ring_combined;
+  assign \$48  = s[4:0] >= (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:167" *) 5'h1a;
+  assign s_ge_26 = \$47  | (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:167" *) \$48 ;
+  assign \$49  = s - (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:168" *) 5'h1a;
+  assign right_ptr = s_ge_26 ? (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:169" *) \$49 [4:0] : s[4:0];
+  assign \$50  = wiring_rtol - (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:181" *) cnt_ring_combined;
+  assign \$51  = \$50 [5:0] + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:182" *) 5'h1a;
+  assign swizz_minus_cnt_ring = \$50 [5] ? (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:184" *) \$51 [4:0] : \$50 [4:0];
+  assign \$52  = wiring_ltor - (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:181" *) cnt_ring_combined;
+  assign \$53  = \$52 [5:0] + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:182" *) 5'h1a;
+  assign swizz_l_minus_cnt_ring = \$52 [5] ? (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:184" *) \$53 [4:0] : \$52 [4:0];
+  assign \$54  = cnts_debug0 == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:137" *) 5'h19;
+  assign \$55  = cnts_debug0 + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:140" *) 1'h1;
+  assign \$56  = cnts_debug1 == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:137" *) 5'h19;
+  assign \$57  = cnts_debug1 + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:140" *) 1'h1;
+  assign \$58  = cnts_debug2 == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:137" *) 5'h19;
+  assign \$59  = cnts_debug2 + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:140" *) 1'h1;
+  assign \$60  = ltor ? (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:198" *) swizz_l_minus_cnt_ring : swizz_minus_cnt_ring;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:38" *)
   always @(posedge clk)
-    cnts_debug0 <= \$28 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:31" *)
+    cnts_debug0 <= \$61 ;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:39" *)
   always @(posedge clk)
-    \$signal$16  <= \$29 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:30" *)
+    \$signal$16  <= \$62 ;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:92" *)
   always @(posedge clk)
-    cnts_debug1 <= \$30 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:31" *)
+    \$signal$19  <= \$63 ;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:38" *)
   always @(posedge clk)
-    \$signal$21  <= \$31 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:30" *)
+    cnts_debug1 <= \$64 ;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:39" *)
   always @(posedge clk)
-    cnts_debug2 <= \$32 ;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:31" *)
+    \$signal$22  <= \$65 ;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:92" *)
   always @(posedge clk)
-    \$signal$22  <= \$33 ;
+    \$signal$23  <= \$66 ;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:38" *)
+  always @(posedge clk)
+    cnts_debug2 <= \$67 ;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:39" *)
+  always @(posedge clk)
+    \$signal$24  <= \$68 ;
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:92" *)
+  always @(posedge clk)
+    \$signal$25  <= \$69 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:13" *)
   always @(posedge clk)
-    dout <= \$34 ;
+    dout <= \$70 ;
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$30  = 5'h00;
+    casez (\$signal$25 )
+      3'h0:
+          \$30  = \$25 ;
+      3'h1:
+          \$30  = \$26 ;
+      3'h2:
+          \$30  = \$27 ;
+      3'h3:
+          \$30  = \$28 ;
+      3'h4:
+          \$30  = \$29 ;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$31  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$31  = 5'h14;
+      5'h01:
+          \$31  = 5'h16;
+      5'h02:
+          \$31  = 5'h18;
+      5'h03:
+          \$31  = 5'h06;
+      5'h04:
+          \$31  = 5'h00;
+      5'h05:
+          \$31  = 5'h03;
+      5'h06:
+          \$31  = 5'h05;
+      5'h07:
+          \$31  = 5'h0f;
+      5'h08:
+          \$31  = 5'h15;
+      5'h09:
+          \$31  = 5'h19;
+      5'h0a:
+          \$31  = 5'h01;
+      5'h0b:
+          \$31  = 5'h04;
+      5'h0c:
+          \$31  = 5'h02;
+      5'h0d:
+          \$31  = 5'h0a;
+      5'h0e:
+          \$31  = 5'h0c;
+      5'h0f:
+          \$31  = 5'h13;
+      5'h10:
+          \$31  = 5'h07;
+      5'h11:
+          \$31  = 5'h17;
+      5'h12:
+          \$31  = 5'h12;
+      5'h13:
+          \$31  = 5'h0b;
+      5'h14:
+          \$31  = 5'h11;
+      5'h15:
+          \$31  = 5'h08;
+      5'h16:
+          \$31  = 5'h0d;
+      5'h17:
+          \$31  = 5'h10;
+      5'h18:
+          \$31  = 5'h0e;
+      5'h19:
+          \$31  = 5'h09;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$32  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$32  = 5'h00;
+      5'h01:
+          \$32  = 5'h09;
+      5'h02:
+          \$32  = 5'h0f;
+      5'h03:
+          \$32  = 5'h02;
+      5'h04:
+          \$32  = 5'h19;
+      5'h05:
+          \$32  = 5'h16;
+      5'h06:
+          \$32  = 5'h11;
+      5'h07:
+          \$32  = 5'h0b;
+      5'h08:
+          \$32  = 5'h05;
+      5'h09:
+          \$32  = 5'h01;
+      5'h0a:
+          \$32  = 5'h03;
+      5'h0b:
+          \$32  = 5'h0a;
+      5'h0c:
+          \$32  = 5'h0e;
+      5'h0d:
+          \$32  = 5'h13;
+      5'h0e:
+          \$32  = 5'h18;
+      5'h0f:
+          \$32  = 5'h14;
+      5'h10:
+          \$32  = 5'h10;
+      5'h11:
+          \$32  = 5'h06;
+      5'h12:
+          \$32  = 5'h04;
+      5'h13:
+          \$32  = 5'h0d;
+      5'h14:
+          \$32  = 5'h07;
+      5'h15:
+          \$32  = 5'h17;
+      5'h16:
+          \$32  = 5'h0c;
+      5'h17:
+          \$32  = 5'h08;
+      5'h18:
+          \$32  = 5'h15;
+      5'h19:
+          \$32  = 5'h12;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$33  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$33  = 5'h13;
+      5'h01:
+          \$33  = 5'h00;
+      5'h02:
+          \$33  = 5'h06;
+      5'h03:
+          \$33  = 5'h01;
+      5'h04:
+          \$33  = 5'h0f;
+      5'h05:
+          \$33  = 5'h02;
+      5'h06:
+          \$33  = 5'h12;
+      5'h07:
+          \$33  = 5'h03;
+      5'h08:
+          \$33  = 5'h10;
+      5'h09:
+          \$33  = 5'h04;
+      5'h0a:
+          \$33  = 5'h14;
+      5'h0b:
+          \$33  = 5'h05;
+      5'h0c:
+          \$33  = 5'h15;
+      5'h0d:
+          \$33  = 5'h0d;
+      5'h0e:
+          \$33  = 5'h19;
+      5'h0f:
+          \$33  = 5'h07;
+      5'h10:
+          \$33  = 5'h18;
+      5'h11:
+          \$33  = 5'h08;
+      5'h12:
+          \$33  = 5'h17;
+      5'h13:
+          \$33  = 5'h09;
+      5'h14:
+          \$33  = 5'h16;
+      5'h15:
+          \$33  = 5'h0b;
+      5'h16:
+          \$33  = 5'h11;
+      5'h17:
+          \$33  = 5'h0a;
+      5'h18:
+          \$33  = 5'h0e;
+      5'h19:
+          \$33  = 5'h0c;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$34  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$34  = 5'h07;
+      5'h01:
+          \$34  = 5'h19;
+      5'h02:
+          \$34  = 5'h16;
+      5'h03:
+          \$34  = 5'h15;
+      5'h04:
+          \$34  = 5'h00;
+      5'h05:
+          \$34  = 5'h11;
+      5'h06:
+          \$34  = 5'h13;
+      5'h07:
+          \$34  = 5'h0d;
+      5'h08:
+          \$34  = 5'h0b;
+      5'h09:
+          \$34  = 5'h06;
+      5'h0a:
+          \$34  = 5'h14;
+      5'h0b:
+          \$34  = 5'h0f;
+      5'h0c:
+          \$34  = 5'h17;
+      5'h0d:
+          \$34  = 5'h10;
+      5'h0e:
+          \$34  = 5'h02;
+      5'h0f:
+          \$34  = 5'h04;
+      5'h10:
+          \$34  = 5'h09;
+      5'h11:
+          \$34  = 5'h0c;
+      5'h12:
+          \$34  = 5'h01;
+      5'h13:
+          \$34  = 5'h12;
+      5'h14:
+          \$34  = 5'h0a;
+      5'h15:
+          \$34  = 5'h03;
+      5'h16:
+          \$34  = 5'h18;
+      5'h17:
+          \$34  = 5'h0e;
+      5'h18:
+          \$34  = 5'h08;
+      5'h19:
+          \$34  = 5'h05;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$35  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$35  = 5'h10;
+      5'h01:
+          \$35  = 5'h02;
+      5'h02:
+          \$35  = 5'h18;
+      5'h03:
+          \$35  = 5'h0b;
+      5'h04:
+          \$35  = 5'h17;
+      5'h05:
+          \$35  = 5'h16;
+      5'h06:
+          \$35  = 5'h04;
+      5'h07:
+          \$35  = 5'h0d;
+      5'h08:
+          \$35  = 5'h05;
+      5'h09:
+          \$35  = 5'h13;
+      5'h0a:
+          \$35  = 5'h19;
+      5'h0b:
+          \$35  = 5'h0e;
+      5'h0c:
+          \$35  = 5'h12;
+      5'h0d:
+          \$35  = 5'h0c;
+      5'h0e:
+          \$35  = 5'h15;
+      5'h0f:
+          \$35  = 5'h09;
+      5'h10:
+          \$35  = 5'h14;
+      5'h11:
+          \$35  = 5'h03;
+      5'h12:
+          \$35  = 5'h0a;
+      5'h13:
+          \$35  = 5'h06;
+      5'h14:
+          \$35  = 5'h08;
+      5'h15:
+          \$35  = 5'h00;
+      5'h16:
+          \$35  = 5'h11;
+      5'h17:
+          \$35  = 5'h0f;
+      5'h18:
+          \$35  = 5'h07;
+      5'h19:
+          \$35  = 5'h01;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$36  = 5'h00;
+    casez (\$signal$25 )
+      3'h0:
+          \$36  = \$31 ;
+      3'h1:
+          \$36  = \$32 ;
+      3'h2:
+          \$36  = \$33 ;
+      3'h3:
+          \$36  = \$34 ;
+      3'h4:
+          \$36  = \$35 ;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$41  = 5'h00;
+    casez (\$signal$19 )
+      3'h0:
+          \$41  = 5'h10;
+      3'h1:
+          \$41  = 5'h04;
+      3'h2:
+          \$41  = 5'h15;
+      3'h3:
+          \$41  = 5'h09;
+      3'h4:
+          \$41  = 5'h19;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$43  = 5'h00;
+    casez (\$signal$23 )
+      3'h0:
+          \$43  = 5'h10;
+      3'h1:
+          \$43  = 5'h04;
+      3'h2:
+          \$43  = 5'h15;
+      3'h3:
+          \$43  = 5'h09;
+      3'h4:
+          \$43  = 5'h19;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$45  = 5'h00;
+    casez (\$signal$25 )
+      3'h0:
+          \$45  = 5'h10;
+      3'h1:
+          \$45  = 5'h04;
+      3'h2:
+          \$45  = 5'h15;
+      3'h3:
+          \$45  = 5'h09;
+      3'h4:
+          \$45  = 5'h19;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    (* full_case = 32'd1 *)
+    casez (din_sel)
+      2'h1:
+          muxed_din = dout;
+      2'h2:
+          muxed_din = reflector_in;
+      default:
+          muxed_din = din;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    (* full_case = 32'd1 *)
+    casez (en)
+      3'h1:
+          ring_setting = \$signal$16 ;
+      3'h2:
+          ring_setting = \$signal$22 ;
+      3'h4:
+          ring_setting = \$signal$24 ;
+      default:
+          ring_setting = 5'h00;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    (* full_case = 32'd1 *)
+    casez (en)
+      3'h1:
+          cnt = cnts_debug0;
+      3'h2:
+          cnt = cnts_debug1;
+      3'h4:
+          cnt = cnts_debug2;
+      default:
+          cnt = 5'h00;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    wiring_rtol = 5'h00;
+    casez (en)
+      3'h1:
+          wiring_rtol = \$6 ;
+      3'h2:
+          wiring_rtol = \$18 ;
+      3'h4:
+          wiring_rtol = \$30 ;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    wiring_ltor = 5'h00;
+    casez (en)
+      3'h1:
+          wiring_ltor = \$12 ;
+      3'h2:
+          wiring_ltor = \$24 ;
+      3'h4:
+          wiring_ltor = \$36 ;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    (* full_case = 32'd1 *)
+    if (\$37 ) begin
+      cnt_ring_combined = \$39 [4:0];
+    end else begin
+      cnt_ring_combined = \$40 [4:0];
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$61  = cnts_debug0;
+    casez (en)
+      3'h1:
+          if (load_start) begin
+            \$61  = muxed_din;
+          end else if (load_ring) begin
+          end else if (load_rotor_type) begin
+          end else if (inc) begin
+            (* full_case = 32'd1 *)
+            if (\$54 ) begin
+              \$61  = 5'h00;
+            end else begin
+              \$61  = \$55 [4:0];
+            end
+          end
+    endcase
+    if (rst) begin
+      \$61  = 5'h00;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$62  = \$signal$16 ;
+    casez (en)
+      3'h1:
+          if (load_start) begin
+          end else if (load_ring) begin
+            \$62  = muxed_din;
+          end
+    endcase
+    if (rst) begin
+      \$62  = 5'h00;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$63  = \$signal$19 ;
+    casez (en)
+      3'h1:
+          if (load_start) begin
+          end else if (load_ring) begin
+          end else if (load_rotor_type) begin
+            \$63  = muxed_din[2:0];
+          end
+    endcase
+    if (rst) begin
+      \$63  = 3'h0;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$64  = cnts_debug1;
+    casez (en)
+      3'h1:
+          /* empty */;
+      3'h2:
+          if (load_start) begin
+            \$64  = muxed_din;
+          end else if (load_ring) begin
+          end else if (load_rotor_type) begin
+          end else if (inc) begin
+            (* full_case = 32'd1 *)
+            if (\$56 ) begin
+              \$64  = 5'h00;
+            end else begin
+              \$64  = \$57 [4:0];
+            end
+          end
+    endcase
+    if (rst) begin
+      \$64  = 5'h00;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$65  = \$signal$22 ;
+    casez (en)
+      3'h1:
+          /* empty */;
+      3'h2:
+          if (load_start) begin
+          end else if (load_ring) begin
+            \$65  = muxed_din;
+          end
+    endcase
+    if (rst) begin
+      \$65  = 5'h00;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$66  = \$signal$23 ;
+    casez (en)
+      3'h1:
+          /* empty */;
+      3'h2:
+          if (load_start) begin
+          end else if (load_ring) begin
+          end else if (load_rotor_type) begin
+            \$66  = muxed_din[2:0];
+          end
+    endcase
+    if (rst) begin
+      \$66  = 3'h1;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$67  = cnts_debug2;
+    casez (en)
+      3'h1:
+          /* empty */;
+      3'h2:
+          /* empty */;
+      3'h4:
+          if (load_start) begin
+            \$67  = muxed_din;
+          end else if (load_ring) begin
+          end else if (load_rotor_type) begin
+          end else if (inc) begin
+            (* full_case = 32'd1 *)
+            if (\$58 ) begin
+              \$67  = 5'h00;
+            end else begin
+              \$67  = \$59 [4:0];
+            end
+          end
+    endcase
+    if (rst) begin
+      \$67  = 5'h00;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$68  = \$signal$24 ;
+    casez (en)
+      3'h1:
+          /* empty */;
+      3'h2:
+          /* empty */;
+      3'h4:
+          if (load_start) begin
+          end else if (load_ring) begin
+            \$68  = muxed_din;
+          end
+    endcase
+    if (rst) begin
+      \$68  = 5'h00;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$69  = \$signal$25 ;
+    casez (en)
+      3'h1:
+          /* empty */;
+      3'h2:
+          /* empty */;
+      3'h4:
+          if (load_start) begin
+          end else if (load_ring) begin
+          end else if (load_rotor_type) begin
+            \$69  = muxed_din[2:0];
+          end
+    endcase
+    if (rst) begin
+      \$69  = 3'h2;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$70  = \$60 ;
+    if (rst) begin
+      \$70  = 5'h00;
+    end
+  end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
     \$1  = 5'h00;
@@ -3478,57 +4216,57 @@ module \top.r (rst, reflector_in, din, is_at_turnover, dout, en, inc, din_sel, l
     \$2  = 5'h00;
     casez (right_ptr)
       5'h00:
-          \$2  = 5'h14;
-      5'h01:
-          \$2  = 5'h16;
-      5'h02:
-          \$2  = 5'h18;
-      5'h03:
-          \$2  = 5'h06;
-      5'h04:
           \$2  = 5'h00;
-      5'h05:
+      5'h01:
+          \$2  = 5'h09;
+      5'h02:
           \$2  = 5'h03;
-      5'h06:
-          \$2  = 5'h05;
-      5'h07:
-          \$2  = 5'h0f;
-      5'h08:
-          \$2  = 5'h15;
-      5'h09:
-          \$2  = 5'h19;
-      5'h0a:
-          \$2  = 5'h01;
-      5'h0b:
-          \$2  = 5'h04;
-      5'h0c:
-          \$2  = 5'h02;
-      5'h0d:
+      5'h03:
           \$2  = 5'h0a;
+      5'h04:
+          \$2  = 5'h12;
+      5'h05:
+          \$2  = 5'h08;
+      5'h06:
+          \$2  = 5'h11;
+      5'h07:
+          \$2  = 5'h14;
+      5'h08:
+          \$2  = 5'h17;
+      5'h09:
+          \$2  = 5'h01;
+      5'h0a:
+          \$2  = 5'h0b;
+      5'h0b:
+          \$2  = 5'h07;
+      5'h0c:
+          \$2  = 5'h16;
+      5'h0d:
+          \$2  = 5'h13;
       5'h0e:
           \$2  = 5'h0c;
       5'h0f:
-          \$2  = 5'h13;
+          \$2  = 5'h02;
       5'h10:
-          \$2  = 5'h07;
-      5'h11:
-          \$2  = 5'h17;
-      5'h12:
-          \$2  = 5'h12;
-      5'h13:
-          \$2  = 5'h0b;
-      5'h14:
-          \$2  = 5'h11;
-      5'h15:
-          \$2  = 5'h08;
-      5'h16:
-          \$2  = 5'h0d;
-      5'h17:
           \$2  = 5'h10;
+      5'h11:
+          \$2  = 5'h06;
+      5'h12:
+          \$2  = 5'h19;
+      5'h13:
+          \$2  = 5'h0d;
+      5'h14:
+          \$2  = 5'h0f;
+      5'h15:
+          \$2  = 5'h18;
+      5'h16:
+          \$2  = 5'h05;
+      5'h17:
+          \$2  = 5'h15;
       5'h18:
           \$2  = 5'h0e;
       5'h19:
-          \$2  = 5'h09;
+          \$2  = 5'h04;
     endcase
   end
   always @* begin
@@ -3536,57 +4274,57 @@ module \top.r (rst, reflector_in, din, is_at_turnover, dout, en, inc, din_sel, l
     \$3  = 5'h00;
     casez (right_ptr)
       5'h00:
-          \$3  = 5'h00;
-      5'h01:
-          \$3  = 5'h09;
-      5'h02:
-          \$3  = 5'h03;
-      5'h03:
-          \$3  = 5'h0a;
-      5'h04:
-          \$3  = 5'h12;
-      5'h05:
-          \$3  = 5'h08;
-      5'h06:
-          \$3  = 5'h11;
-      5'h07:
-          \$3  = 5'h14;
-      5'h08:
-          \$3  = 5'h17;
-      5'h09:
           \$3  = 5'h01;
-      5'h0a:
-          \$3  = 5'h0b;
-      5'h0b:
-          \$3  = 5'h07;
-      5'h0c:
-          \$3  = 5'h16;
-      5'h0d:
-          \$3  = 5'h13;
-      5'h0e:
-          \$3  = 5'h0c;
-      5'h0f:
-          \$3  = 5'h02;
-      5'h10:
-          \$3  = 5'h10;
-      5'h11:
-          \$3  = 5'h06;
-      5'h12:
-          \$3  = 5'h19;
-      5'h13:
-          \$3  = 5'h0d;
-      5'h14:
-          \$3  = 5'h0f;
-      5'h15:
-          \$3  = 5'h18;
-      5'h16:
+      5'h01:
+          \$3  = 5'h03;
+      5'h02:
           \$3  = 5'h05;
-      5'h17:
+      5'h03:
+          \$3  = 5'h07;
+      5'h04:
+          \$3  = 5'h09;
+      5'h05:
+          \$3  = 5'h0b;
+      5'h06:
+          \$3  = 5'h02;
+      5'h07:
+          \$3  = 5'h0f;
+      5'h08:
+          \$3  = 5'h11;
+      5'h09:
+          \$3  = 5'h13;
+      5'h0a:
+          \$3  = 5'h17;
+      5'h0b:
           \$3  = 5'h15;
-      5'h18:
-          \$3  = 5'h0e;
-      5'h19:
+      5'h0c:
+          \$3  = 5'h19;
+      5'h0d:
+          \$3  = 5'h0d;
+      5'h0e:
+          \$3  = 5'h18;
+      5'h0f:
           \$3  = 5'h04;
+      5'h10:
+          \$3  = 5'h08;
+      5'h11:
+          \$3  = 5'h16;
+      5'h12:
+          \$3  = 5'h06;
+      5'h13:
+          \$3  = 5'h00;
+      5'h14:
+          \$3  = 5'h0a;
+      5'h15:
+          \$3  = 5'h0c;
+      5'h16:
+          \$3  = 5'h14;
+      5'h17:
+          \$3  = 5'h12;
+      5'h18:
+          \$3  = 5'h10;
+      5'h19:
+          \$3  = 5'h0e;
     endcase
   end
   always @* begin
@@ -3594,57 +4332,57 @@ module \top.r (rst, reflector_in, din, is_at_turnover, dout, en, inc, din_sel, l
     \$4  = 5'h00;
     casez (right_ptr)
       5'h00:
-          \$4  = 5'h00;
-      5'h01:
-          \$4  = 5'h09;
-      5'h02:
-          \$4  = 5'h0f;
-      5'h03:
-          \$4  = 5'h02;
-      5'h04:
-          \$4  = 5'h19;
-      5'h05:
-          \$4  = 5'h16;
-      5'h06:
-          \$4  = 5'h11;
-      5'h07:
-          \$4  = 5'h0b;
-      5'h08:
-          \$4  = 5'h05;
-      5'h09:
-          \$4  = 5'h01;
-      5'h0a:
-          \$4  = 5'h03;
-      5'h0b:
-          \$4  = 5'h0a;
-      5'h0c:
-          \$4  = 5'h0e;
-      5'h0d:
-          \$4  = 5'h13;
-      5'h0e:
-          \$4  = 5'h18;
-      5'h0f:
-          \$4  = 5'h14;
-      5'h10:
-          \$4  = 5'h10;
-      5'h11:
-          \$4  = 5'h06;
-      5'h12:
           \$4  = 5'h04;
-      5'h13:
-          \$4  = 5'h0d;
-      5'h14:
-          \$4  = 5'h07;
-      5'h15:
-          \$4  = 5'h17;
-      5'h16:
-          \$4  = 5'h0c;
-      5'h17:
-          \$4  = 5'h08;
-      5'h18:
-          \$4  = 5'h15;
-      5'h19:
+      5'h01:
           \$4  = 5'h12;
+      5'h02:
+          \$4  = 5'h0e;
+      5'h03:
+          \$4  = 5'h15;
+      5'h04:
+          \$4  = 5'h0f;
+      5'h05:
+          \$4  = 5'h19;
+      5'h06:
+          \$4  = 5'h09;
+      5'h07:
+          \$4  = 5'h00;
+      5'h08:
+          \$4  = 5'h18;
+      5'h09:
+          \$4  = 5'h10;
+      5'h0a:
+          \$4  = 5'h14;
+      5'h0b:
+          \$4  = 5'h08;
+      5'h0c:
+          \$4  = 5'h11;
+      5'h0d:
+          \$4  = 5'h07;
+      5'h0e:
+          \$4  = 5'h17;
+      5'h0f:
+          \$4  = 5'h0b;
+      5'h10:
+          \$4  = 5'h0d;
+      5'h11:
+          \$4  = 5'h05;
+      5'h12:
+          \$4  = 5'h13;
+      5'h13:
+          \$4  = 5'h06;
+      5'h14:
+          \$4  = 5'h0a;
+      5'h15:
+          \$4  = 5'h03;
+      5'h16:
+          \$4  = 5'h02;
+      5'h17:
+          \$4  = 5'h0c;
+      5'h18:
+          \$4  = 5'h16;
+      5'h19:
+          \$4  = 5'h01;
     endcase
   end
   always @* begin
@@ -3652,313 +4390,1282 @@ module \top.r (rst, reflector_in, din, is_at_turnover, dout, en, inc, din_sel, l
     \$5  = 5'h00;
     casez (right_ptr)
       5'h00:
-          \$5  = 5'h01;
-      5'h01:
-          \$5  = 5'h03;
-      5'h02:
-          \$5  = 5'h05;
-      5'h03:
-          \$5  = 5'h07;
-      5'h04:
-          \$5  = 5'h09;
-      5'h05:
-          \$5  = 5'h0b;
-      5'h06:
-          \$5  = 5'h02;
-      5'h07:
-          \$5  = 5'h0f;
-      5'h08:
-          \$5  = 5'h11;
-      5'h09:
-          \$5  = 5'h13;
-      5'h0a:
-          \$5  = 5'h17;
-      5'h0b:
           \$5  = 5'h15;
-      5'h0c:
+      5'h01:
           \$5  = 5'h19;
-      5'h0d:
-          \$5  = 5'h0d;
-      5'h0e:
-          \$5  = 5'h18;
-      5'h0f:
-          \$5  = 5'h04;
-      5'h10:
+      5'h02:
+          \$5  = 5'h01;
+      5'h03:
+          \$5  = 5'h11;
+      5'h04:
+          \$5  = 5'h06;
+      5'h05:
           \$5  = 5'h08;
+      5'h06:
+          \$5  = 5'h13;
+      5'h07:
+          \$5  = 5'h18;
+      5'h08:
+          \$5  = 5'h14;
+      5'h09:
+          \$5  = 5'h0f;
+      5'h0a:
+          \$5  = 5'h12;
+      5'h0b:
+          \$5  = 5'h03;
+      5'h0c:
+          \$5  = 5'h0d;
+      5'h0d:
+          \$5  = 5'h07;
+      5'h0e:
+          \$5  = 5'h0b;
+      5'h0f:
+          \$5  = 5'h17;
+      5'h10:
+          \$5  = 5'h00;
       5'h11:
           \$5  = 5'h16;
       5'h12:
-          \$5  = 5'h06;
-      5'h13:
-          \$5  = 5'h00;
-      5'h14:
-          \$5  = 5'h0a;
-      5'h15:
           \$5  = 5'h0c;
-      5'h16:
-          \$5  = 5'h14;
-      5'h17:
-          \$5  = 5'h12;
-      5'h18:
+      5'h13:
+          \$5  = 5'h09;
+      5'h14:
           \$5  = 5'h10;
-      5'h19:
+      5'h15:
           \$5  = 5'h0e;
+      5'h16:
+          \$5  = 5'h05;
+      5'h17:
+          \$5  = 5'h04;
+      5'h18:
+          \$5  = 5'h02;
+      5'h19:
+          \$5  = 5'h0a;
     endcase
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
     \$6  = 5'h00;
+    casez (\$signal$19 )
+      3'h0:
+          \$6  = \$1 ;
+      3'h1:
+          \$6  = \$2 ;
+      3'h2:
+          \$6  = \$3 ;
+      3'h3:
+          \$6  = \$4 ;
+      3'h4:
+          \$6  = \$5 ;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$7  = 5'h00;
     casez (right_ptr)
       5'h00:
-          \$6  = 5'h13;
+          \$7  = 5'h14;
       5'h01:
-          \$6  = 5'h00;
+          \$7  = 5'h16;
       5'h02:
-          \$6  = 5'h06;
+          \$7  = 5'h18;
       5'h03:
-          \$6  = 5'h01;
+          \$7  = 5'h06;
       5'h04:
-          \$6  = 5'h0f;
+          \$7  = 5'h00;
       5'h05:
-          \$6  = 5'h02;
+          \$7  = 5'h03;
       5'h06:
-          \$6  = 5'h12;
+          \$7  = 5'h05;
       5'h07:
-          \$6  = 5'h03;
+          \$7  = 5'h0f;
       5'h08:
-          \$6  = 5'h10;
+          \$7  = 5'h15;
       5'h09:
-          \$6  = 5'h04;
+          \$7  = 5'h19;
       5'h0a:
-          \$6  = 5'h14;
+          \$7  = 5'h01;
       5'h0b:
-          \$6  = 5'h05;
+          \$7  = 5'h04;
       5'h0c:
-          \$6  = 5'h15;
+          \$7  = 5'h02;
       5'h0d:
-          \$6  = 5'h0d;
+          \$7  = 5'h0a;
       5'h0e:
-          \$6  = 5'h19;
+          \$7  = 5'h0c;
       5'h0f:
-          \$6  = 5'h07;
+          \$7  = 5'h13;
       5'h10:
-          \$6  = 5'h18;
+          \$7  = 5'h07;
       5'h11:
-          \$6  = 5'h08;
+          \$7  = 5'h17;
       5'h12:
-          \$6  = 5'h17;
+          \$7  = 5'h12;
       5'h13:
-          \$6  = 5'h09;
+          \$7  = 5'h0b;
       5'h14:
-          \$6  = 5'h16;
+          \$7  = 5'h11;
       5'h15:
-          \$6  = 5'h0b;
+          \$7  = 5'h08;
       5'h16:
-          \$6  = 5'h11;
+          \$7  = 5'h0d;
       5'h17:
-          \$6  = 5'h0a;
+          \$7  = 5'h10;
       5'h18:
-          \$6  = 5'h0e;
+          \$7  = 5'h0e;
       5'h19:
-          \$6  = 5'h0c;
+          \$7  = 5'h09;
     endcase
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
-    (* full_case = 32'd1 *)
-    casez (din_sel)
-      2'h1:
-          muxed_din = dout;
-      2'h2:
-          muxed_din = reflector_in;
-      default:
-          muxed_din = din;
+    \$8  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$8  = 5'h00;
+      5'h01:
+          \$8  = 5'h09;
+      5'h02:
+          \$8  = 5'h0f;
+      5'h03:
+          \$8  = 5'h02;
+      5'h04:
+          \$8  = 5'h19;
+      5'h05:
+          \$8  = 5'h16;
+      5'h06:
+          \$8  = 5'h11;
+      5'h07:
+          \$8  = 5'h0b;
+      5'h08:
+          \$8  = 5'h05;
+      5'h09:
+          \$8  = 5'h01;
+      5'h0a:
+          \$8  = 5'h03;
+      5'h0b:
+          \$8  = 5'h0a;
+      5'h0c:
+          \$8  = 5'h0e;
+      5'h0d:
+          \$8  = 5'h13;
+      5'h0e:
+          \$8  = 5'h18;
+      5'h0f:
+          \$8  = 5'h14;
+      5'h10:
+          \$8  = 5'h10;
+      5'h11:
+          \$8  = 5'h06;
+      5'h12:
+          \$8  = 5'h04;
+      5'h13:
+          \$8  = 5'h0d;
+      5'h14:
+          \$8  = 5'h07;
+      5'h15:
+          \$8  = 5'h17;
+      5'h16:
+          \$8  = 5'h0c;
+      5'h17:
+          \$8  = 5'h08;
+      5'h18:
+          \$8  = 5'h15;
+      5'h19:
+          \$8  = 5'h12;
     endcase
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
-    (* full_case = 32'd1 *)
-    casez (en)
+    \$9  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$9  = 5'h13;
+      5'h01:
+          \$9  = 5'h00;
+      5'h02:
+          \$9  = 5'h06;
+      5'h03:
+          \$9  = 5'h01;
+      5'h04:
+          \$9  = 5'h0f;
+      5'h05:
+          \$9  = 5'h02;
+      5'h06:
+          \$9  = 5'h12;
+      5'h07:
+          \$9  = 5'h03;
+      5'h08:
+          \$9  = 5'h10;
+      5'h09:
+          \$9  = 5'h04;
+      5'h0a:
+          \$9  = 5'h14;
+      5'h0b:
+          \$9  = 5'h05;
+      5'h0c:
+          \$9  = 5'h15;
+      5'h0d:
+          \$9  = 5'h0d;
+      5'h0e:
+          \$9  = 5'h19;
+      5'h0f:
+          \$9  = 5'h07;
+      5'h10:
+          \$9  = 5'h18;
+      5'h11:
+          \$9  = 5'h08;
+      5'h12:
+          \$9  = 5'h17;
+      5'h13:
+          \$9  = 5'h09;
+      5'h14:
+          \$9  = 5'h16;
+      5'h15:
+          \$9  = 5'h0b;
+      5'h16:
+          \$9  = 5'h11;
+      5'h17:
+          \$9  = 5'h0a;
+      5'h18:
+          \$9  = 5'h0e;
+      5'h19:
+          \$9  = 5'h0c;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$10  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$10  = 5'h07;
+      5'h01:
+          \$10  = 5'h19;
+      5'h02:
+          \$10  = 5'h16;
+      5'h03:
+          \$10  = 5'h15;
+      5'h04:
+          \$10  = 5'h00;
+      5'h05:
+          \$10  = 5'h11;
+      5'h06:
+          \$10  = 5'h13;
+      5'h07:
+          \$10  = 5'h0d;
+      5'h08:
+          \$10  = 5'h0b;
+      5'h09:
+          \$10  = 5'h06;
+      5'h0a:
+          \$10  = 5'h14;
+      5'h0b:
+          \$10  = 5'h0f;
+      5'h0c:
+          \$10  = 5'h17;
+      5'h0d:
+          \$10  = 5'h10;
+      5'h0e:
+          \$10  = 5'h02;
+      5'h0f:
+          \$10  = 5'h04;
+      5'h10:
+          \$10  = 5'h09;
+      5'h11:
+          \$10  = 5'h0c;
+      5'h12:
+          \$10  = 5'h01;
+      5'h13:
+          \$10  = 5'h12;
+      5'h14:
+          \$10  = 5'h0a;
+      5'h15:
+          \$10  = 5'h03;
+      5'h16:
+          \$10  = 5'h18;
+      5'h17:
+          \$10  = 5'h0e;
+      5'h18:
+          \$10  = 5'h08;
+      5'h19:
+          \$10  = 5'h05;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$11  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$11  = 5'h10;
+      5'h01:
+          \$11  = 5'h02;
+      5'h02:
+          \$11  = 5'h18;
+      5'h03:
+          \$11  = 5'h0b;
+      5'h04:
+          \$11  = 5'h17;
+      5'h05:
+          \$11  = 5'h16;
+      5'h06:
+          \$11  = 5'h04;
+      5'h07:
+          \$11  = 5'h0d;
+      5'h08:
+          \$11  = 5'h05;
+      5'h09:
+          \$11  = 5'h13;
+      5'h0a:
+          \$11  = 5'h19;
+      5'h0b:
+          \$11  = 5'h0e;
+      5'h0c:
+          \$11  = 5'h12;
+      5'h0d:
+          \$11  = 5'h0c;
+      5'h0e:
+          \$11  = 5'h15;
+      5'h0f:
+          \$11  = 5'h09;
+      5'h10:
+          \$11  = 5'h14;
+      5'h11:
+          \$11  = 5'h03;
+      5'h12:
+          \$11  = 5'h0a;
+      5'h13:
+          \$11  = 5'h06;
+      5'h14:
+          \$11  = 5'h08;
+      5'h15:
+          \$11  = 5'h00;
+      5'h16:
+          \$11  = 5'h11;
+      5'h17:
+          \$11  = 5'h0f;
+      5'h18:
+          \$11  = 5'h07;
+      5'h19:
+          \$11  = 5'h01;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$12  = 5'h00;
+    casez (\$signal$19 )
+      3'h0:
+          \$12  = \$7 ;
       3'h1:
-          ring_setting = \$signal$16 ;
+          \$12  = \$8 ;
       3'h2:
-          ring_setting = \$signal$21 ;
+          \$12  = \$9 ;
+      3'h3:
+          \$12  = \$10 ;
       3'h4:
-          ring_setting = \$signal$22 ;
-      default:
-          ring_setting = 5'h00;
+          \$12  = \$11 ;
     endcase
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
-    (* full_case = 32'd1 *)
-    casez (en)
+    \$13  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$13  = 5'h04;
+      5'h01:
+          \$13  = 5'h0a;
+      5'h02:
+          \$13  = 5'h0c;
+      5'h03:
+          \$13  = 5'h05;
+      5'h04:
+          \$13  = 5'h0b;
+      5'h05:
+          \$13  = 5'h06;
+      5'h06:
+          \$13  = 5'h03;
+      5'h07:
+          \$13  = 5'h10;
+      5'h08:
+          \$13  = 5'h15;
+      5'h09:
+          \$13  = 5'h19;
+      5'h0a:
+          \$13  = 5'h0d;
+      5'h0b:
+          \$13  = 5'h13;
+      5'h0c:
+          \$13  = 5'h0e;
+      5'h0d:
+          \$13  = 5'h16;
+      5'h0e:
+          \$13  = 5'h18;
+      5'h0f:
+          \$13  = 5'h07;
+      5'h10:
+          \$13  = 5'h17;
+      5'h11:
+          \$13  = 5'h14;
+      5'h12:
+          \$13  = 5'h12;
+      5'h13:
+          \$13  = 5'h0f;
+      5'h14:
+          \$13  = 5'h00;
+      5'h15:
+          \$13  = 5'h08;
+      5'h16:
+          \$13  = 5'h01;
+      5'h17:
+          \$13  = 5'h11;
+      5'h18:
+          \$13  = 5'h02;
+      5'h19:
+          \$13  = 5'h09;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$14  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$14  = 5'h00;
+      5'h01:
+          \$14  = 5'h09;
+      5'h02:
+          \$14  = 5'h03;
+      5'h03:
+          \$14  = 5'h0a;
+      5'h04:
+          \$14  = 5'h12;
+      5'h05:
+          \$14  = 5'h08;
+      5'h06:
+          \$14  = 5'h11;
+      5'h07:
+          \$14  = 5'h14;
+      5'h08:
+          \$14  = 5'h17;
+      5'h09:
+          \$14  = 5'h01;
+      5'h0a:
+          \$14  = 5'h0b;
+      5'h0b:
+          \$14  = 5'h07;
+      5'h0c:
+          \$14  = 5'h16;
+      5'h0d:
+          \$14  = 5'h13;
+      5'h0e:
+          \$14  = 5'h0c;
+      5'h0f:
+          \$14  = 5'h02;
+      5'h10:
+          \$14  = 5'h10;
+      5'h11:
+          \$14  = 5'h06;
+      5'h12:
+          \$14  = 5'h19;
+      5'h13:
+          \$14  = 5'h0d;
+      5'h14:
+          \$14  = 5'h0f;
+      5'h15:
+          \$14  = 5'h18;
+      5'h16:
+          \$14  = 5'h05;
+      5'h17:
+          \$14  = 5'h15;
+      5'h18:
+          \$14  = 5'h0e;
+      5'h19:
+          \$14  = 5'h04;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$15  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$15  = 5'h01;
+      5'h01:
+          \$15  = 5'h03;
+      5'h02:
+          \$15  = 5'h05;
+      5'h03:
+          \$15  = 5'h07;
+      5'h04:
+          \$15  = 5'h09;
+      5'h05:
+          \$15  = 5'h0b;
+      5'h06:
+          \$15  = 5'h02;
+      5'h07:
+          \$15  = 5'h0f;
+      5'h08:
+          \$15  = 5'h11;
+      5'h09:
+          \$15  = 5'h13;
+      5'h0a:
+          \$15  = 5'h17;
+      5'h0b:
+          \$15  = 5'h15;
+      5'h0c:
+          \$15  = 5'h19;
+      5'h0d:
+          \$15  = 5'h0d;
+      5'h0e:
+          \$15  = 5'h18;
+      5'h0f:
+          \$15  = 5'h04;
+      5'h10:
+          \$15  = 5'h08;
+      5'h11:
+          \$15  = 5'h16;
+      5'h12:
+          \$15  = 5'h06;
+      5'h13:
+          \$15  = 5'h00;
+      5'h14:
+          \$15  = 5'h0a;
+      5'h15:
+          \$15  = 5'h0c;
+      5'h16:
+          \$15  = 5'h14;
+      5'h17:
+          \$15  = 5'h12;
+      5'h18:
+          \$15  = 5'h10;
+      5'h19:
+          \$15  = 5'h0e;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$16  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$16  = 5'h04;
+      5'h01:
+          \$16  = 5'h12;
+      5'h02:
+          \$16  = 5'h0e;
+      5'h03:
+          \$16  = 5'h15;
+      5'h04:
+          \$16  = 5'h0f;
+      5'h05:
+          \$16  = 5'h19;
+      5'h06:
+          \$16  = 5'h09;
+      5'h07:
+          \$16  = 5'h00;
+      5'h08:
+          \$16  = 5'h18;
+      5'h09:
+          \$16  = 5'h10;
+      5'h0a:
+          \$16  = 5'h14;
+      5'h0b:
+          \$16  = 5'h08;
+      5'h0c:
+          \$16  = 5'h11;
+      5'h0d:
+          \$16  = 5'h07;
+      5'h0e:
+          \$16  = 5'h17;
+      5'h0f:
+          \$16  = 5'h0b;
+      5'h10:
+          \$16  = 5'h0d;
+      5'h11:
+          \$16  = 5'h05;
+      5'h12:
+          \$16  = 5'h13;
+      5'h13:
+          \$16  = 5'h06;
+      5'h14:
+          \$16  = 5'h0a;
+      5'h15:
+          \$16  = 5'h03;
+      5'h16:
+          \$16  = 5'h02;
+      5'h17:
+          \$16  = 5'h0c;
+      5'h18:
+          \$16  = 5'h16;
+      5'h19:
+          \$16  = 5'h01;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$17  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$17  = 5'h15;
+      5'h01:
+          \$17  = 5'h19;
+      5'h02:
+          \$17  = 5'h01;
+      5'h03:
+          \$17  = 5'h11;
+      5'h04:
+          \$17  = 5'h06;
+      5'h05:
+          \$17  = 5'h08;
+      5'h06:
+          \$17  = 5'h13;
+      5'h07:
+          \$17  = 5'h18;
+      5'h08:
+          \$17  = 5'h14;
+      5'h09:
+          \$17  = 5'h0f;
+      5'h0a:
+          \$17  = 5'h12;
+      5'h0b:
+          \$17  = 5'h03;
+      5'h0c:
+          \$17  = 5'h0d;
+      5'h0d:
+          \$17  = 5'h07;
+      5'h0e:
+          \$17  = 5'h0b;
+      5'h0f:
+          \$17  = 5'h17;
+      5'h10:
+          \$17  = 5'h00;
+      5'h11:
+          \$17  = 5'h16;
+      5'h12:
+          \$17  = 5'h0c;
+      5'h13:
+          \$17  = 5'h09;
+      5'h14:
+          \$17  = 5'h10;
+      5'h15:
+          \$17  = 5'h0e;
+      5'h16:
+          \$17  = 5'h05;
+      5'h17:
+          \$17  = 5'h04;
+      5'h18:
+          \$17  = 5'h02;
+      5'h19:
+          \$17  = 5'h0a;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$18  = 5'h00;
+    casez (\$signal$23 )
+      3'h0:
+          \$18  = \$13 ;
       3'h1:
-          cnt = cnts_debug0;
+          \$18  = \$14 ;
       3'h2:
-          cnt = cnts_debug1;
+          \$18  = \$15 ;
+      3'h3:
+          \$18  = \$16 ;
       3'h4:
-          cnt = cnts_debug2;
-      default:
-          cnt = 5'h00;
+          \$18  = \$17 ;
     endcase
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
-    wiring_rtol = 5'h00;
-    casez (en)
+    \$19  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$19  = 5'h14;
+      5'h01:
+          \$19  = 5'h16;
+      5'h02:
+          \$19  = 5'h18;
+      5'h03:
+          \$19  = 5'h06;
+      5'h04:
+          \$19  = 5'h00;
+      5'h05:
+          \$19  = 5'h03;
+      5'h06:
+          \$19  = 5'h05;
+      5'h07:
+          \$19  = 5'h0f;
+      5'h08:
+          \$19  = 5'h15;
+      5'h09:
+          \$19  = 5'h19;
+      5'h0a:
+          \$19  = 5'h01;
+      5'h0b:
+          \$19  = 5'h04;
+      5'h0c:
+          \$19  = 5'h02;
+      5'h0d:
+          \$19  = 5'h0a;
+      5'h0e:
+          \$19  = 5'h0c;
+      5'h0f:
+          \$19  = 5'h13;
+      5'h10:
+          \$19  = 5'h07;
+      5'h11:
+          \$19  = 5'h17;
+      5'h12:
+          \$19  = 5'h12;
+      5'h13:
+          \$19  = 5'h0b;
+      5'h14:
+          \$19  = 5'h11;
+      5'h15:
+          \$19  = 5'h08;
+      5'h16:
+          \$19  = 5'h0d;
+      5'h17:
+          \$19  = 5'h10;
+      5'h18:
+          \$19  = 5'h0e;
+      5'h19:
+          \$19  = 5'h09;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$20  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$20  = 5'h00;
+      5'h01:
+          \$20  = 5'h09;
+      5'h02:
+          \$20  = 5'h0f;
+      5'h03:
+          \$20  = 5'h02;
+      5'h04:
+          \$20  = 5'h19;
+      5'h05:
+          \$20  = 5'h16;
+      5'h06:
+          \$20  = 5'h11;
+      5'h07:
+          \$20  = 5'h0b;
+      5'h08:
+          \$20  = 5'h05;
+      5'h09:
+          \$20  = 5'h01;
+      5'h0a:
+          \$20  = 5'h03;
+      5'h0b:
+          \$20  = 5'h0a;
+      5'h0c:
+          \$20  = 5'h0e;
+      5'h0d:
+          \$20  = 5'h13;
+      5'h0e:
+          \$20  = 5'h18;
+      5'h0f:
+          \$20  = 5'h14;
+      5'h10:
+          \$20  = 5'h10;
+      5'h11:
+          \$20  = 5'h06;
+      5'h12:
+          \$20  = 5'h04;
+      5'h13:
+          \$20  = 5'h0d;
+      5'h14:
+          \$20  = 5'h07;
+      5'h15:
+          \$20  = 5'h17;
+      5'h16:
+          \$20  = 5'h0c;
+      5'h17:
+          \$20  = 5'h08;
+      5'h18:
+          \$20  = 5'h15;
+      5'h19:
+          \$20  = 5'h12;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$21  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$21  = 5'h13;
+      5'h01:
+          \$21  = 5'h00;
+      5'h02:
+          \$21  = 5'h06;
+      5'h03:
+          \$21  = 5'h01;
+      5'h04:
+          \$21  = 5'h0f;
+      5'h05:
+          \$21  = 5'h02;
+      5'h06:
+          \$21  = 5'h12;
+      5'h07:
+          \$21  = 5'h03;
+      5'h08:
+          \$21  = 5'h10;
+      5'h09:
+          \$21  = 5'h04;
+      5'h0a:
+          \$21  = 5'h14;
+      5'h0b:
+          \$21  = 5'h05;
+      5'h0c:
+          \$21  = 5'h15;
+      5'h0d:
+          \$21  = 5'h0d;
+      5'h0e:
+          \$21  = 5'h19;
+      5'h0f:
+          \$21  = 5'h07;
+      5'h10:
+          \$21  = 5'h18;
+      5'h11:
+          \$21  = 5'h08;
+      5'h12:
+          \$21  = 5'h17;
+      5'h13:
+          \$21  = 5'h09;
+      5'h14:
+          \$21  = 5'h16;
+      5'h15:
+          \$21  = 5'h0b;
+      5'h16:
+          \$21  = 5'h11;
+      5'h17:
+          \$21  = 5'h0a;
+      5'h18:
+          \$21  = 5'h0e;
+      5'h19:
+          \$21  = 5'h0c;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$22  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$22  = 5'h07;
+      5'h01:
+          \$22  = 5'h19;
+      5'h02:
+          \$22  = 5'h16;
+      5'h03:
+          \$22  = 5'h15;
+      5'h04:
+          \$22  = 5'h00;
+      5'h05:
+          \$22  = 5'h11;
+      5'h06:
+          \$22  = 5'h13;
+      5'h07:
+          \$22  = 5'h0d;
+      5'h08:
+          \$22  = 5'h0b;
+      5'h09:
+          \$22  = 5'h06;
+      5'h0a:
+          \$22  = 5'h14;
+      5'h0b:
+          \$22  = 5'h0f;
+      5'h0c:
+          \$22  = 5'h17;
+      5'h0d:
+          \$22  = 5'h10;
+      5'h0e:
+          \$22  = 5'h02;
+      5'h0f:
+          \$22  = 5'h04;
+      5'h10:
+          \$22  = 5'h09;
+      5'h11:
+          \$22  = 5'h0c;
+      5'h12:
+          \$22  = 5'h01;
+      5'h13:
+          \$22  = 5'h12;
+      5'h14:
+          \$22  = 5'h0a;
+      5'h15:
+          \$22  = 5'h03;
+      5'h16:
+          \$22  = 5'h18;
+      5'h17:
+          \$22  = 5'h0e;
+      5'h18:
+          \$22  = 5'h08;
+      5'h19:
+          \$22  = 5'h05;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$23  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$23  = 5'h10;
+      5'h01:
+          \$23  = 5'h02;
+      5'h02:
+          \$23  = 5'h18;
+      5'h03:
+          \$23  = 5'h0b;
+      5'h04:
+          \$23  = 5'h17;
+      5'h05:
+          \$23  = 5'h16;
+      5'h06:
+          \$23  = 5'h04;
+      5'h07:
+          \$23  = 5'h0d;
+      5'h08:
+          \$23  = 5'h05;
+      5'h09:
+          \$23  = 5'h13;
+      5'h0a:
+          \$23  = 5'h19;
+      5'h0b:
+          \$23  = 5'h0e;
+      5'h0c:
+          \$23  = 5'h12;
+      5'h0d:
+          \$23  = 5'h0c;
+      5'h0e:
+          \$23  = 5'h15;
+      5'h0f:
+          \$23  = 5'h09;
+      5'h10:
+          \$23  = 5'h14;
+      5'h11:
+          \$23  = 5'h03;
+      5'h12:
+          \$23  = 5'h0a;
+      5'h13:
+          \$23  = 5'h06;
+      5'h14:
+          \$23  = 5'h08;
+      5'h15:
+          \$23  = 5'h00;
+      5'h16:
+          \$23  = 5'h11;
+      5'h17:
+          \$23  = 5'h0f;
+      5'h18:
+          \$23  = 5'h07;
+      5'h19:
+          \$23  = 5'h01;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
+    \$24  = 5'h00;
+    casez (\$signal$23 )
+      3'h0:
+          \$24  = \$19 ;
       3'h1:
-          wiring_rtol = \$1 ;
+          \$24  = \$20 ;
       3'h2:
-          wiring_rtol = \$3 ;
+          \$24  = \$21 ;
+      3'h3:
+          \$24  = \$22 ;
       3'h4:
-          wiring_rtol = \$5 ;
+          \$24  = \$23 ;
     endcase
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
-    wiring_ltor = 5'h00;
-    casez (en)
-      3'h1:
-          wiring_ltor = \$2 ;
-      3'h2:
-          wiring_ltor = \$4 ;
-      3'h4:
-          wiring_ltor = \$6 ;
+    \$25  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$25  = 5'h04;
+      5'h01:
+          \$25  = 5'h0a;
+      5'h02:
+          \$25  = 5'h0c;
+      5'h03:
+          \$25  = 5'h05;
+      5'h04:
+          \$25  = 5'h0b;
+      5'h05:
+          \$25  = 5'h06;
+      5'h06:
+          \$25  = 5'h03;
+      5'h07:
+          \$25  = 5'h10;
+      5'h08:
+          \$25  = 5'h15;
+      5'h09:
+          \$25  = 5'h19;
+      5'h0a:
+          \$25  = 5'h0d;
+      5'h0b:
+          \$25  = 5'h13;
+      5'h0c:
+          \$25  = 5'h0e;
+      5'h0d:
+          \$25  = 5'h16;
+      5'h0e:
+          \$25  = 5'h18;
+      5'h0f:
+          \$25  = 5'h07;
+      5'h10:
+          \$25  = 5'h17;
+      5'h11:
+          \$25  = 5'h14;
+      5'h12:
+          \$25  = 5'h12;
+      5'h13:
+          \$25  = 5'h0f;
+      5'h14:
+          \$25  = 5'h00;
+      5'h15:
+          \$25  = 5'h08;
+      5'h16:
+          \$25  = 5'h01;
+      5'h17:
+          \$25  = 5'h11;
+      5'h18:
+          \$25  = 5'h02;
+      5'h19:
+          \$25  = 5'h09;
     endcase
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
-    (* full_case = 32'd1 *)
-    if (\$7 ) begin
-      cnt_ring_combined = \$9 [4:0];
-    end else begin
-      cnt_ring_combined = \$10 [4:0];
-    end
-  end
-  always @* begin
-    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
-    \$28  = cnts_debug0;
-    casez (en)
-      3'h1:
-          if (load_start) begin
-            \$28  = muxed_din;
-          end else if (load_ring) begin
-          end else if (inc) begin
-            (* full_case = 32'd1 *)
-            if (\$21 ) begin
-              \$28  = 5'h00;
-            end else begin
-              \$28  = \$22 [4:0];
-            end
-          end
+    \$26  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$26  = 5'h00;
+      5'h01:
+          \$26  = 5'h09;
+      5'h02:
+          \$26  = 5'h03;
+      5'h03:
+          \$26  = 5'h0a;
+      5'h04:
+          \$26  = 5'h12;
+      5'h05:
+          \$26  = 5'h08;
+      5'h06:
+          \$26  = 5'h11;
+      5'h07:
+          \$26  = 5'h14;
+      5'h08:
+          \$26  = 5'h17;
+      5'h09:
+          \$26  = 5'h01;
+      5'h0a:
+          \$26  = 5'h0b;
+      5'h0b:
+          \$26  = 5'h07;
+      5'h0c:
+          \$26  = 5'h16;
+      5'h0d:
+          \$26  = 5'h13;
+      5'h0e:
+          \$26  = 5'h0c;
+      5'h0f:
+          \$26  = 5'h02;
+      5'h10:
+          \$26  = 5'h10;
+      5'h11:
+          \$26  = 5'h06;
+      5'h12:
+          \$26  = 5'h19;
+      5'h13:
+          \$26  = 5'h0d;
+      5'h14:
+          \$26  = 5'h0f;
+      5'h15:
+          \$26  = 5'h18;
+      5'h16:
+          \$26  = 5'h05;
+      5'h17:
+          \$26  = 5'h15;
+      5'h18:
+          \$26  = 5'h0e;
+      5'h19:
+          \$26  = 5'h04;
     endcase
-    if (rst) begin
-      \$28  = 5'h00;
-    end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
-    \$29  = \$signal$16 ;
-    casez (en)
-      3'h1:
-          if (load_start) begin
-          end else if (load_ring) begin
-            \$29  = muxed_din;
-          end
+    \$27  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$27  = 5'h01;
+      5'h01:
+          \$27  = 5'h03;
+      5'h02:
+          \$27  = 5'h05;
+      5'h03:
+          \$27  = 5'h07;
+      5'h04:
+          \$27  = 5'h09;
+      5'h05:
+          \$27  = 5'h0b;
+      5'h06:
+          \$27  = 5'h02;
+      5'h07:
+          \$27  = 5'h0f;
+      5'h08:
+          \$27  = 5'h11;
+      5'h09:
+          \$27  = 5'h13;
+      5'h0a:
+          \$27  = 5'h17;
+      5'h0b:
+          \$27  = 5'h15;
+      5'h0c:
+          \$27  = 5'h19;
+      5'h0d:
+          \$27  = 5'h0d;
+      5'h0e:
+          \$27  = 5'h18;
+      5'h0f:
+          \$27  = 5'h04;
+      5'h10:
+          \$27  = 5'h08;
+      5'h11:
+          \$27  = 5'h16;
+      5'h12:
+          \$27  = 5'h06;
+      5'h13:
+          \$27  = 5'h00;
+      5'h14:
+          \$27  = 5'h0a;
+      5'h15:
+          \$27  = 5'h0c;
+      5'h16:
+          \$27  = 5'h14;
+      5'h17:
+          \$27  = 5'h12;
+      5'h18:
+          \$27  = 5'h10;
+      5'h19:
+          \$27  = 5'h0e;
     endcase
-    if (rst) begin
-      \$29  = 5'h00;
-    end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
-    \$30  = cnts_debug1;
-    casez (en)
-      3'h1:
-          /* empty */;
-      3'h2:
-          if (load_start) begin
-            \$30  = muxed_din;
-          end else if (load_ring) begin
-          end else if (inc) begin
-            (* full_case = 32'd1 *)
-            if (\$23 ) begin
-              \$30  = 5'h00;
-            end else begin
-              \$30  = \$24 [4:0];
-            end
-          end
+    \$28  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$28  = 5'h04;
+      5'h01:
+          \$28  = 5'h12;
+      5'h02:
+          \$28  = 5'h0e;
+      5'h03:
+          \$28  = 5'h15;
+      5'h04:
+          \$28  = 5'h0f;
+      5'h05:
+          \$28  = 5'h19;
+      5'h06:
+          \$28  = 5'h09;
+      5'h07:
+          \$28  = 5'h00;
+      5'h08:
+          \$28  = 5'h18;
+      5'h09:
+          \$28  = 5'h10;
+      5'h0a:
+          \$28  = 5'h14;
+      5'h0b:
+          \$28  = 5'h08;
+      5'h0c:
+          \$28  = 5'h11;
+      5'h0d:
+          \$28  = 5'h07;
+      5'h0e:
+          \$28  = 5'h17;
+      5'h0f:
+          \$28  = 5'h0b;
+      5'h10:
+          \$28  = 5'h0d;
+      5'h11:
+          \$28  = 5'h05;
+      5'h12:
+          \$28  = 5'h13;
+      5'h13:
+          \$28  = 5'h06;
+      5'h14:
+          \$28  = 5'h0a;
+      5'h15:
+          \$28  = 5'h03;
+      5'h16:
+          \$28  = 5'h02;
+      5'h17:
+          \$28  = 5'h0c;
+      5'h18:
+          \$28  = 5'h16;
+      5'h19:
+          \$28  = 5'h01;
     endcase
-    if (rst) begin
-      \$30  = 5'h00;
-    end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
-    \$31  = \$signal$21 ;
-    casez (en)
-      3'h1:
-          /* empty */;
-      3'h2:
-          if (load_start) begin
-          end else if (load_ring) begin
-            \$31  = muxed_din;
-          end
+    \$29  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$29  = 5'h15;
+      5'h01:
+          \$29  = 5'h19;
+      5'h02:
+          \$29  = 5'h01;
+      5'h03:
+          \$29  = 5'h11;
+      5'h04:
+          \$29  = 5'h06;
+      5'h05:
+          \$29  = 5'h08;
+      5'h06:
+          \$29  = 5'h13;
+      5'h07:
+          \$29  = 5'h18;
+      5'h08:
+          \$29  = 5'h14;
+      5'h09:
+          \$29  = 5'h0f;
+      5'h0a:
+          \$29  = 5'h12;
+      5'h0b:
+          \$29  = 5'h03;
+      5'h0c:
+          \$29  = 5'h0d;
+      5'h0d:
+          \$29  = 5'h07;
+      5'h0e:
+          \$29  = 5'h0b;
+      5'h0f:
+          \$29  = 5'h17;
+      5'h10:
+          \$29  = 5'h00;
+      5'h11:
+          \$29  = 5'h16;
+      5'h12:
+          \$29  = 5'h0c;
+      5'h13:
+          \$29  = 5'h09;
+      5'h14:
+          \$29  = 5'h10;
+      5'h15:
+          \$29  = 5'h0e;
+      5'h16:
+          \$29  = 5'h05;
+      5'h17:
+          \$29  = 5'h04;
+      5'h18:
+          \$29  = 5'h02;
+      5'h19:
+          \$29  = 5'h0a;
     endcase
-    if (rst) begin
-      \$31  = 5'h00;
-    end
-  end
-  always @* begin
-    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
-    \$32  = cnts_debug2;
-    casez (en)
-      3'h1:
-          /* empty */;
-      3'h2:
-          /* empty */;
-      3'h4:
-          if (load_start) begin
-            \$32  = muxed_din;
-          end else if (load_ring) begin
-          end else if (inc) begin
-            (* full_case = 32'd1 *)
-            if (\$25 ) begin
-              \$32  = 5'h00;
-            end else begin
-              \$32  = \$26 [4:0];
-            end
-          end
-    endcase
-    if (rst) begin
-      \$32  = 5'h00;
-    end
-  end
-  always @* begin
-    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
-    \$33  = \$signal$22 ;
-    casez (en)
-      3'h1:
-          /* empty */;
-      3'h2:
-          /* empty */;
-      3'h4:
-          if (load_start) begin
-          end else if (load_ring) begin
-            \$33  = muxed_din;
-          end
-    endcase
-    if (rst) begin
-      \$33  = 5'h00;
-    end
-  end
-  always @* begin
-    if (\$auto$verilog_backend.cc:2352:dump_module$4 ) begin end
-    \$34  = \$27 ;
-    if (rst) begin
-      \$34  = 5'h00;
-    end
   end
   assign \$signal  = cnts_debug0;
   assign \$signal$3  = cnts_debug1;
@@ -3966,29 +5673,29 @@ module \top.r (rst, reflector_in, din, is_at_turnover, dout, en, inc, din_sel, l
   assign \$signal$11  = 2'h0;
   assign \$signal$12  = 2'h1;
   assign \$signal$13  = 2'h2;
-  assign s_m_26 = \$16 [5:0];
+  assign s_m_26 = \$49 [5:0];
   assign a_ext = { 1'h0, wiring_rtol };
   assign b_ext = { 1'h0, cnt_ring_combined };
-  assign \s$30  = \$17 [5:0];
-  assign diff_plus_26 = \$18 [5:0];
-  assign \a_ext$33  = { 1'h0, wiring_ltor };
-  assign \b_ext$34  = { 1'h0, cnt_ring_combined };
-  assign \s$35  = \$19 [5:0];
-  assign \diff_plus_26$36  = \$20 [5:0];
-  assign is_at_turnover[2] = \$13 ;
-  assign is_at_turnover[1] = \$12 ;
-  assign is_at_turnover[0] = \$11 ;
-  assign \$14  = s[5];
+  assign \s$33  = \$50 [5:0];
+  assign diff_plus_26 = \$51 [5:0];
+  assign \a_ext$36  = { 1'h0, wiring_ltor };
+  assign \b_ext$37  = { 1'h0, cnt_ring_combined };
+  assign \s$38  = \$52 [5:0];
+  assign \diff_plus_26$39  = \$53 [5:0];
+  assign is_at_turnover[2] = \$46 ;
+  assign is_at_turnover[1] = \$44 ;
+  assign is_at_turnover[0] = \$42 ;
+  assign \$47  = s[5];
 endmodule
 
-(* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:189" *)
+(* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:212" *)
 (* generator = "Amaranth" *)
 module \top.ref (din, dout);
   reg \$auto$verilog_backend.cc:2352:dump_module$5  = 0;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:185" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:208" *)
   input [4:0] din;
   wire [4:0] din;
-  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:186" *)
+  (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor2.py:209" *)
   output [4:0] dout;
   reg [4:0] dout;
   always @* begin

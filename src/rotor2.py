@@ -12,15 +12,23 @@ class Rotor (wiring.Component):
     din: In(5)
     dout: Out(5)
 
-    reflector_in: In(5)
+    reflector_in: In(5) # Input from the reflector that is muxed in when din_sel=2
 
-    is_at_turnover: Out(3)
-    en: In(3)
+    is_at_turnover: Out(3)   # bit_i is high if rotor_i is at the turnover letter
+    en: In(3)                # One-hot signal to enable one of the 3 rotors
+    
+    # Configuration signals
     load_start: In(1)
     load_ring: In(1)
-    inc: In(1)
-    ltor: In(1)  # False if left to right
+    load_rotor_type: In(1)
 
+    # Command the selected rotor to incrementt
+    inc: In(1)
+    
+    # When coming back from the reflector, this bit is high
+    ltor: In(1)  # False if right to left (the ingress path)
+
+    # Select the input the rotor should operate on (ingress from plugboard, last rotor output, or reflector output)
     din_sel: In(2) # 0=din, 1=dout, 2=reflector
 
     N = 3  # Number of rotor slots 
@@ -40,24 +48,33 @@ class Rotor (wiring.Component):
             'EKMFLGDQVZNTOWYHXUSPAIBRCJ',
             'AJDKSIRUXBLHWTMCQGZNPYFVOE',
             'BDFHJLCPRTXVZNYEIWGAKMUSQO',
+            'ESOVPZJAYQUIRHXLNFTGKDCMWB',
+            'VZBRGITYUPSDNHLXAWMJQOFECK',
         ]
         _turnovers = [
             'Q',
             'E',
             'V',
+            'J',
+            'Z'
         ]
-        self.Wiring_right_to_left = []
-        self.Wiring_left_to_right = []
+        #self.Wiring_right_to_left = []
+        #self.Wiring_left_to_right = []
+        wiring_list_right_to_left = []
+        wiring_list_left_to_right = []
         for w in _wirings:
             mapping = [ord(c)-65 for c in w]
             mapping_ltor = [0]*26
             for i, c in enumerate(w):
                 mapping_ltor[ord(c)-65] = i
 
-            self.Wiring_right_to_left.append(Array(mapping)) # right_to_left mapping
-            self.Wiring_left_to_right.append(Array(mapping_ltor))
+            wiring_list_right_to_left.append(Array(mapping)) # right_to_left mapping
+            wiring_list_left_to_right.append(Array(mapping_ltor))
+
+        self.Wiring_right_to_left = Array(wiring_list_right_to_left)
+        self.Wiring_left_to_right = Array(wiring_list_left_to_right)
         
-        self.turnovers = [Const(ord(t)-65) for t in _turnovers]
+        self.turnovers = Array([Const(ord(t)-65) for t in _turnovers])
 
     def elaborate(self, platform):
         m = Module()
@@ -70,6 +87,9 @@ class Rotor (wiring.Component):
         right_ptr = Signal(5)
         wiring_rtol = Signal(5)
         wiring_ltor = Signal(5)
+
+        # Picking the rotor for each slot
+        self.slot = Array([Signal(3, init=0), Signal(3,init=1), Signal(3, init=2)]) # Choose from one of 8 rotor types for each of the 3 slots
         
         # Pull out the array for debug
         cnts_debug0 = Signal(5)
@@ -94,22 +114,24 @@ class Rotor (wiring.Component):
             self.rotor_types[2].eq(0b10),  # ROTOR III
 
             # First rotor wiring selection
-
         ]
-
         with m.Switch(self.en):
             for one_hot, rotor in [(0b001, 0), (0b010,1), (0b100, 2)]:
                 with m.Case(one_hot):
                     m.d.comb += [
                         ring_setting.eq(self.ring_settings[rotor]),
                         cnt.eq(self.cnts[rotor]),
-                        wiring_rtol.eq(self.Wiring_right_to_left[rotor][right_ptr]),
-                        wiring_ltor.eq(self.Wiring_left_to_right[rotor][right_ptr]),
+                        #wiring_rtol.eq(self.Wiring_right_to_left[rotor][right_ptr]),
+                        #wiring_ltor.eq(self.Wiring_left_to_right[rotor][right_ptr]),
+                        wiring_rtol.eq(self.Wiring_right_to_left[self.slot[rotor]][right_ptr]),
+                        wiring_ltor.eq(self.Wiring_left_to_right[self.slot[rotor]][right_ptr]),
                     ]
                     with m.If(self.load_start):
                         m.d.sync += self.cnts[rotor].eq(muxed_din)
                     with m.Elif(self.load_ring):
                         m.d.sync += self.ring_settings[rotor].eq(muxed_din)
+                    with m.Elif(self.load_rotor_type):
+                        m.d.sync += self.slot[rotor].eq(muxed_din[0:3])
                     with m.Elif(self.inc):
                         # PULL OUT COMPARISON HERE??
                         with m.If(self.cnts[rotor]==25):
@@ -129,7 +151,8 @@ class Rotor (wiring.Component):
 
         # Calculate turnover.  
         for i in range(N):
-            m.d.comb += self.is_at_turnover[i].eq(self.cnts[i] == self.turnovers[i])
+            #m.d.comb += self.is_at_turnover[i].eq(self.cnts[i] == self.turnovers[i])
+            m.d.comb += self.is_at_turnover[i].eq(self.cnts[i] == self.turnovers[self.slot[i]])
 
         # Convert absolute entry (right) to relative contact point on
         # the rotor by adding its rotation (cnt).
