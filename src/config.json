@@ -24,7 +24,7 @@
   "GRT_ANTENNA_ITERS": 5,
   "RUN_ANTENNA_REPAIR": true,
   "//": "Distance um for antenna insertion",
-  "HEURISTIC_ANTENNA_THRESHOLD": 900,
+  "HEURISTIC_ANTENNA_THRESHOLD": 800,
 
   "MAX_FANOUT_CONSTRAINT": 8, 
   "//": "Maybe this will fix the slews ns",
@@ -41,7 +41,7 @@
   "//": "Following is required for fuzzy diode placement according to docs",
   "GPL_CELL_PADDING": 1,
 
-  "PL_TARGET_DENSITY_PCT": 81,
+  "PL_TARGET_DENSITY_PCT": 85,
   "DRT_THREADS": 4,
 
   "//": "CLOCK_PERIOD - Increase this in case you are getting setup time violations.",
