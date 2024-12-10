@@ -1,7 +1,28 @@
-from amaranth import Signal, Module, unsigned, Mux
+from amaranth import Signal, Module, unsigned, Mux, Instance, Array, ClockSignal
 from amaranth.lib import wiring
 from amaranth.lib.wiring import In, Out
 from amaranth.lib.memory import Memory
+
+class Latch(wiring.Component):
+
+    d: In(1)
+    q: Out(1)      
+    en: In(1)
+
+    def elaborate(self, platform):
+        
+        return Instance("d_latch",
+                        i_d = self.d,
+                        i_clk = self.en,
+                        o_q = self.q,
+        
+        )
+        # if True:
+        #     return Instance("sky130_fd_sc_hd__dlxtp",
+        #                 i_D = self.d,
+        #                 i_GATE = ClockSignal(),
+        #                 o_Q = self.q,
+        #     )
 
 class Plugboard(wiring.Component):
     """In the ENIGMA, the plugboard allowed up to 10 keys to be swapped with a different key.
@@ -20,12 +41,14 @@ class Plugboard(wiring.Component):
        machine is another read port.
     """
 
-    en: In(1)    # If this is low, then the in just gets passed to the out
+    enable: In(1)    # If this is low, then the in just gets passed to the out
+    
+    # Mux between the "left to right" or "right to path" side
+    is_ltor: In(1)
     in_ltor : In(5)
-    out_ltor: Out(5)
-
     in_rtol : In(5)
-    out_rtol: Out(5)
+
+    out: Out(5)
 
     wr_data: In(5)    # Used for both wr_addr and wr_data
     wr_data_en: In(1)
@@ -37,41 +60,53 @@ class Plugboard(wiring.Component):
     def elaborate(self, platform):
         m = Module()
     
-        m.submodules.memory = memory = \
-            Memory(shape=unsigned(5), depth=26, 
-                init=[  0, 1,2,3,4,5,6,7,8,9,10,11,12, 13,
-                        14,15,16,17,18,19,20,21,22,23,24,25
-                    ]
-            )
-        # 2 asynchronous read ports
-        rd_port_rtol = memory.read_port(domain="comb")
-        rd_port_ltor = memory.read_port(domain="comb")
+        # Array of 5 columns of 32-rows 
+        self.mem = mem = Array([Signal(5) for i in range(26)])
 
-        # 1 synchronous write port
-        wr_port = memory.write_port()
+        bits = [[0]*5 for i in range(26)]
+        for i in range(26):
+            for j in range(5):
+                m.submodules[f'bits_{i}_{j}'] = bits[i][j] = Latch()
+                # Connect the memory signals
+                m.d.comb += mem[i][j].eq(bits[i][j].q)
 
-        # The internal counter to keep track of write address when 
-        # setting the plugboard
+        # Make the write like a wordline/bitline
+        wl = [Signal(1) for i in range(26)]
+        for i in range(26):
+            for j in range(5):
+                m.d.comb += bits[i][j].d.eq(self.wr_data[j])
+                m.d.comb += bits[i][j].en.eq(wl[i])
+
         cnt = Signal(5)
-
-        # Plugboard traversal
-        
-        m.d.comb += [
-            rd_port_rtol.addr.eq(self.in_rtol),
-            rd_port_ltor.addr.eq(self.in_ltor),
-            self.out_rtol.eq(
-                Mux(self.en, rd_port_rtol.data, self.in_rtol),
-            ),
-            self.out_ltor.eq(
-                Mux(self.en, rd_port_ltor.data, self.in_ltor),
-            )
-        ]
-        
-        # Writing to the Plugboard (setting the pairs)
-        m.d.comb += wr_port.en.eq(self.wr_data_en)
-        m.d.comb += wr_port.addr.eq(cnt)
-        m.d.comb += wr_port.data.eq(self.wr_data)
-
         with m.If(self.wr_addr_en):
             m.d.sync += cnt.eq(self.wr_data)
+
+        with m.If(self.wr_data_en):
+            for i in range(26):
+                m.d.comb+= wl[i].eq(cnt==i)
+
+
+        addr = Signal(5)
+        read = Signal(5)
+
+        with m.If(self.is_ltor):
+            m.d.comb += addr.eq(self.in_ltor)
+        with m.Else():
+            m.d.comb += addr.eq(self.in_rtol)
+
+        m.d.comb += [ 
+            read.eq( mem[addr] ),
+            self.out.eq( Mux(self.enable, read, addr) )
+         ]
+
         return m
+
+
+if __name__=='__main__':
+    from amaranth.back import verilog
+    pb = Plugboard()
+    filename = 'src/am_pb.v'
+    with open(filename, 'w') as f:
+        f.write(verilog.convert(pb))
+        print(f'Wrote {filename}')
+

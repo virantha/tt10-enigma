@@ -166,7 +166,7 @@ async def run_cipher(dut, rotors, plugboard, plain):
 
     # Encrypt and compare against the expected value
     for i, (input_char, val) in enumerate(iter_plain_text(plain)):
-        cmd = Cmd.ENCRYPT.value
+        cmd = Cmd.SCRAMBLE.value
         dut.ui_in.value = get_ui_in(cmd, val)
         await ready(dut)
 

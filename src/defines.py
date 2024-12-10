@@ -1,6 +1,7 @@
 from amaranth import unsigned
 from amaranth.lib.enum import Enum
 
+# Rotor types from original Enigma I and the index they map to in rotor.py
 Rotors = {
     'I': 0,
     'II': 1, 
@@ -8,12 +9,14 @@ Rotors = {
     'IV': 3,
     'V': 4,
 }
+
+# Commands to send to FSM
 class Cmd(Enum, shape=unsigned(3)):
     NOP = 0
     LOAD_START = 1
     LOAD_RING = 2
     RESET = 3
-    ENCRYPT = 4
+    SCRAMBLE = 4
     LOAD_PLUG_ADDR = 5
     LOAD_PLUG_DATA = 6
     SET_ROTORS = 7
