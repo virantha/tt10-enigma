@@ -3,7 +3,7 @@ project:
   title:        "Enigma - 54-bit Key Length"      # Project title
   author:       "Virantha Ekanayake"      # Your name
   discord:      "veezer"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "Model of Enigma M1 machine with a limited plugboard supporting 4 wires"      # One line description of what your project does
+  description:  "Silicon implementation of an Enigma I machine with a limited plugboard supporting 3 wires"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     10000       # Clock frequency in Hz (or 0 if not applicable)
 
