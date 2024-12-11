@@ -1,6 +1,6 @@
 # Tiny Tapeout project information
 project:
-  title:        "Enigma - 54-bit Key Length"      # Project title
+  title:        "Enigma - 52-bit Key Length"      # Project title
   author:       "Virantha Ekanayake"      # Your name
   discord:      "veezer"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "Silicon implementation of an Enigma I machine with a limited plugboard supporting 3 wires"      # One line description of what your project does
