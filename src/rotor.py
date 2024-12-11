@@ -2,6 +2,8 @@ from amaranth import Module, Signal, Const, Array, Mux, unsigned
 from amaranth.lib.enum import Enum
 from amaranth.lib import wiring
 from amaranth.lib.wiring import In, Out
+from src.defines import Rotors
+
 class Din(Enum, shape=unsigned(2)):
     DIN = 0
     DOUT = 1
@@ -43,22 +45,16 @@ class Rotor (wiring.Component):
         super().__init__()
 
     def generate_wirings(self):
-        _wirings = [
-            'EKMFLGDQVZNTOWYHXUSPAIBRCJ',
-            'AJDKSIRUXBLHWTMCQGZNPYFVOE',
-            'BDFHJLCPRTXVZNYEIWGAKMUSQO',
-            #'ESOVPZJAYQUIRHXLNFTGKDCMWB',
-            #'VZBRGITYUPSDNHLXAWMJQOFECK',
-        ]
-        _turnovers = [
-            'Q',
-            'E',
-            'V',
-            #'J',
-            #'Z'
-        ]
-        #self.Wiring_right_to_left = []
-        #self.Wiring_left_to_right = []
+        from test.enigma import Enigma
+        _wirings = []
+        _turnovers = []
+
+        for rotor_type in Rotors:
+            # Gather up the wiring and turnover positions from the golden model
+            rotor_class = Enigma.ROTORS[rotor_type]
+            _wirings.append(rotor_class.wiring)
+            _turnovers.append(rotor_class.turnover)
+
         wiring_list_right_to_left = []
         wiring_list_left_to_right = []
         for w in _wirings:
@@ -97,7 +93,7 @@ class Rotor (wiring.Component):
         m.d.comb+= cnts_debug0.eq(self.cnts[0]) 
         m.d.comb+= cnts_debug1.eq(self.cnts[1]) 
         m.d.comb+= cnts_debug2.eq(self.cnts[2]) 
-        # Mux on the inputs
+        #Mux on the inputs
         with m.Switch(self.din_sel):
             with m.Case(1):
                 m.d.comb += muxed_din.eq(self.dout)
@@ -106,12 +102,16 @@ class Rotor (wiring.Component):
             with m.Default():
                 m.d.comb += muxed_din.eq(self.din)
         
+
+        cnt_eq_25 = Signal(1)
+
         with m.Switch(self.en):
             for one_hot, rotor in [(0b001, 0), (0b010,1), (0b100, 2)]:
                 with m.Case(one_hot):
                     m.d.comb += [
                         ring_setting.eq(self.ring_settings[rotor]),
                         cnt.eq(self.cnts[rotor]),
+                        cnt_eq_25.eq(cnt==25),
                         wiring_rtol.eq(self.Wiring_right_to_left[self.slot[rotor]][right_ptr]),
                         wiring_ltor.eq(self.Wiring_left_to_right[self.slot[rotor]][right_ptr]),
                     ]
@@ -123,10 +123,10 @@ class Rotor (wiring.Component):
                         m.d.sync += self.slot[rotor].eq(muxed_din[0:3])
                     with m.Elif(self.inc):
                         # PULL OUT COMPARISON HERE??
-                        with m.If(self.cnts[rotor]==25):
+                        with m.If(cnt_eq_25):
                             m.d.sync += self.cnts[rotor].eq(0)
                         with m.Else():
-                            m.d.sync += self.cnts[rotor].eq(self.cnts[rotor]+1)
+                            m.d.sync += self.cnts[rotor].eq(cnt+1)
             with m.Default():
                 m.d.comb += [
                     ring_setting.eq(0),
@@ -153,7 +153,8 @@ class Rotor (wiring.Component):
             s_ge_26 = Signal(1)
             m.d.comb += [
                 s.eq (a+b),
-                s_ge_26.eq ( (s[5]==1) | (s[0:5]>=26)),
+                #s_ge_26.eq ( (s[5]==1) | (s[0:5]>=26)),
+                s_ge_26.eq ( s>=26),
                 s_m_26.eq ( s - 26),
                 sum_signal.eq (Mux (s_ge_26, s_m_26[0:5], s[0:5]))
             ]
