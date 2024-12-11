@@ -16,16 +16,20 @@ Alan Turing (as depicted in The Imitation Game), cracked this code, giving the
 Allies a crucial advantage in the war.
 
 This electronic version is accurate and will match any simulator you can find
-on the web(e.g. [here][1] and [here][2]).  Although almost every Enigma operates
+on the web[^1][^2].  Although almost every Enigma operates
 on similar principles, the particular model implemented here is 
-the [*Enigma I*][3] used by the German Army and Air Force; it comes with 3 rotor
+the [*Enigma I*][^3] used by the German Army and Air Force; it comes with 3 rotor
 slots, the 5 original Rotors, the UKW-B Reflector, and plugboard.  The only
 limitation is **that the plugboard only supports 3 wires**, whereas the actual
 wartime procedure was to use up to 10 wires.  **This limits the key length of 
 this implementation to 52-bits**.  The calculation is shown [below](#key-length-calculation).
 
+[^1]: https://piotte13.github.io/enigma-cipher/
+[^2]: https://www.dcode.fr/enigma-machine-cipher
+[^3]: https://www.cryptomuseum.com/crypto/enigma/i/index.htm
+
 ### Key-length Calculation
-The Enigma is a [symmetric][4] encryption engine, and the equivalent key length is comprised
+The Enigma is a symmetric[^4] encryption engine, and the equivalent key length is comprised
 of the different settings and ways the rotors and plugboard can be arranged.  See the 
 excellent [analysis][5] from Dr. Ray Miller at NSA for more details on the calculations
 below:
@@ -37,17 +41,14 @@ below:
 3. Ring of each rotor (only two right rotors matter):
     > 26*26 = **676**
 4. Plugboard with 3 wires (see [table on p.9 for p=3][3]):
-    > ${26 \choose 2 \cdot 3} \cdot (2 \cdot 3 - 1) \cdot(2\cdot 3 -3)\cdot (2\cdot 3 -5)$
-
-    > $ = {26!\over(26-6)!\cdot 3! \cdot 2^3} = **3,453,450** $ ways to plug in 3 wires
+    > 26choose3 * (2\*3-1) * (2\*3-3) * (2\*3-5)
+    
+    > = 26! / (26-6)! / 3! * 5 * 3 * 1 =  **3,453,450** ways to plug in 3 wires
 
 The total ways (# of keys) to set up this particular Enigma is therefore $ 60 * 17576 * 676 * 3,453,450 =  2,461,904,276,832,000 $ ways, yielding a key length of ~52-bits.
 
-- [1] https://piotte13.github.io/enigma-cipher/
-- [2] https://www.dcode.fr/enigma-machine-cipher
-- [3] https://www.cryptomuseum.com/crypto/enigma/i/index.htm
-- [4] https://crypto.stackexchange.com/questions/33628/how-many-possible-enigma-machine-settings
-- [5] https://www.nsa.gov/portals/75/documents/about/cryptologic-heritage/historical-figures-publications/publications/wwii/CryptoMathEnigma_Miller.pdf
+[^4]: https://crypto.stackexchange.com/questions/33628/how-many-possible-enigma-machine-settings
+[^5]: https://www.nsa.gov/portals/75/documents/about/cryptologic-heritage/historical-figures-publications/publications/wwii/CryptoMathEnigma_Miller.pdf
 
 ### Implementation
 I used the amazing Python-based hardware description tool [Amaranth HDL](https://amaranth-lang.org/docs/amaranth/latest/), to build, test, and generate the Verilog 

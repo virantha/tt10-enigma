@@ -75,7 +75,7 @@ def get_fixed_rotor_setting():
     return rotors
     
 def get_fixed_plugboard_setting():
-    plugboard = [ "AN", "DE", "ZB", "GX", ]
+    plugboard = [ "AN", "DE", "ZB",  ]
     return plugboard
 
 def get_random_rotor_setting():
