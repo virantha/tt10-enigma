@@ -5,14 +5,17 @@ from amaranth.lib.wiring import In, Out
 from .rotor import Rotor, Reflector_B
 from .fsm import Control, Cmd
 from .plugboard import Plugboard
+from .lcd import SevenSegmentAlpha
 
 class Enigma(wiring.Component):
     ui_in: In(8)
-    uo_out: Out(6)
+    uo_out: Out(7)  # Display port
+
+    uio_out: Out(6) 
 
     # Let's put a debug port to look at the output of the rotor before going into the plugboard
-    debug_out: Out(5)
-    debug_pen: Out(1)
+    #debug_out: Out(5)
+    #debug_pen: Out(1)
 
     def __init__(self):
 
@@ -20,6 +23,7 @@ class Enigma(wiring.Component):
         self.reflector = Reflector_B()
         self.fsm = Control() 
         self.plugboard = Plugboard()
+        self.lcd = SevenSegmentAlpha()
         super().__init__()
 
 
@@ -29,25 +33,32 @@ class Enigma(wiring.Component):
         m.submodules.ref = ref = self.reflector
         m.submodules.fsm = fsm = self.fsm
         m.submodules.plugboard = plugboard = self.plugboard
+        # Display decoder
+        m.submodules.lcd = lcd = self.lcd
 
-        right_out     = Signal(5)
-        right_out_ff1 = Signal(5)
+        #right_out_ff1 = Signal(5)
         ready = Signal(1)
 
         right_in = self.ui_in[0:5]
         cmd      = self.ui_in[5:8]
-        right_out_ff1 = self.uo_out[0:5]
-        ready     = self.uo_out[5]
+        #right_out_ff1 = self.uio_out[0:5]
+        ready     = self.uio_out[5]
+
+        # Connect LCD
+        m.d.comb += [
+            lcd.din.eq(self.uio_out[0:5]),
+            self.uo_out.eq(lcd.dout)
+        ]
 
         # DEBUG PORT
-        m.d.comb += [
-            self.debug_out.eq(r.dout),
-            self.debug_pen.eq(fsm.plugboard_en)
-        ]
+        # m.d.comb += [
+        #     self.debug_out.eq(r.dout),
+        #     self.debug_pen.eq(fsm.plugboard_en)
+        # ]
         m.d.comb += [
             # Plugboard traversal
             plugboard.in_rtol.eq(right_in),
-            plugboard.in_ltor.eq(right_out),
+            plugboard.in_ltor.eq(r.dout),
 
             plugboard.enable.eq(fsm.plugboard_en),
             # Plugboard setting
@@ -58,8 +69,7 @@ class Enigma(wiring.Component):
 
         with m.If(fsm.result_ready & (cmd==Cmd.SCRAMBLE)):
             # Hold the output of the enigma encoder stable until next scramble command
-            #m.d.sync += right_out_ff1.eq(rd_port_ltor.data)
-            m.d.sync += right_out_ff1.eq(plugboard.out)
+            m.d.sync += self.uio_out[0:5].eq(plugboard.out)
          
         m.d.comb += [
             # The right to left path
@@ -70,9 +80,6 @@ class Enigma(wiring.Component):
             
             # Loop back, left to right
             r.reflector_in.eq(ref.dout),
-
-            right_out.eq(r.dout) ,
-
 
             # Connect up the control FSM
             r.en.eq(fsm.en),

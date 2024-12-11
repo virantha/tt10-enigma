@@ -13,11 +13,15 @@ from tb_utils import *
 
 async def ready(dut):
     await ClockCycles(dut.clk,1,rising=True)
-    rdy = dut.uo_out
-    prev = dut.uo_out[5].value
+    rdy = dut.uio_out
+    prev = rdy[5].value
     while True:
-        await Edge(dut.uo_out)
+        await Edge(rdy)
+        await ReadOnly()
+        #dut._log.info(f'Edge detected on dut_uio_out {dut.uio_out.value}')
         if prev==0 and rdy[5].value==1:
+            #dut._log.info(f'rising edge!')
+            await NextTimeStep()
             break
         else:
             prev = rdy[5].value
@@ -126,7 +130,7 @@ async def run_cipher(dut, rotors, plugboard, plain):
 
         golden_val = ord(golden[i]) - 65
 
-        out_val = LogicArray(dut.uo_out.value)[4:]
+        out_val = LogicArray(dut.uio_out.value)[4:]
 
         input_val = val
         #dut._log.info(f'{golden_val:0b}, {out_val}, {out_val.integer}')

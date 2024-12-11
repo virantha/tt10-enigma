@@ -16,10 +16,10 @@ async def ready(dut):
     # So instead, I need to wait for the entire bus to change
     # then check the one bit I want
     await ClockCycles(dut.clk,1,rising=True)
-    rdy = dut.uo_out
+    rdy = dut.uio_out
     prev = rdy[5].value
     while True:
-        await Edge(dut.uo_out)
+        await Edge(dut.uio_out)
         if prev==0 and rdy[5].value==1:
             break # rising edge
         else:
@@ -177,7 +177,7 @@ async def run_cipher(dut, rotors, plugboard, plain):
 
         golden_val = ord(golden[i]) - 65
 
-        out_val = LogicArray(dut.uo_out.value)[4:]
+        out_val = LogicArray(dut.uio_out.value)[4:]
 
         input_val = val
         #dut._log.info(f'{golden_val:0b}, {out_val}, {out_val.integer}')

@@ -80,7 +80,7 @@ def get_fixed_plugboard_setting():
 
 def get_random_rotor_setting():
 
-    rotor_types = [list(Rotors.keys())[x] for x in sample(range(5), 3)]
+    rotor_types = [list(Rotors.keys())[x] for x in sample(range(len(Rotors)), 3)]
     # Create the golden results using the python simulator
     rotors = [
         {

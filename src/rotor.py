@@ -47,15 +47,15 @@ class Rotor (wiring.Component):
             'EKMFLGDQVZNTOWYHXUSPAIBRCJ',
             'AJDKSIRUXBLHWTMCQGZNPYFVOE',
             'BDFHJLCPRTXVZNYEIWGAKMUSQO',
-            'ESOVPZJAYQUIRHXLNFTGKDCMWB',
-            'VZBRGITYUPSDNHLXAWMJQOFECK',
+            #'ESOVPZJAYQUIRHXLNFTGKDCMWB',
+            #'VZBRGITYUPSDNHLXAWMJQOFECK',
         ]
         _turnovers = [
             'Q',
             'E',
             'V',
-            'J',
-            'Z'
+            #'J',
+            #'Z'
         ]
         #self.Wiring_right_to_left = []
         #self.Wiring_left_to_right = []

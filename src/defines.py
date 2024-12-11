@@ -6,8 +6,8 @@ Rotors = {
     'I': 0,
     'II': 1, 
     'III': 2,
-    'IV': 3,
-    'V': 4,
+    #'IV': 3,
+    #'V': 4,
 }
 
 # Commands to send to FSM
