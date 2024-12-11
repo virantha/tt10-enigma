@@ -1,6 +1,9 @@
 from amaranth import unsigned
 from amaranth.lib.enum import Enum
 
+# Maximum number of plugs 
+PLUG_LIMIT = 4 
+
 # Rotor types from original Enigma I and the index they map to in rotor.py
 Rotors = {
     'I': 0,

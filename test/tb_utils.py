@@ -1,7 +1,7 @@
 
 from enigma import Enigma as EnigmaPy
 from random import randint, sample
-from defines import Rotors
+from defines import Rotors, PLUG_LIMIT
 
 plain = """
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempus justo ac
@@ -75,7 +75,7 @@ def get_fixed_rotor_setting():
     return rotors
     
 def get_fixed_plugboard_setting():
-    plugboard = [ "AN", "DE", "ZB", "GX", "HQ"]
+    plugboard = [ "AN", "DE", "ZB", "GX", ]
     return plugboard
 
 def get_random_rotor_setting():
@@ -105,15 +105,15 @@ def get_random_plugboard_setting():
     # Plugboard
     plugboard = []
     already_plugged_letters = []
-    for i in range(10):
-        if randint(0,9) > 2:
-            # with 70% probability
-            a = to_letter(rnd_int())
-            b = to_letter(rnd_int())
-            if a not in already_plugged_letters and b not in already_plugged_letters:
-                plugboard.append(f'{a}{b}')
-                already_plugged_letters.append(a)
-                already_plugged_letters.append(b)
+    i = 0
+    while i < PLUG_LIMIT:
+        a = to_letter(rnd_int())
+        b = to_letter(rnd_int())
+        if a not in already_plugged_letters and b not in already_plugged_letters:
+            plugboard.append(f'{a}{b}')
+            already_plugged_letters.append(a)
+            already_plugged_letters.append(b)
+            i+=1
     return plugboard
 
 def get_golden_cipher(rotors, plugboard, plain_text):

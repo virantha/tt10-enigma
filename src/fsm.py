@@ -34,7 +34,6 @@ class Control(wiring.Component):
         m = Module()
         cnt = Signal(2)   # Counter to keep track of the rotor to activate 1-3 (0 is none)
         active = Signal(2)  # Active block
-        inc = Signal(1, init=0)
         double_step = Signal(1)  # Flag
 
         is_ltor = self.is_ltor

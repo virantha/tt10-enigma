@@ -41,7 +41,7 @@
   "//": "Following is required for fuzzy diode placement according to docs",
   "GPL_CELL_PADDING": 0,
 
-  "PL_TARGET_DENSITY_PCT": 71,
+  "PL_TARGET_DENSITY_PCT": 75,
   "DRT_THREADS": 4,
 
   "//": "CLOCK_PERIOD - Increase this in case you are getting setup time violations.",

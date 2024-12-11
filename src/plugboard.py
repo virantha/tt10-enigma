@@ -3,6 +3,8 @@ from amaranth.lib import wiring
 from amaranth.lib.wiring import In, Out
 from amaranth.lib.memory import Memory
 
+from src.defines import PLUG_LIMIT
+
 class Latch(wiring.Component):
 
     d: In(1)
@@ -55,6 +57,7 @@ class Plugboard(wiring.Component):
     wr_addr_en: In(1)
 
     def __init__(self):
+        self.plug_limiter = Signal(5)  # Counter to keep track of plugs
         super().__init__()
 
     def elaborate(self, platform):
@@ -77,17 +80,31 @@ class Plugboard(wiring.Component):
                 m.d.comb += bits[i][j].d.eq(self.wr_data[j])
                 m.d.comb += bits[i][j].en.eq(wl[i])
 
+        addr = Signal(5)
+        read = Signal(5)
+
+        # Counter to store address to write to
         cnt = Signal(5)
         with m.If(self.wr_addr_en):
             m.d.sync += cnt.eq(self.wr_data)
 
-        with m.If(self.wr_data_en):
+        # Artificial plug wire limiter to meet key length requirements 
+        # for tinytapeout 
+        # Only allow a new plug if plug count < 2*limit
+        # to account for two ends of the wire
+        allow_plug = Signal(1)
+        m.d.comb += allow_plug.eq((self.plug_limiter>>1) < (PLUG_LIMIT))
+
+        with m.If(self.wr_data_en & (cnt!=self.wr_data)):
+            with m.If(allow_plug):
+                m.d.sync += self.plug_limiter.eq(self.plug_limiter+1)
+
+        # Only allow a write to the plugboard if allow_plug is true
+        with m.If(self.wr_data_en & allow_plug):
             for i in range(26):
                 m.d.comb+= wl[i].eq(cnt==i)
 
 
-        addr = Signal(5)
-        read = Signal(5)
 
         with m.If(self.is_ltor):
             m.d.comb += addr.eq(self.in_ltor)
@@ -97,7 +114,7 @@ class Plugboard(wiring.Component):
         m.d.comb += [ 
             read.eq( mem[addr] ),
             self.out.eq( Mux(self.enable, read, addr) )
-         ]
+        ]
 
         return m
 
