@@ -65,13 +65,9 @@ class SevenSegmentAlpha(wiring.Component):
         m = Module()
 
         # 7-segment decoder
-        m.d.comb += self.dout.eq(self.letters_map[self.din])
+        m.d.comb += self.dout[0:7].eq(self.letters_map[self.din])
 
-        # Blinky on dot
-        cnt = Signal(25)
-        # Free running counter
-        m.d.sync += cnt.eq(cnt+1)
-        m.d.comb += dout[7].eq(cnt[24])  # Output the MSB
+        m.d.comb += self.dout[7].eq(0)
 
         return m
 

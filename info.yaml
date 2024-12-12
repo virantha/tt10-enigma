@@ -4,8 +4,8 @@ project:
   author:       "Virantha Ekanayake"      # Your name
   discord:      "veezer"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "Silicon implementation of an Enigma I machine with a limited plugboard supporting 3 wires"      # One line description of what your project does
-  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz:     10000       # Clock frequency in Hz (or 0 if not applicable)
+  language:     "Amaranth" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     10000000000       # Clock frequency in Hz (or 0 if not applicable)
 
   # How many tiles your design occupies? A single tile is about 167x108 uM.
   tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
@@ -24,32 +24,32 @@ project:
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
   # Inputs
-  ui[0]: ""
-  ui[1]: ""
-  ui[2]: ""
-  ui[3]: ""
-  ui[4]: ""
-  ui[5]: ""
-  ui[6]: ""
-  ui[7]: ""
+  ui[0]: "din[0]"
+  ui[1]: "din[1]"
+  ui[2]: "din[2]"
+  ui[3]: "din[3]"
+  ui[4]: "din[4]"
+  ui[5]: "cmd[0]"
+  ui[6]: "cmd[1]"
+  ui[7]: "cmd[2]"
 
   # Outputs
-  uo[0]: "cnt[0]"
-  uo[1]: "cnt[1]"
-  uo[2]: "cnt[2]"
-  uo[3]: "cnt[3]"
-  uo[4]: "cnt[4]"
-  uo[5]: "cnt[5]"
-  uo[6]: ""
-  uo[7]: ""
+  uo[0]: "seg[0]"
+  uo[1]: "seg[1]"
+  uo[2]: "seg[2]"
+  uo[3]: "seg[3]"
+  uo[4]: "seg[4]"
+  uo[5]: "seg[5]"
+  uo[6]: "seg[6]"
+  uo[7]: "GND"
 
   # Bidirectional pins
-  uio[0]: ""
-  uio[1]: ""
-  uio[2]: ""
-  uio[3]: ""
-  uio[4]: ""
-  uio[5]: ""
+  uio[0]: "dout[0]"
+  uio[1]: "dout[1]"
+  uio[2]: "dout[3]"
+  uio[3]: "dout[4]"
+  uio[4]: "dout[5]"
+  uio[5]: "ready"
   uio[6]: ""
   uio[7]: ""
 

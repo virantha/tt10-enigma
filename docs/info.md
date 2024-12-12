@@ -109,6 +109,8 @@ ready to accept the next command.  If the command generates an output, the raw
 value will be output on the bidir pins, and the LCD display will show the
 character generated.
 
+#### Pinouts
+
 |Description | Width| Direction | Signal(s)|
 |------------|------|----|----|
 |Command |3 | in | ui_in[7:5]|
@@ -173,4 +175,5 @@ The state machine diagram source can be found on github[^8].
 
 ## External hardware
 
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+None.  Uses the built-in 7-segment display on the PCB.
+

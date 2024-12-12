@@ -6,6 +6,9 @@
 - Try to reduce to one test file
 - Clean up old amaranth test benches
 
+## V0.4
+- Update info.yaml with pinout
+- Moved tiedown on display period into lcd.py
 
 ## V0.3
 - Bug fix of V0.2
