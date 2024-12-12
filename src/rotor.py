@@ -2,12 +2,8 @@ from amaranth import Module, Signal, Const, Array, Mux, unsigned
 from amaranth.lib.enum import Enum
 from amaranth.lib import wiring
 from amaranth.lib.wiring import In, Out
-from src.defines import Rotors
+from src.defines import Rotors, Din
 
-class Din(Enum, shape=unsigned(2)):
-    DIN = 0
-    DOUT = 1
-    REF = 2 
 
 class Rotor (wiring.Component):
 
@@ -106,12 +102,14 @@ class Rotor (wiring.Component):
         cnt_eq_25 = Signal(1)
 
         with m.Switch(self.en):
+             # Pick settings based on which Rotor Slot is selected by self.en (one-hot)
             for one_hot, rotor in [(0b001, 0), (0b010,1), (0b100, 2)]:
                 with m.Case(one_hot):
                     m.d.comb += [
                         ring_setting.eq(self.ring_settings[rotor]),
                         cnt.eq(self.cnts[rotor]),
                         cnt_eq_25.eq(cnt==25),
+                        # Pick the wiring swizzles based on which Rotor type is loaded into each slot
                         wiring_rtol.eq(self.Wiring_right_to_left[self.slot[rotor]][right_ptr]),
                         wiring_ltor.eq(self.Wiring_left_to_right[self.slot[rotor]][right_ptr]),
                     ]
@@ -122,7 +120,6 @@ class Rotor (wiring.Component):
                     with m.Elif(self.load_rotor_type):
                         m.d.sync += self.slot[rotor].eq(muxed_din[0:3])
                     with m.Elif(self.inc):
-                        # PULL OUT COMPARISON HERE??
                         with m.If(cnt_eq_25):
                             m.d.sync += self.cnts[rotor].eq(0)
                         with m.Else():

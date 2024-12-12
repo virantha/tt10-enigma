@@ -9,7 +9,7 @@ from .lcd import SevenSegmentAlpha
 
 class Enigma(wiring.Component):
     ui_in: In(8)
-    uo_out: Out(7)  # Display port
+    uo_out: Out(8)  # Display port
 
     uio_out: Out(6) 
 

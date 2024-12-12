@@ -2,6 +2,11 @@
 
 # Changelog
 
+## TODO
+- Try to reduce to one test file
+- Clean up old amaranth test benches
+
+
 ## V0.3
 - Bug fix of V0.2
     - Everything is clean now

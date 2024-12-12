@@ -30,3 +30,8 @@ class En(Enum, shape=unsigned(2)):
     ROTOR0 = 1
     ROTOR1 = 2
     ROTOR2 = 3
+
+class Din(Enum, shape=unsigned(2)):
+    DIN = 0
+    DOUT = 1
+    REF = 2 

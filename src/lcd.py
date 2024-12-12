@@ -17,8 +17,8 @@ from amaranth.lib.wiring import In, Out
 class SevenSegmentAlpha(wiring.Component):
 
     din: In(5)   # The letter A-Z (0-25)
-    dout: Out(7) # The uo_out to drive the 7-segment display, 
-                 # uo_out[7] is the dot which we don't use
+    dout: Out(8) # The uo_out to drive the 7-segment display, 
+                 # uo_out[7] is the dot which we blink ~2Hz
 
     def __init__(self):
         self.create_table()
@@ -63,8 +63,16 @@ class SevenSegmentAlpha(wiring.Component):
 
     def elaborate(self, platform):
         m = Module()
+
+        # 7-segment decoder
         m.d.comb += self.dout.eq(self.letters_map[self.din])
-        
+
+        # Blinky on dot
+        cnt = Signal(25)
+        # Free running counter
+        m.d.sync += cnt.eq(cnt+1)
+        m.d.comb += dout[7].eq(cnt[24])  # Output the MSB
+
         return m
 
 
