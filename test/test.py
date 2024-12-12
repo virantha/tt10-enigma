@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: © 2024 Tiny Tapeout
 # SPDX-License-Identifier: Apache-2.0
 
+import os
 import cocotb
 from cocotb.types import LogicArray
 from cocotb.clock import Clock
@@ -19,23 +20,13 @@ async def ready(dut):
     rdy = dut.uio_out
     prev = rdy[5].value
     while True:
-        await Edge(dut.uio_out)
+        await Edge(rdy)
+        await ReadOnly()
         if prev==0 and rdy[5].value==1:
+            await NextTimeStep()
             break # rising edge
         else:
             prev = rdy[5].value
-
-async def ready_old(dut):
-    #await RisingEdge(dut.user_project.enigma.fsm.ready) 
-    await ClockCycles(dut.clk,1)
-    rdy = dut.user_project.enigma.ready
-    if not rdy:
-        await FallingEdge(rdy)
-    #await ReadOnly()
-    #await NextTimeStep()
-    #while dut.user_project.enigma.ready.value==0:
-        #await ClockCycles(dut.clk, 1)
-    await RisingEdge(dut.user_project.enigma.ready)
 
 async def reset(dut):
     # Reset
@@ -57,6 +48,10 @@ def get_ui_in(cmd, val):
 @cocotb.test()
 async def test_load(dut):
     dut._log.info("Start")
+    if os.getenv('GATES'):
+        dut._log.info("Gate-level simulation -- not testing this function")
+        return
+
     # Set the clock period to 10 us (100 KHz)
     clock = Clock(dut.clk, 10, units="us")
     cocotb.start_soon(clock.start())
@@ -144,6 +139,7 @@ def iter_plain_text(plain):
 
 async def run_cipher(dut, rotors, plugboard, plain):
     golden = get_golden_cipher(rotors, plugboard, plain)
+    IS_GATES = os.getenv('GATES')
 
     # Reset the plugboard
     for i in range(26):
@@ -182,7 +178,8 @@ async def run_cipher(dut, rotors, plugboard, plain):
         input_val = val
         #dut._log.info(f'{golden_val:0b}, {out_val}, {out_val.integer}')
         log_msg = f'Round {i}: Input {input_char} (0x{input_val:x} / {input_val}) -> {golden[i]} (0x{golden_val:x} / {golden_val}) expected, actual 0x{out_val.integer:x} / {out_val.integer}'
-        #dut._log.info(log_msg)
+        if IS_GATES:
+            dut._log.info(log_msg)
         assert golden_val==out_val.integer, log_msg
 
 @cocotb.test()
