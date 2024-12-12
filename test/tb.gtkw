@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
-[*] Mon Dec  9 13:36:54 2024
+[*] Thu Dec 12 13:33:53 2024
 [*]
 [dumpfile] "/Users/virantha/dev/tinytapeout/tt10-enigma/test/tb.vcd"
-[dumpfile_mtime] "Mon Dec  9 13:36:03 2024"
-[dumpfile_size] 2254537
+[dumpfile_mtime] "Thu Dec 12 13:25:00 2024"
+[dumpfile_size] 25476346
 [savefile] "/Users/virantha/dev/tinytapeout/tt10-enigma/test/tb.gtkw"
-[timestart] 1515800000
+[timestart] 3030300000
 [size] 1840 1078
-[pos] 24 -1
-*-26.000000 1666700000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+[pos] 439 50
+*-26.000000 3150000001 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 [markername] AA
 [markername] BB
 [markername] CC
@@ -37,10 +37,12 @@
 [markername] YY
 [markername] ZZ
 [treeopen] tb.
+[treeopen] tb.user_project.
+[treeopen] tb.user_project.enigma.
 [sst_width] 240
 [signals_width] 292
 [sst_expanded] 1
-[sst_vpaned_height] 119
+[sst_vpaned_height] 244
 @28
 tb.clk
 tb.rst_n
@@ -54,16 +56,6 @@ tb.ui_in[7:0]
 (2)tb.ui_in[7:0]
 @1401200
 -group_end
-@c00022
-#{FSM_STATE} tb.user_project.\enigma.fsm.fsm_state[4] tb.user_project.\enigma.fsm.fsm_state[3] tb.user_project.\enigma.fsm.fsm_state[2] tb.user_project.\enigma.fsm.fsm_state[1] tb.user_project.\enigma.fsm.fsm_state[0]
-@28
-tb.user_project.\enigma.fsm.fsm_state[0]
-tb.user_project.\enigma.fsm.fsm_state[1]
-tb.user_project.\enigma.fsm.fsm_state[2]
-tb.user_project.\enigma.fsm.fsm_state[3]
-tb.user_project.\enigma.fsm.fsm_state[4]
-@1401200
--group_end
 @c00024
 #{DIN} (3)tb.ui_in[7:0] (4)tb.ui_in[7:0] (5)tb.ui_in[7:0] (6)tb.ui_in[7:0] (7)tb.ui_in[7:0]
 @28
@@ -75,26 +67,20 @@ tb.user_project.\enigma.fsm.fsm_state[4]
 @1401200
 -group_end
 @c00024
-#{OUT} (3)tb.uo_out[7:0] (4)tb.uo_out[7:0] (5)tb.uo_out[7:0] (6)tb.uo_out[7:0] (7)tb.uo_out[7:0]
+#{DOUT} (3)tb.uio_out[7:0] (4)tb.uio_out[7:0] (5)tb.uio_out[7:0] (6)tb.uio_out[7:0] (7)tb.uio_out[7:0]
 @28
-(3)tb.uo_out[7:0]
-(4)tb.uo_out[7:0]
-(5)tb.uo_out[7:0]
-(6)tb.uo_out[7:0]
-(7)tb.uo_out[7:0]
-@1401200
+(3)tb.uio_out[7:0]
+(4)tb.uio_out[7:0]
+(5)tb.uio_out[7:0]
+(6)tb.uio_out[7:0]
+(7)tb.uio_out[7:0]
+@1401204
 -group_end
-@c00024
-#{DOOUT} (3)tb.uo_out[7:0] (4)tb.uo_out[7:0] (5)tb.uo_out[7:0] (6)tb.uo_out[7:0] (7)tb.uo_out[7:0]
+@24
+tb.user_project.enigma.lcd.din[4:0]
 @28
-(3)tb.uo_out[7:0]
-(4)tb.uo_out[7:0]
-(5)tb.uo_out[7:0]
-(6)tb.uo_out[7:0]
-(7)tb.uo_out[7:0]
-@1401200
--group_end
-@c00024
+(2)tb.uio_out[7:0]
+@c00025
 #{DEBUG} (3)tb.uio_out[7:0] (4)tb.uio_out[7:0] (5)tb.uio_out[7:0] (6)tb.uio_out[7:0] (7)tb.uio_out[7:0]
 @28
 (3)tb.uio_out[7:0]
@@ -102,80 +88,13 @@ tb.user_project.\enigma.fsm.fsm_state[4]
 (5)tb.uio_out[7:0]
 (6)tb.uio_out[7:0]
 (7)tb.uio_out[7:0]
-@1401200
+@1401201
 -group_end
 @1001200
 -group_end
-@800022
+@c00028
 tb.uo_out[7:0]
-@1001200
+@1401208
 -group_end
-@c00024
-#{CNT0} tb.user_project.\enigma.r.cnts_debug0[4] tb.user_project.\enigma.r.cnts_debug0[3] tb.user_project.\enigma.r.cnts_debug0[2] tb.user_project.\enigma.r.cnts_debug0[1] tb.user_project.\enigma.r.cnts_debug0[0]
-@28
-tb.user_project.\enigma.r.cnts_debug0[4]
-tb.user_project.\enigma.r.cnts_debug0[3]
-tb.user_project.\enigma.r.cnts_debug0[2]
-tb.user_project.\enigma.r.cnts_debug0[1]
-tb.user_project.\enigma.r.cnts_debug0[0]
-@1401200
--group_end
-@c00024
-#{CNT1} tb.user_project.\enigma.r.cnts_debug1[4] tb.user_project.\enigma.r.cnts_debug1[3] tb.user_project.\enigma.r.cnts_debug1[2] tb.user_project.\enigma.r.cnts_debug1[1] tb.user_project.\enigma.r.cnts_debug1[0]
-@28
-tb.user_project.\enigma.r.cnts_debug1[0]
-tb.user_project.\enigma.r.cnts_debug1[1]
-tb.user_project.\enigma.r.cnts_debug1[2]
-tb.user_project.\enigma.r.cnts_debug1[3]
-tb.user_project.\enigma.r.cnts_debug1[4]
-@1401200
--group_end
-@c00022
-#{CNT2} tb.user_project.\enigma.r.cnts_debug2[4] tb.user_project.\enigma.r.cnts_debug2[3] tb.user_project.\enigma.r.cnts_debug2[2] tb.user_project.\enigma.r.cnts_debug2[1] tb.user_project.\enigma.r.cnts_debug2[0]
-@28
-tb.user_project.\enigma.r.cnts_debug2[0]
-tb.user_project.\enigma.r.cnts_debug2[1]
-tb.user_project.\enigma.r.cnts_debug2[2]
-tb.user_project.\enigma.r.cnts_debug2[3]
-tb.user_project.\enigma.r.cnts_debug2[4]
-@1401200
--group_end
-@800022
-tb.uo_out[7:0]
-tb.uio_out[7:0]
-@28
-(0)tb.uio_out[7:0]
-(1)tb.uio_out[7:0]
-(2)tb.uio_out[7:0]
-@1001200
--group_end
--group_end
-@c00025
-#{pb[0]} tb.user_project.\enigma.plugboard.bits_0_4.q tb.user_project.\enigma.plugboard.bits_0_3.q tb.user_project.\enigma.plugboard.bits_0_2.q tb.user_project.\enigma.plugboard.bits_0_1.q tb.user_project.\enigma.plugboard.bits_0_0.q
-@28
-tb.user_project.\enigma.plugboard.bits_0_0.q
-tb.user_project.\enigma.plugboard.bits_0_1.q
-tb.user_project.\enigma.plugboard.bits_0_2.q
-tb.user_project.\enigma.plugboard.bits_0_3.q
-tb.user_project.\enigma.plugboard.bits_0_4.q
-@1401205
--group_end
-@28
-tb.user_project.\enigma.plugboard.bits_0_0.clk
-tb.user_project.\enigma.plugboard.bits_1_0.clk
-tb.user_project.\enigma.plugboard.bits_2_0.clk
-@c00024
-#{pb[1]} tb.user_project.\enigma.plugboard.bits_1_4.q tb.user_project.\enigma.plugboard.bits_1_3.q tb.user_project.\enigma.plugboard.bits_1_2.q tb.user_project.\enigma.plugboard.bits_1_1.q tb.user_project.\enigma.plugboard.bits_1_0.q
-@28
-tb.user_project.\enigma.plugboard.bits_1_0.q
-tb.user_project.\enigma.plugboard.bits_1_1.q
-tb.user_project.\enigma.plugboard.bits_1_2.q
-tb.user_project.\enigma.plugboard.bits_1_3.q
-tb.user_project.\enigma.plugboard.bits_1_4.q
-@1401204
--group_end
-@28
-tb.user_project.net80
-tb.user_project.net204
 [pattern_trace] 1
 [pattern_trace] 0
