@@ -41,8 +41,6 @@ below:
 3. Ring of each rotor (only two right rotors matter):
     > 26*26 = **676**
 4. Plugboard with 3 wires (see table on p.9 for p=3[^3]):
-    > 26choose3 / 2^3 
-    
     > = 26! / (26-6)! / 3! / 8 =  **3,453,450** ways to plug in 3 wires
 
 The total ways (# of keys) to set up this particular Enigma is therefore:
