@@ -153,8 +153,8 @@ class Rotor (wiring.Component):
             s_ge_26 = Signal(1)
             m.d.comb += [
                 s.eq (a+b),
-                #s_ge_26.eq ( (s[5]==1) | (s[0:5]>=26)),
-                s_ge_26.eq ( s>=26),
+                s_ge_26.eq ( (s[5]==1) | (s[0:5]>=26)),
+                #s_ge_26.eq ( s>=26),
                 s_m_26.eq ( s - 26),
                 sum_signal.eq (Mux (s_ge_26, s_m_26[0:5], s[0:5]))
             ]

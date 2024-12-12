@@ -3439,27 +3439,29 @@ module \top.r (rst, reflector_in, din, is_at_turnover, dout, en, inc, din_sel, l
   reg [4:0] \$48 ;
   wire \$49 ;
   reg [4:0] \$5 ;
-  wire [6:0] \$50 ;
-  wire [6:0] \$51 ;
+  wire \$50 ;
+  wire \$51 ;
   wire [6:0] \$52 ;
   wire [6:0] \$53 ;
   wire [6:0] \$54 ;
-  wire [5:0] \$55 ;
-  wire [5:0] \$56 ;
+  wire [6:0] \$55 ;
+  wire [6:0] \$56 ;
   wire [5:0] \$57 ;
-  wire [4:0] \$58 ;
-  reg [4:0] \$59 ;
+  wire [5:0] \$58 ;
+  wire [5:0] \$59 ;
   reg [4:0] \$6 ;
-  reg [4:0] \$60 ;
-  reg [2:0] \$61 ;
+  wire [4:0] \$60 ;
+  reg [4:0] \$61 ;
   reg [4:0] \$62 ;
-  reg [4:0] \$63 ;
-  reg [2:0] \$64 ;
+  reg [2:0] \$63 ;
+  reg [4:0] \$64 ;
   reg [4:0] \$65 ;
-  reg [4:0] \$66 ;
-  reg [2:0] \$67 ;
+  reg [2:0] \$66 ;
+  reg [4:0] \$67 ;
   reg [4:0] \$68 ;
+  reg [2:0] \$69 ;
   reg [4:0] \$7 ;
+  reg [4:0] \$70 ;
   reg [4:0] \$8 ;
   reg [4:0] \$9 ;
   (* init = 5'h00 *)
@@ -3578,52 +3580,169 @@ module \top.r (rst, reflector_in, din, is_at_turnover, dout, en, inc, din_sel, l
   assign \$47  = \$46  == (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_ast.py:2368" *) cnts_debug1;
   assign \$49  = \$48  == (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_ast.py:2368" *) cnts_debug2;
   assign s = muxed_din + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:155" *) cnt_ring_combined;
-  assign s_ge_26 = s >= (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:157" *) 5'h1a;
-  assign \$50  = s - (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:158" *) 5'h1a;
-  assign right_ptr = s_ge_26 ? (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:159" *) \$50 [4:0] : s[4:0];
-  assign \$51  = wiring_rtol - (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:171" *) cnt_ring_combined;
-  assign \$52  = \$51 [5:0] + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:172" *) 5'h1a;
-  assign swizz_minus_cnt_ring = \$51 [5] ? (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:174" *) \$52 [4:0] : \$51 [4:0];
-  assign \$53  = wiring_ltor - (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:171" *) cnt_ring_combined;
+  assign \$51  = s[4:0] >= (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:156" *) 5'h1a;
+  assign s_ge_26 = \$50  | (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:156" *) \$51 ;
+  assign \$52  = s - (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:158" *) 5'h1a;
+  assign right_ptr = s_ge_26 ? (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:159" *) \$52 [4:0] : s[4:0];
+  assign \$53  = wiring_rtol - (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:171" *) cnt_ring_combined;
   assign \$54  = \$53 [5:0] + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:172" *) 5'h1a;
-  assign swizz_l_minus_cnt_ring = \$53 [5] ? (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:174" *) \$54 [4:0] : \$53 [4:0];
-  assign \$55  = cnt + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:129" *) 1'h1;
-  assign \$56  = cnt + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:129" *) 1'h1;
+  assign swizz_minus_cnt_ring = \$53 [5] ? (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:174" *) \$54 [4:0] : \$53 [4:0];
+  assign \$55  = wiring_ltor - (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:171" *) cnt_ring_combined;
+  assign \$56  = \$55 [5:0] + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:172" *) 5'h1a;
+  assign swizz_l_minus_cnt_ring = \$55 [5] ? (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:174" *) \$56 [4:0] : \$55 [4:0];
   assign \$57  = cnt + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:129" *) 1'h1;
-  assign \$58  = ltor ? (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:188" *) swizz_l_minus_cnt_ring : swizz_minus_cnt_ring;
+  assign \$58  = cnt + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:129" *) 1'h1;
+  assign \$59  = cnt + (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:129" *) 1'h1;
+  assign \$60  = ltor ? (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:188" *) swizz_l_minus_cnt_ring : swizz_minus_cnt_ring;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:40" *)
   always @(posedge clk)
-    cnts_debug0 <= \$59 ;
+    cnts_debug0 <= \$61 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:41" *)
   always @(posedge clk)
-    \$signal$13  <= \$60 ;
+    \$signal$13  <= \$62 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:87" *)
   always @(posedge clk)
-    \$signal$17  <= \$61 ;
+    \$signal$17  <= \$63 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:40" *)
   always @(posedge clk)
-    cnts_debug1 <= \$62 ;
+    cnts_debug1 <= \$64 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:41" *)
   always @(posedge clk)
-    \$signal$20  <= \$63 ;
+    \$signal$20  <= \$65 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:87" *)
   always @(posedge clk)
-    \$signal$21  <= \$64 ;
+    \$signal$21  <= \$66 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:40" *)
   always @(posedge clk)
-    cnts_debug2 <= \$65 ;
+    cnts_debug2 <= \$67 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:41" *)
   always @(posedge clk)
-    \$signal$22  <= \$66 ;
+    \$signal$22  <= \$68 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:87" *)
   always @(posedge clk)
-    \$signal$23  <= \$67 ;
+    \$signal$23  <= \$69 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:15" *)
   always @(posedge clk)
-    dout <= \$68 ;
+    dout <= \$70 ;
   assign \$1  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:114" *) 5'h19;
   assign \$14  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:114" *) 5'h19;
   assign \$27  = cnt == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:114" *) 5'h19;
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$5 ) begin end
+    \$30  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$30  = 5'h01;
+      5'h01:
+          \$30  = 5'h03;
+      5'h02:
+          \$30  = 5'h05;
+      5'h03:
+          \$30  = 5'h07;
+      5'h04:
+          \$30  = 5'h09;
+      5'h05:
+          \$30  = 5'h0b;
+      5'h06:
+          \$30  = 5'h02;
+      5'h07:
+          \$30  = 5'h0f;
+      5'h08:
+          \$30  = 5'h11;
+      5'h09:
+          \$30  = 5'h13;
+      5'h0a:
+          \$30  = 5'h17;
+      5'h0b:
+          \$30  = 5'h15;
+      5'h0c:
+          \$30  = 5'h19;
+      5'h0d:
+          \$30  = 5'h0d;
+      5'h0e:
+          \$30  = 5'h18;
+      5'h0f:
+          \$30  = 5'h04;
+      5'h10:
+          \$30  = 5'h08;
+      5'h11:
+          \$30  = 5'h16;
+      5'h12:
+          \$30  = 5'h06;
+      5'h13:
+          \$30  = 5'h00;
+      5'h14:
+          \$30  = 5'h0a;
+      5'h15:
+          \$30  = 5'h0c;
+      5'h16:
+          \$30  = 5'h14;
+      5'h17:
+          \$30  = 5'h12;
+      5'h18:
+          \$30  = 5'h10;
+      5'h19:
+          \$30  = 5'h0e;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$5 ) begin end
+    \$31  = 5'h00;
+    casez (right_ptr)
+      5'h00:
+          \$31  = 5'h04;
+      5'h01:
+          \$31  = 5'h12;
+      5'h02:
+          \$31  = 5'h0e;
+      5'h03:
+          \$31  = 5'h15;
+      5'h04:
+          \$31  = 5'h0f;
+      5'h05:
+          \$31  = 5'h19;
+      5'h06:
+          \$31  = 5'h09;
+      5'h07:
+          \$31  = 5'h00;
+      5'h08:
+          \$31  = 5'h18;
+      5'h09:
+          \$31  = 5'h10;
+      5'h0a:
+          \$31  = 5'h14;
+      5'h0b:
+          \$31  = 5'h08;
+      5'h0c:
+          \$31  = 5'h11;
+      5'h0d:
+          \$31  = 5'h07;
+      5'h0e:
+          \$31  = 5'h17;
+      5'h0f:
+          \$31  = 5'h0b;
+      5'h10:
+          \$31  = 5'h0d;
+      5'h11:
+          \$31  = 5'h05;
+      5'h12:
+          \$31  = 5'h13;
+      5'h13:
+          \$31  = 5'h06;
+      5'h14:
+          \$31  = 5'h0a;
+      5'h15:
+          \$31  = 5'h03;
+      5'h16:
+          \$31  = 5'h02;
+      5'h17:
+          \$31  = 5'h0c;
+      5'h18:
+          \$31  = 5'h16;
+      5'h19:
+          \$31  = 5'h01;
+    endcase
+  end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$5 ) begin end
     \$32  = 5'h00;
@@ -4139,73 +4258,34 @@ module \top.r (rst, reflector_in, din, is_at_turnover, dout, en, inc, din_sel, l
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$5 ) begin end
-    \$59  = cnts_debug0;
+    \$61  = cnts_debug0;
     casez (en)
       3'h1:
           if (load_start) begin
-            \$59  = muxed_din;
+            \$61  = muxed_din;
           end else if (load_ring) begin
           end else if (load_rotor_type) begin
           end else if (inc) begin
             (* full_case = 32'd1 *)
             if (cnt_eq_25) begin
-              \$59  = 5'h00;
+              \$61  = 5'h00;
             end else begin
-              \$59  = \$55 [4:0];
+              \$61  = \$57 [4:0];
             end
           end
     endcase
     if (rst) begin
-      \$59  = 5'h00;
+      \$61  = 5'h00;
     end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$5 ) begin end
-    \$60  = \$signal$13 ;
+    \$62  = \$signal$13 ;
     casez (en)
       3'h1:
           if (load_start) begin
           end else if (load_ring) begin
-            \$60  = muxed_din;
-          end
-    endcase
-    if (rst) begin
-      \$60  = 5'h00;
-    end
-  end
-  always @* begin
-    if (\$auto$verilog_backend.cc:2352:dump_module$5 ) begin end
-    \$61  = \$signal$17 ;
-    casez (en)
-      3'h1:
-          if (load_start) begin
-          end else if (load_ring) begin
-          end else if (load_rotor_type) begin
-            \$61  = muxed_din[2:0];
-          end
-    endcase
-    if (rst) begin
-      \$61  = 3'h0;
-    end
-  end
-  always @* begin
-    if (\$auto$verilog_backend.cc:2352:dump_module$5 ) begin end
-    \$62  = cnts_debug1;
-    casez (en)
-      3'h1:
-          /* empty */;
-      3'h2:
-          if (load_start) begin
             \$62  = muxed_din;
-          end else if (load_ring) begin
-          end else if (load_rotor_type) begin
-          end else if (inc) begin
-            (* full_case = 32'd1 *)
-            if (cnt_eq_25) begin
-              \$62  = 5'h00;
-            end else begin
-              \$62  = \$56 [4:0];
-            end
           end
     endcase
     if (rst) begin
@@ -4214,57 +4294,53 @@ module \top.r (rst, reflector_in, din, is_at_turnover, dout, en, inc, din_sel, l
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$5 ) begin end
-    \$63  = \$signal$20 ;
+    \$63  = \$signal$17 ;
     casez (en)
       3'h1:
-          /* empty */;
-      3'h2:
-          if (load_start) begin
-          end else if (load_ring) begin
-            \$63  = muxed_din;
-          end
-    endcase
-    if (rst) begin
-      \$63  = 5'h00;
-    end
-  end
-  always @* begin
-    if (\$auto$verilog_backend.cc:2352:dump_module$5 ) begin end
-    \$64  = \$signal$21 ;
-    casez (en)
-      3'h1:
-          /* empty */;
-      3'h2:
           if (load_start) begin
           end else if (load_ring) begin
           end else if (load_rotor_type) begin
-            \$64  = muxed_din[2:0];
+            \$63  = muxed_din[2:0];
           end
     endcase
     if (rst) begin
-      \$64  = 3'h1;
+      \$63  = 3'h0;
     end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$5 ) begin end
-    \$65  = cnts_debug2;
+    \$64  = cnts_debug1;
     casez (en)
       3'h1:
           /* empty */;
       3'h2:
-          /* empty */;
-      3'h4:
           if (load_start) begin
-            \$65  = muxed_din;
+            \$64  = muxed_din;
           end else if (load_ring) begin
           end else if (load_rotor_type) begin
           end else if (inc) begin
             (* full_case = 32'd1 *)
             if (cnt_eq_25) begin
-              \$65  = 5'h00;
+              \$64  = 5'h00;
             end else begin
-              \$65  = \$57 [4:0];
+              \$64  = \$58 [4:0];
             end
+          end
+    endcase
+    if (rst) begin
+      \$64  = 5'h00;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$5 ) begin end
+    \$65  = \$signal$20 ;
+    casez (en)
+      3'h1:
+          /* empty */;
+      3'h2:
+          if (load_start) begin
+          end else if (load_ring) begin
+            \$65  = muxed_din;
           end
     endcase
     if (rst) begin
@@ -4273,7 +4349,50 @@ module \top.r (rst, reflector_in, din, is_at_turnover, dout, en, inc, din_sel, l
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$5 ) begin end
-    \$66  = \$signal$22 ;
+    \$66  = \$signal$21 ;
+    casez (en)
+      3'h1:
+          /* empty */;
+      3'h2:
+          if (load_start) begin
+          end else if (load_ring) begin
+          end else if (load_rotor_type) begin
+            \$66  = muxed_din[2:0];
+          end
+    endcase
+    if (rst) begin
+      \$66  = 3'h1;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$5 ) begin end
+    \$67  = cnts_debug2;
+    casez (en)
+      3'h1:
+          /* empty */;
+      3'h2:
+          /* empty */;
+      3'h4:
+          if (load_start) begin
+            \$67  = muxed_din;
+          end else if (load_ring) begin
+          end else if (load_rotor_type) begin
+          end else if (inc) begin
+            (* full_case = 32'd1 *)
+            if (cnt_eq_25) begin
+              \$67  = 5'h00;
+            end else begin
+              \$67  = \$59 [4:0];
+            end
+          end
+    endcase
+    if (rst) begin
+      \$67  = 5'h00;
+    end
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2352:dump_module$5 ) begin end
+    \$68  = \$signal$22 ;
     casez (en)
       3'h1:
           /* empty */;
@@ -4282,16 +4401,16 @@ module \top.r (rst, reflector_in, din, is_at_turnover, dout, en, inc, din_sel, l
       3'h4:
           if (load_start) begin
           end else if (load_ring) begin
-            \$66  = muxed_din;
+            \$68  = muxed_din;
           end
     endcase
     if (rst) begin
-      \$66  = 5'h00;
+      \$68  = 5'h00;
     end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$5 ) begin end
-    \$67  = \$signal$23 ;
+    \$69  = \$signal$23 ;
     casez (en)
       3'h1:
           /* empty */;
@@ -4301,18 +4420,18 @@ module \top.r (rst, reflector_in, din, is_at_turnover, dout, en, inc, din_sel, l
           if (load_start) begin
           end else if (load_ring) begin
           end else if (load_rotor_type) begin
-            \$67  = muxed_din[2:0];
+            \$69  = muxed_din[2:0];
           end
     endcase
     if (rst) begin
-      \$67  = 3'h2;
+      \$69  = 3'h2;
     end
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$5 ) begin end
-    \$68  = \$58 ;
+    \$70  = \$60 ;
     if (rst) begin
-      \$68  = 5'h00;
+      \$70  = 5'h00;
     end
   end
   always @* begin
@@ -5655,137 +5774,22 @@ module \top.r (rst, reflector_in, din, is_at_turnover, dout, en, inc, din_sel, l
           \$29  = 5'h04;
     endcase
   end
-  always @* begin
-    if (\$auto$verilog_backend.cc:2352:dump_module$5 ) begin end
-    \$30  = 5'h00;
-    casez (right_ptr)
-      5'h00:
-          \$30  = 5'h01;
-      5'h01:
-          \$30  = 5'h03;
-      5'h02:
-          \$30  = 5'h05;
-      5'h03:
-          \$30  = 5'h07;
-      5'h04:
-          \$30  = 5'h09;
-      5'h05:
-          \$30  = 5'h0b;
-      5'h06:
-          \$30  = 5'h02;
-      5'h07:
-          \$30  = 5'h0f;
-      5'h08:
-          \$30  = 5'h11;
-      5'h09:
-          \$30  = 5'h13;
-      5'h0a:
-          \$30  = 5'h17;
-      5'h0b:
-          \$30  = 5'h15;
-      5'h0c:
-          \$30  = 5'h19;
-      5'h0d:
-          \$30  = 5'h0d;
-      5'h0e:
-          \$30  = 5'h18;
-      5'h0f:
-          \$30  = 5'h04;
-      5'h10:
-          \$30  = 5'h08;
-      5'h11:
-          \$30  = 5'h16;
-      5'h12:
-          \$30  = 5'h06;
-      5'h13:
-          \$30  = 5'h00;
-      5'h14:
-          \$30  = 5'h0a;
-      5'h15:
-          \$30  = 5'h0c;
-      5'h16:
-          \$30  = 5'h14;
-      5'h17:
-          \$30  = 5'h12;
-      5'h18:
-          \$30  = 5'h10;
-      5'h19:
-          \$30  = 5'h0e;
-    endcase
-  end
-  always @* begin
-    if (\$auto$verilog_backend.cc:2352:dump_module$5 ) begin end
-    \$31  = 5'h00;
-    casez (right_ptr)
-      5'h00:
-          \$31  = 5'h04;
-      5'h01:
-          \$31  = 5'h12;
-      5'h02:
-          \$31  = 5'h0e;
-      5'h03:
-          \$31  = 5'h15;
-      5'h04:
-          \$31  = 5'h0f;
-      5'h05:
-          \$31  = 5'h19;
-      5'h06:
-          \$31  = 5'h09;
-      5'h07:
-          \$31  = 5'h00;
-      5'h08:
-          \$31  = 5'h18;
-      5'h09:
-          \$31  = 5'h10;
-      5'h0a:
-          \$31  = 5'h14;
-      5'h0b:
-          \$31  = 5'h08;
-      5'h0c:
-          \$31  = 5'h11;
-      5'h0d:
-          \$31  = 5'h07;
-      5'h0e:
-          \$31  = 5'h17;
-      5'h0f:
-          \$31  = 5'h0b;
-      5'h10:
-          \$31  = 5'h0d;
-      5'h11:
-          \$31  = 5'h05;
-      5'h12:
-          \$31  = 5'h13;
-      5'h13:
-          \$31  = 5'h06;
-      5'h14:
-          \$31  = 5'h0a;
-      5'h15:
-          \$31  = 5'h03;
-      5'h16:
-          \$31  = 5'h02;
-      5'h17:
-          \$31  = 5'h0c;
-      5'h18:
-          \$31  = 5'h16;
-      5'h19:
-          \$31  = 5'h01;
-    endcase
-  end
   assign \$signal  = cnts_debug0;
   assign \$signal$3  = cnts_debug1;
   assign \$signal$5  = cnts_debug2;
-  assign s_m_26 = \$50 [5:0];
+  assign s_m_26 = \$52 [5:0];
   assign a_ext = { 1'h0, wiring_rtol };
   assign b_ext = { 1'h0, cnt_ring_combined };
-  assign \s$31  = \$51 [5:0];
-  assign diff_plus_26 = \$52 [5:0];
+  assign \s$31  = \$53 [5:0];
+  assign diff_plus_26 = \$54 [5:0];
   assign \a_ext$34  = { 1'h0, wiring_ltor };
   assign \b_ext$35  = { 1'h0, cnt_ring_combined };
-  assign \s$36  = \$53 [5:0];
-  assign \diff_plus_26$37  = \$54 [5:0];
+  assign \s$36  = \$55 [5:0];
+  assign \diff_plus_26$37  = \$56 [5:0];
   assign is_at_turnover[2] = \$49 ;
   assign is_at_turnover[1] = \$47 ;
   assign is_at_turnover[0] = \$45 ;
+  assign \$50  = s[5];
 endmodule
 
 (* src = "/home/virantha/tinytapeout/tt10-enigma/src/rotor.py:202" *)

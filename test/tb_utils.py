@@ -71,11 +71,26 @@ def get_fixed_rotor_setting():
          'ring':24 
         },
     ]
+    # rotors = [
+    #     {'type': 'II',
+    #      'start': to_letter(15),
+    #      'ring': 18
+    #     },
+    #     {'type': 'V',
+    #      'start': to_letter(5),
+    #      'ring': 5 
+    #     },
+    #     { 'type': 'IV',
+    #      'start': to_letter(1),
+    #      'ring':24 
+    #     },
+    # ]
     # Plugboard
     return rotors
     
 def get_fixed_plugboard_setting():
     plugboard = [ "AN", "DE", "ZB",  ]
+    #plugboard = [ "VM", "YU", "KK",  ]
     return plugboard
 
 def get_random_rotor_setting():
