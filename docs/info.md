@@ -181,7 +181,7 @@ is the pseudo code for setting up and scrambling/descrambling with this machine:
 
 ### Control FSM
 
-![alt text](fsm.svg)
+![alt text](images/fsm.png)
 
 The state machine diagram source can be found on github[^8].
 
