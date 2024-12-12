@@ -65,10 +65,38 @@ reference Python implementation to generate tests.
 
 [^7]: https://amaranth-lang.org/docs/amaranth/latest/
 
+In addition, in order to meet the tight area requirements, I went through several different
+implementations that, late in the design cycle, just kept missing the area targets.  I
+am very thankful I used Amaranth/Python to build this as it made re-architecting things
+much simpler.  Some of the early design choices that didn't work out:
+
+- Doing the scrambling datapath as 3 separate hardware rotors implemented as
+combinational blocks.  This became too large, and would've prevented me from
+being able to select the Rotor types. I finally settled on one Rotor block that 
+switches settings every time through, using the flopped output from the last
+cycle as the input to this cycle, thereby creating a "pipeline" of six rotors
+over six cycles (the six comes from 3 Rotors on the forward path, and then the
+data is reflected back through  the 3 Rotors in reverse before leaving the
+machine)
+
+- Plugboard design:
+    - The simplest version I could come up with was a 26 entry 5-bit lookup
+    table implemented with DFFs.  This became too large.
+
+    - The next version was a scan chain based implementation, but I think either
+    the hold-fix buffers or comparison logic made it even larger than the DFF
+    memory.
+
+    - Finally, I had to switch to using a 26 entry x 5-bit lookup table
+    implemented using the Skywater 130 stdcell latches.  I felt fairly safe
+    using this, as the plugboard is basically used as a ROM, with only a few
+    writes at the beginning to set the plugboard settings.  These writes are
+    carefully pulsed using full cycles with the state machine.  
+
 | Key statistics |  |
 |-------------|-----|
-| Utilization | 83% |
-| Cells  | 1327|
+| Utilization | 81% |
+| Cells  | 1583 |
 | DFF    | 67 |
 | Latches| 130|
 | Frequency| 35MHz |
@@ -91,6 +119,7 @@ character generated.
 
 #### Commands
 The machine accepts the following 8 commands:
+
 |Encoding[^6]| Command | Data |Description|
 |----|----|---|---|
 |000 | NOP | N/A | Do nothing |
@@ -102,12 +131,17 @@ The machine accepts the following 8 commands:
 |110 | LOAD_PLUG_DATA | Dst 0-25 (A-Z) | Set the other end of the plug. Note that this connection is unidirectional, so if you want A,B connected, then you need to do two sequences of these commands to first set A->B and then B->A|
 |111 | SET_ROTORS | Rotor 0-4 | Pick the Rotor type for each slot where Rotor I=0, Rotor II=1, ... Rotor V=4.  Do this three times in succession to pick each of the rotors (right to left). Default is Rotor I, II, III from right to left, where Rotor I is closest to the plugboard|
 
+
 #### Sample run
+
 TBD
 
 [^6]: See the ```src/defines.py``` file
+
 ### Control FSM
+
 ![alt text](fsm.svg)
+
 The state machine diagram source can be found on github[^8].
 
 [^8]: https://github.com/virantha/tt10-enigma/blob/main/docs/fsm.md

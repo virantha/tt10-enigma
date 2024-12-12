@@ -2,6 +2,21 @@
 
 # Changelog
 
+## V0.3
+- Bug fix of V0.2
+    - Everything is clean now
+    - Docs need cleaning up (not sure why fsm svg is messing up formatting)
+
+## V0.2
+- Second version 
+    - Antenna clean
+    - DRC clean
+    - BUG: tried to optimize stuff and gate-level netlist fails late
+- Features:
+    - Plugboard limited to 3 wires
+    - All 5 Rotors available (I, II, III, IV, V)
+    
+
 ## V0.1
 - First version commit with everything clean
    - Antenna clean
