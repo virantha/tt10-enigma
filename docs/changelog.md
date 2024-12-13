@@ -3,8 +3,11 @@
 # Changelog
 
 ## TODO
-- Try to reduce to one test file
-- Clean up old amaranth test benches
+- [x] Try to reduce to one test file
+- [ ] Would be nice to always output intermediate dout to lcd for debug.  use ready to drive period
+- [ ] Add FSM code to load plugboard
+- [ ] Clean up old amaranth test benches
+- [ ] Make a sign-of-life on the LED
 
 ## V0.4
 - Update info.yaml with pinout

@@ -4,11 +4,9 @@
 
 Welcome to my contribution to Tiny Tapeout 10.  Once fabricated in March 2025,
 this TT10 project will be a complete and functional model of the World War II era
-Enigma I cipher machine, occupying an area of 160um x 100um in SkyWater's
+Enigma I cipher machine, occupying an area of 160um x 100um (around the
+surface area of a grain of sand!) in SkyWater's
 0.13um silicon CMOS process.
-
-So, not only will this Enigma be built primarily out of sand, but it
-will also end up being smaller than a single grain of beach sand!
 
 |A tale of two engimas | |
 |---|---|

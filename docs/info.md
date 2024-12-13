@@ -89,7 +89,7 @@ implementation for test generation.
 | Frequency| 35MHz |
 
 ### Operation
-When this Enigma machine is ready, it will accept 8-bits of input data (command
+The Enigma is designed to accept an 8-bit input (command
 plus data) at the clk edge.  The internal state machine then takes
 a varying number of clk cycles to respond, raising the "Ready" signal when it's
 ready to accept the next command.  If the command generates an output, the raw
@@ -189,8 +189,6 @@ The state machine diagram source can be found on github[^8].
 
 
 ## How to test
-
-## Explanation coming soon
 
 ### Design verification
 
