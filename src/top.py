@@ -67,8 +67,8 @@ class Enigma(wiring.Component):
             plugboard.wr_addr_en.eq(fsm.plugboard_wr_addr),
         ]
 
-        #with m.If(fsm.result_ready & (cmd==Cmd.SCRAMBLE)):
-        with m.If(fsm.result_ready):
+        with m.If(fsm.result_ready & (cmd==Cmd.SCRAMBLE)):
+        #with m.If(fsm.result_ready): # Adding Cmd.SCRAMBLE to this saves 2% area???
             # Hold the output of the enigma encoder stable until next scramble command
             m.d.sync += self.uio_out[0:5].eq(plugboard.out)
          
