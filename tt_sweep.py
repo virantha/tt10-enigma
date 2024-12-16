@@ -364,7 +364,7 @@ class ParamSweepRunner:
     def archive_run(self, run_index, current_params: dict):
         """Archives the `runs/` directory into a subdirectory of `archive/`."""
         combo_str = "_".join(f"{k}-{v}" for k, v in current_params.items())
-        archive_subdir = self.archive_dir / f"run_{run_index}_{combo_str}"
+        archive_subdir = self.archive_dir / f"run_{run_index}"
 
         if not archive_subdir.exists():
             archive_subdir.mkdir(parents=True, exist_ok=True)

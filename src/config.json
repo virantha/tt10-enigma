@@ -30,7 +30,7 @@
 
   "MAX_FANOUT_CONSTRAINT": 8, 
   "//": "Maybe this will fix the slews ns",
-  "MAX_TRANSITION_CONSTRAINT": 1.0, 
+  "MAX_TRANSITION_CONSTRAINT": 0.8, 
   "RUN_POST_GPL_DESIGN_REPAIR": true,
   "RUN_POST_CTS_RESIZER_TIMING": true,
   "RUN_POST_GRT_RESIZER_TIMING": true,
@@ -39,7 +39,7 @@
   "//": "GRT_ANTENNA_MARGIN overfix margin, default is 10, try 20%",
   "GRT_ANTENNA_MARGIN": 15,
   "//": "DESIGN_REPAIR_MAX_WIRE_LENGTH in um",
-  "DESIGN_REPAIR_MAX_WIRE_LENGTH": 100,
+  "DESIGN_REPAIR_MAX_WIRE_LENGTH": 75,
   "//": "Following is required for fuzzy diode placement according to docs.  Seems to work without it though: 0",
   "GPL_CELL_PADDING": 0,
   "DPL_CELL_PADDING": 0,
