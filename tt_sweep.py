@@ -211,6 +211,9 @@ class ParamSweepRunner:
         except subprocess.TimeoutExpired as e:
             # If the process times out, forcibly kill it
             print(f"ERROR: Run {run_index} timed out after {self.max_time} seconds.")
+            # Let's kill the processes
+            os.system('killall -9 .openroad-wrapper')
+            os.system('killall -9 .openlane-wrapper')
             stdout_text = "TIMEOUT"
             stderr_text = str(e)
             ret_code = -1
@@ -426,8 +429,8 @@ def main():
         "PL_TARGET_DENSITY_PCT": [87],
         "DIODE_ON_PORTS": ["none"],
         "HEURISTIC_ANTENNA_THRESHOLD": [80,100,150],
-        "GPL_CELL_PADDING": [1],
-        "DPL_CELL_PADDING": [1],
+        "GPL_CELL_PADDING": [0],
+        "DPL_CELL_PADDING": [0],
         "SYNTH_STRATEGY": ["AREA 0", "AREA 1", "AREA 2"]
     }
 
@@ -443,7 +446,7 @@ def main():
         runs_dir=Path("runs/wokwi"),
         archive_dir=Path("archive"),
         summary_csv_path=Path("summary.csv"),
-        max_time=40*60  # e.g., 20 minutes maximum per run
+        max_time=25*60  # e.g., 20 minutes maximum per run
     )
     runner.run_all()
 
