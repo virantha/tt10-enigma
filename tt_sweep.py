@@ -151,6 +151,10 @@ class ParamSweepRunner:
             current_params = dict(zip(self.parameter_keys, combo))
             summary_data = self.run_single(default_params, current_params, run_index)
             self.all_summaries.append(summary_data)
+            # Append to summaries.csv
+            with open(self.summary_csv_path, mode='a', newline='', encoding='utf-8') as summary_csv:
+                writer = csv.writer(summary_csv)
+                writer.writerow(summary_data.values())
 
         # After all runs complete, write them once to CSV
         self.write_all_summaries_to_csv()
@@ -237,6 +241,7 @@ class ParamSweepRunner:
         # Parse metrics.csv
         metrics_path = self.runs_dir / "final/metrics.csv"
         collected_metrics = {
+            "timed_out": stdout_text=='TIMEOUT',
             "design__max_slew_violation__count": None,
             "design__max_fanout_violation__count": None,
             "design__max_cap_violation__count": None,
@@ -245,6 +250,8 @@ class ParamSweepRunner:
             "antenna__violating__pins": None,
             "route__antenna_violation__count": None,
             "route__wirelength__max": None,
+            "timing__setup__ws": None, 
+            "timing__hold__ws": None, 
             "design__xor_difference__count": None,
             "magic__drc_error__count": None,
             "klayout__drc_error__count": None,
@@ -275,11 +282,20 @@ class ParamSweepRunner:
                     if key in collected_metrics:
                         collected_metrics[key] = val
 
-        # Build the summary_data dictionary. You can add new fields anytime 
-        # without modifying the CSV logic!
-        antenna_passed = True if int(collected_metrics["antenna__violating__nets"])==0 and int(collected_metrics["antenna__violating__pins"])==0 else False
-        drc_passed = True if int(collected_metrics["magic__drc_error__count"])==0 and int(collected_metrics["klayout__drc_error__count"])==0 else False
-        lvs_passed = True if int(collected_metrics["design__lvs_error__count"])==0 else False
+        # Unfortunately, metrics.csv is not written on a fatal failure like drc or lvs
+
+        if collected_metrics['antenna__violating__nets'] is not None:
+            antenna_passed = True if int(collected_metrics["antenna__violating__nets"])==0 and int(collected_metrics["antenna__violating__pins"])==0 else False
+        else: 
+            antenna_passed = False
+        if collected_metrics['magic__drc_error__count'] is not None:
+            drc_passed = True if int(collected_metrics["magic__drc_error__count"])==0 and int(collected_metrics["klayout__drc_error__count"])==0 else False
+        else:
+            drc_passed = False
+        if collected_metrics['design__lvs_error__count'] is not None:
+            lvs_passed = True if int(collected_metrics["design__lvs_error__count"])==0 else False
+        else:
+            lvs_passed = False
         
 
         summary_data = {
@@ -405,13 +421,13 @@ class ParamSweepRunner:
 def main():
     # Example usage
     parameters = {
-        "MAX_TRANSITION_CONSTRAINT": [0.75, 0.8, 1.0],
+        "MAX_TRANSITION_CONSTRAINT": [0.7, 0.75, 1.0],
         "DESIGN_REPAIR_MAX_WIRE_LENGTH": [75, 100, 150],
         "PL_TARGET_DENSITY_PCT": [87],
         "DIODE_ON_PORTS": ["none"],
         "HEURISTIC_ANTENNA_THRESHOLD": [80,100,150],
-        "GPL_CELL_PADDING": [0],
-        "DPL_CELL_PADDING": [0],
+        "GPL_CELL_PADDING": [1],
+        "DPL_CELL_PADDING": [1],
         "SYNTH_STRATEGY": ["AREA 0", "AREA 1", "AREA 2"]
     }
 
@@ -427,7 +443,7 @@ def main():
         runs_dir=Path("runs/wokwi"),
         archive_dir=Path("archive"),
         summary_csv_path=Path("summary.csv"),
-        max_time=30*60  # e.g., 20 minutes maximum per run
+        max_time=40*60  # e.g., 20 minutes maximum per run
     )
     runner.run_all()
 
