@@ -5,9 +5,7 @@
 (* generator = "Amaranth" *)
 module top(clk, rst, uo_out, uio_out, ui_in);
   reg \$auto$verilog_backend.cc:2352:dump_module$1  = 0;
-  wire \$1 ;
-  wire \$2 ;
-  reg [4:0] \$3 ;
+  reg [4:0] \$1 ;
   (* src = "/home/virantha/tinytapeout/ttsetup/env/lib/python3.11/site-packages/amaranth/hdl/_ir.py:215" *)
   input clk;
   wire clk;
@@ -97,11 +95,9 @@ module top(clk, rst, uo_out, uio_out, ui_in);
   wire [4:0] wr_data;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/plugboard.py:56" *)
   wire wr_data_en;
-  assign \$1  = ui_in[7:5] == (* src = "/home/virantha/tinytapeout/tt10-enigma/src/top.py:70" *) 3'h4;
-  assign \$2  = result_ready & (* src = "/home/virantha/tinytapeout/tt10-enigma/src/top.py:70" *) \$1 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/top.py:14" *)
   always @(posedge clk)
-    din <= \$3 ;
+    din <= \$1 ;
   (* src = "/home/virantha/tinytapeout/tt10-enigma/src/top.py:34" *)
   \top.fsm  fsm (
     .clk(clk),
@@ -161,12 +157,12 @@ module top(clk, rst, uo_out, uio_out, ui_in);
   );
   always @* begin
     if (\$auto$verilog_backend.cc:2352:dump_module$1 ) begin end
-    \$3  = din;
-    if (\$2 ) begin
-      \$3  = \din$17 ;
+    \$1  = din;
+    if (result_ready) begin
+      \$1  = \din$17 ;
     end
     if (rst) begin
-      \$3  = 5'h00;
+      \$1  = 5'h00;
     end
   end
   assign dout = uo_out;
