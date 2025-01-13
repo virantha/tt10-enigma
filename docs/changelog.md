@@ -5,9 +5,14 @@
 ## TODO
 - [x] Try to reduce to one test file
 - [ ] Would be nice to always output intermediate dout to lcd for debug.  use ready to drive period
+- [ ] Add some clock constraints to latch writes?
 - [ ] Add FSM code to load plugboard
 - [ ] Clean up old amaranth test benches
 - [ ] Make a sign-of-life on the LED
+
+## V0.5
+- Updated the add/sub mod 26 functions to make it more straightforward
+- Antenna/DRC/LVS clean.  Worst-case slew violation is 10ps. -2.72ns WNS
 
 ## V0.4
 - Update info.yaml with pinout
