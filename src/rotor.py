@@ -71,24 +71,26 @@ class Rotor (wiring.Component):
         m = Module()
         N = self.N
 
-        cnt_ring_combined = Signal(5)
-        ring_setting = Signal(5)
-        cnt = Signal(5)
-        muxed_din = Signal(5)
-        right_ptr = Signal(5)
-        wiring_rtol = Signal(5)
-        wiring_ltor = Signal(5)
+        ring_setting = Signal(5)       # The enabled Rotor's ring setting
+        cnt = Signal(5)                # The enabled Rotor's position
+        cnt_ring_combined = Signal(5)  # Computed position based on current cnt, and ring_setting
+        muxed_din = Signal(5)          # Output of input data mux
+        right_ptr = Signal(5)          # Index into wiring swizzle table
+        wiring_rtol = Signal(5)        # The output character after swizzling going rtol
+        wiring_ltor = Signal(5)        # The output character after swizzling if going ltor 
+        cnt_eq_25 = Signal(1)    # Whether the cnt is going to overflow
 
         # Picking the rotor for each slot
         self.slot = Array([Signal(3, init=0), Signal(3,init=1), Signal(3, init=2)]) # Choose from one of 8 rotor types for each of the 3 slots
         
-        # Pull out the array for debug
+        # Pull out the array for debug/test
         cnts_debug0 = Signal(5)
         cnts_debug1 = Signal(5)
         cnts_debug2 = Signal(5)
         m.d.comb+= cnts_debug0.eq(self.cnts[0]) 
         m.d.comb+= cnts_debug1.eq(self.cnts[1]) 
         m.d.comb+= cnts_debug2.eq(self.cnts[2]) 
+        
         #Mux on the inputs
         with m.Switch(self.din_sel):
             with m.Case(1):
@@ -98,9 +100,6 @@ class Rotor (wiring.Component):
             with m.Default():
                 m.d.comb += muxed_din.eq(self.din)
         
-
-        cnt_eq_25 = Signal(1)
-
         with m.Switch(self.en):
              # Pick settings based on which Rotor Slot is selected by self.en (one-hot)
             for one_hot, rotor in [(0b001, 0), (0b010,1), (0b100, 2)]:
@@ -130,56 +129,37 @@ class Rotor (wiring.Component):
                     cnt.eq(0)
                 ]
 
-        with m.If(ring_setting > cnt):
-            m.d.comb += cnt_ring_combined.eq(26-(ring_setting-cnt))
-        with m.Else():
-            m.d.comb += cnt_ring_combined.eq(cnt-ring_setting)
-
         # Calculate turnover.  
         for i in range(N):
-            #m.d.comb += self.is_at_turnover[i].eq(self.cnts[i] == self.turnovers[i])
             m.d.comb += self.is_at_turnover[i].eq(self.cnts[i] == self.turnovers[self.slot[i]])
 
         # Convert absolute entry (right) to relative contact point on
         # the rotor by adding its rotation (cnt).
         # "data" will then be the output of the wiring pattern based on right_ptr
-
-        def add_mod_26(sum_signal, a,b):
+        def add2_mod_26(sum_signal, a,b):
             s = Signal(6)
-            s_m_26 = Signal(6)
-            s_ge_26 = Signal(1)
-            m.d.comb += [
-                s.eq (a+b),
-                s_ge_26.eq ( (s[5]==1) | (s[0:5]>=26)),
-                #s_ge_26.eq ( s>=26),
-                s_m_26.eq ( s - 26),
-                sum_signal.eq (Mux (s_ge_26, s_m_26[0:5], s[0:5]))
-            ]
+            m.d.comb += s.eq(a+b)
+            with m.If(s > 25):
+                m.d.comb += sum_signal.eq( (s-26)[0:5])
+            with m.Else():
+                m.d.comb += sum_signal.eq( s[0:5])
 
-        def sub_mod_26(sum_signal, a,b):
-            s = Signal(6)
-            a_ext = Signal(6)
-            b_ext = Signal(6)
-            diff_plus_26 = Signal(6)
+        def sub2_mod_26(out, a, b):
+            with m.If(b > a):
+                m.d.comb += out.eq( (26-(b-a))[0:5])
+            with m.Else():
+                m.d.comb += out.eq( (a-b)[0:5])
 
-            m.d.comb += [
-                a_ext.eq (a),
-                b_ext.eq (b),
-                s.eq( a_ext - b_ext),
-                diff_plus_26.eq(s+26),
-                # If MSB is 1, that's underflow
-                sum_signal.eq(Mux(s[5], diff_plus_26[0:5], s[0:5])),
-            ] 
-
-        add_mod_26(right_ptr, muxed_din, cnt_ring_combined)
+        sub2_mod_26(cnt_ring_combined, cnt, ring_setting)
+        add2_mod_26(right_ptr, muxed_din, cnt_ring_combined)
         
         # right to left traversal
         swizz_minus_cnt_ring = Signal(5)
-        sub_mod_26(swizz_minus_cnt_ring, wiring_rtol, cnt_ring_combined)
+        sub2_mod_26(swizz_minus_cnt_ring, wiring_rtol, cnt_ring_combined)
 
         # left to right traversal
         swizz_l_minus_cnt_ring = Signal(5)
-        sub_mod_26(swizz_l_minus_cnt_ring, wiring_ltor, cnt_ring_combined)
+        sub2_mod_26(swizz_l_minus_cnt_ring, wiring_ltor, cnt_ring_combined)
 
         m.d.sync += self.dout.eq(
             Mux(self.ltor,
@@ -187,16 +167,17 @@ class Rotor (wiring.Component):
                 swizz_minus_cnt_ring,))
 
         return m
-            
 
 class Reflector_B(wiring.Component):
-    wiring = 'YRUHQSLDPXNGOKMIEBFZCWVJAT'
+    #wiring = 'YRUHQSLDPXNGOKMIEBFZCWVJAT'
 
     din: In(5)
     dout: Out(5)
 
     def elaborate(self, platform):
         m = Module()
+        from test.enigma import Enigma
+        self.wiring = Enigma.REFLECTORS['B'].wiring
 
         mapping = [ord(c)-65 for c in self.wiring]
 

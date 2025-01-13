@@ -424,7 +424,7 @@ class ParamSweepRunner:
 def main():
     # Example usage
     parameters = {
-        "MAX_TRANSITION_CONSTRAINT": [0.7, 0.75, 1.0],
+        "MAX_TRANSITION_CONSTRAINT": [0.75, 1.0, 1.25],
         "DESIGN_REPAIR_MAX_WIRE_LENGTH": [75, 100, 150],
         "PL_TARGET_DENSITY_PCT": [87],
         "DIODE_ON_PORTS": ["none"],

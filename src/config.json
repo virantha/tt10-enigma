@@ -15,8 +15,6 @@
   "//": "Users have reported that values up to 80 worked well for them.",
   "SYNTH_STRATEGY": "AREA 2",
   "//": "Maybe try with AREA 2",
-  "//": "Maybe this will fix the slews ns",
-  "MAX_TRANSITION_CONSTRAINT": 1.0, 
   "USE_LIGHTER": false, 
   "DESIGN_REPAIR_MAX_SLEW_PCT": 30,
   "DESIGN_REPAIR_MAX_CAP_PCT": 30,
@@ -31,6 +29,8 @@
   "PL_WIRE_LENGTH_COEF": 0.05,
 
   "MAX_FANOUT_CONSTRAINT": 8, 
+  "//": "Maybe this will fix the slews ns",
+  "MAX_TRANSITION_CONSTRAINT": 1.25, 
   "RUN_POST_GPL_DESIGN_REPAIR": true,
   "RUN_POST_CTS_RESIZER_TIMING": true,
   "RUN_POST_GRT_RESIZER_TIMING": true,

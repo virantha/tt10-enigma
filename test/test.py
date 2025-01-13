@@ -78,12 +78,14 @@ async def test_load(dut):
         await ready(dut)
         if prev_r2:
             assert rotor.cnts_debug2.value == prev_r2
+            #assert rotor.cnts[2].value == prev_r2
 
         val = get_ui_in(cmd,r1)
         dut.ui_in.value = val
         dut._log.info(f"Rotor 1: BINARY VALUE {val}")
         await ready(dut)
         assert rotor.cnts_debug0.value == r0
+        #assert rotor.cnts[0].value == r0
 
 
         val = get_ui_in(cmd,r2)
@@ -91,6 +93,7 @@ async def test_load(dut):
         dut._log.info(f"Rotor 2: BINARY VALUE {val}")
         await ready(dut)
         assert rotor.cnts_debug1.value == r1
+        #assert rotor.cnts[1].value == r1
         prev_r2 = r2
 
         #assert rotor_cnt[rotor].cnt.value==start_val
@@ -204,14 +207,16 @@ async def test_enigma_fixed(dut):
 
 @cocotb.test()
 async def test_enigma_randomx10(dut):
+    plain_text_length = 10000
     dut._log.info("Start")
+    dut._log.info(f"Length of plain text: {plain_text_length} chars")
     # Set the clock period to 10 us (100 KHz)
     clock = Clock(dut.clk, 10, units="us")
     cocotb.start_soon(clock.start())
 
     for i in range(10):
         await reset(dut)
-        random_text = [chr(randint(0,25)+65) for count in range(3000)]
+        random_text = [chr(randint(0,25)+65) for count in range(plain_text_length)]
         random_text = ''.join(random_text)
 
         # Create a randomized Enigma settings
