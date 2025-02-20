@@ -164,7 +164,7 @@ is the pseudo code for setting up and scrambling/descrambling with this machine:
     send_command(LOAD_PLUG_ADDR, 25)    # connect Z -> B
     send_command(LOAD_PLUG_DATA, 1)
 
-    send_command(LOAD_PLUG_ADDR, 1)   # connect D -> Z
+    send_command(LOAD_PLUG_ADDR, 1)   # connect B -> Z
     send_command(LOAD_PLUG_DATA, 25)
 
     # Now, enter letters into the machine and watch the coded char
